@@ -1,0 +1,106 @@
+{
+  "users": {
+    "1279715815821938732": {
+      "username": "rem_021",
+      "totalTipped": 15.824900000000001,
+      "entries": {}
+    },
+    "715274042424426616": {
+      "username": "chinchita",
+      "totalDonated": 100,
+      "entries": {}
+    },
+    "757811037880975490": {
+      "username": "pkm_25",
+      "totalDonated": 100.00065386419205,
+      "entries": {}
+    },
+    "1351456484046667799": {
+      "username": "sugarknight0036_72582",
+      "totalDonated": 10.595761263182416,
+      "entries": {
+        "small": 35
+      }
+    },
+    "1112677055662919692": {
+      "username": "screendoor_zombie",
+      "totalDonated": 49.556954999999995,
+      "entries": {}
+    }
+  },
+  "config": {
+    "allowedRecipients": [
+      {
+        "type": "user",
+        "id": "659745190382141453",
+        "name": "daimondsteel2509"
+      }
+    ],
+    "adminRoleId": "1369013609362886697",
+    "notificationChannelId": null,
+    "logChannelId": "1346673744969728010"
+  },
+  "pendingTips": {},
+  "donationDraws": {
+    "small": {
+      "name": "Starter",
+      "minAmount": 0.1,
+      "maxAmount": 0.1,
+      "entries": {
+        "1351456484046667799": 35
+      },
+      "active": true,
+      "reward": "1000 AEGS",
+      "maxEntries": 300,
+      "drawTime": null,
+      "drawTimeFormatted": null,
+      "notificationSent": false
+    },
+    "medium": {
+      "name": "Baller",
+      "minAmount": 0.2,
+      "maxAmount": 0.2,
+      "entries": {},
+      "active": true,
+      "reward": "3000",
+      "maxEntries": 300,
+      "drawTime": null,
+      "drawTimeFormatted": null,
+      "notificationSent": false
+    },
+    "large": {
+      "name": "Whale",
+      "minAmount": 0.3,
+      "maxAmount": 0.3,
+      "entries": {},
+      "active": true,
+      "reward": "6000",
+      "maxEntries": 400,
+      "drawTime": null,
+      "drawTimeFormatted": null,
+      "notificationSent": false
+    }
+  },
+  "drawHistory": [
+    {
+      "drawId": "large",
+      "drawName": "Whale",
+      "drawTime": 1746551164933,
+      "winnerId": "1279715815821938732",
+      "winnerUsername": "rem_021",
+      "reward": "6000",
+      "totalEntries": 10,
+      "winnerEntries": 10
+    },
+    {
+      "drawId": "large",
+      "drawName": "Whale",
+      "drawTime": 1746551194115,
+      "winnerId": "1279715815821938732",
+      "winnerUsername": "rem_021",
+      "reward": "6000",
+      "totalEntries": 10,
+      "winnerEntries": 10
+    }
+  ]
+}

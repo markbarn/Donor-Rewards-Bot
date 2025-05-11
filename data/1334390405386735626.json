@@ -1,0 +1,177 @@
+{
+  "donationDraws": {
+    "small": {
+      "name": "Baby Donor",
+      "minAmount": 0.5,
+      "maxAmount": 0.5,
+      "entries": {
+        "1306325116774383617": 1,
+        "659745190382141453": 2,
+        "1351456484046667799": 1,
+        "284732630279127043": 1,
+        "855249903911305216": 1
+      },
+      "reward": "1000 AEGS",
+      "maxEntries": 1000,
+      "active": true,
+      "drawTime": null,
+      "drawTimeFormatted": null,
+      "notificationSent": false
+    },
+    "medium": {
+      "name": "Medium Donor",
+      "minAmount": 1,
+      "maxAmount": 1,
+      "entries": {
+        "458048449041006592": 2,
+        "1306325116774383617": 3,
+        "284732630279127043": 1,
+        "855249903911305216": 4
+      },
+      "reward": "3000 AEGS",
+      "maxEntries": 1000,
+      "active": true,
+      "drawTime": null,
+      "drawTimeFormatted": null,
+      "notificationSent": false
+    },
+    "large": {
+      "name": "Vip Donor",
+      "minAmount": 2.5,
+      "maxAmount": 2.5,
+      "entries": {
+        "284732630279127043": 1,
+        "855249903911305216": 1
+      },
+      "reward": "6000 AEGS",
+      "maxEntries": 1000,
+      "active": true,
+      "drawTime": null,
+      "drawTimeFormatted": null,
+      "notificationSent": false
+    }
+  },
+  "users": {
+    "659745190382141453": {
+      "username": "daimondsteel2509",
+      "totalDonated": 6.1177654799578285,
+      "entries": {
+        "small": 2
+      }
+    },
+    "1112677055662919692": {
+      "username": "screendoor_zombie",
+      "totalDonated": 0.772456500072036,
+      "entries": {}
+    },
+    "1368964830114877541": {
+      "username": "aegisumdrops",
+      "totalDonated": 0.05706348705057497,
+      "entries": {}
+    },
+    "268317949893279745": {
+      "username": "hippocritical2550",
+      "totalDonated": 0.9788706067999999,
+      "entries": {}
+    },
+    "1306325116774383617": {
+      "username": "dimeattree",
+      "totalDonated": 5.985966,
+      "entries": {
+        "small": 1,
+        "medium": 3
+      }
+    },
+    "458048449041006592": {
+      "username": "luketherock868",
+      "totalDonated": 3.9960899999999997,
+      "entries": {
+        "medium": 2
+      }
+    },
+    "778507526261702686": {
+      "username": "mr.khan4505",
+      "totalDonated": 0.0003329911488778293,
+      "entries": {}
+    },
+    "1025473625886830727": {
+      "username": "_boguta",
+      "totalDonated": 0.000359990431219275,
+      "entries": {}
+    },
+    "284732630279127043": {
+      "username": "badonkabonc",
+      "totalDonated": 4.497543368800001,
+      "entries": {
+        "large": 1,
+        "medium": 1,
+        "small": 1
+      }
+    },
+    "1351456484046667799": {
+      "username": "sugarknight0036_72582",
+      "totalDonated": 0.615073263607,
+      "entries": {
+        "small": 1
+      }
+    },
+    "757811037880975490": {
+      "username": "pkm_25",
+      "totalDonated": 50.02031424,
+      "entries": {}
+    },
+    "855249903911305216": {
+      "username": "cryptotusa",
+      "totalDonated": 13.992398000000001,
+      "entries": {
+        "large": 1,
+        "small": 1,
+        "medium": 4
+      }
+    }
+  },
+  "config": {
+    "allowedRecipients": [
+      {
+        "type": "role"
+      },
+      {
+        "type": "user",
+        "id": "1335058459720417280",
+        "name": "aegisum"
+      },
+      {
+        "type": "role",
+        "id": "1334745512682717204",
+        "name": "AegisumDonation"
+      }
+    ],
+    "adminRoleId": "1369571698004856842",
+    "notificationChannelId": "1341173038514704465",
+    "logChannelId": "1334743307711942797",
+    "acceptedCryptocurrencies": [
+      "AEGS",
+      "LTC",
+      "SOL",
+      "USDT",
+      "BTC",
+      "XRP",
+      "DOGE",
+      "SHIB",
+      "SHIC",
+      "BNB",
+      "USDC",
+      "ETH",
+      "XLA",
+      "ADA",
+      "AVAX",
+      "TON",
+      "TRON",
+      "BONC",
+      "PEPE",
+      "PEP"
+    ]
+  },
+  "pendingTips": {},
+  "drawHistory": []
+}

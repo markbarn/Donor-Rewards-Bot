@@ -1,0 +1,1504 @@
+import { Client, GatewayIntentBits, Events, EmbedBuilder, ActionRowBuilder, ButtonBuilder, ButtonStyle, PermissionFlagsBits, ApplicationCommandOptionType } from 'discord.js';
+import dotenv from 'dotenv';
+import fs from 'fs';
+import path from 'path';
+import { fileURLToPath } from 'url';
+
+// Load environment variables
+dotenv.config();
+
+// Get directory name
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+
+// Configuration
+const OWNER_ID = process.env.OWNER_ID || '659745190382141453'; // daimondsteel2509's ID
+const TIP_BOT_ID = '617037497574359050'; // tip.cc bot ID
+const SERVER_IDS = process.env.SERVER_IDS ? process.env.SERVER_IDS.split(',') : [];
+const ADMIN_ROLE_NAME = 'Raffle Manager'; // Name for the admin role
+
+console.log(`Bot configured for servers: ${SERVER_IDS.join(', ')}`);
+
+// Ensure data directory exists
+const DATA_DIR = path.join(__dirname, 'data');
+if (!fs.existsSync(DATA_DIR)) {
+  fs.mkdirSync(DATA_DIR, { recursive: true });
+}
+
+// Database functions - now with per-server files
+function getDatabase(serverId) {
+  const dbFile = path.join(DATA_DIR, `${serverId}.json`);
+  
+  // Create default database if it doesn't exist
+  if (!fs.existsSync(dbFile)) {
+    const defaultData = {
+      raffles: {
+        'small': { 
+          name: 'Small Prize Raffle', 
+          minAmount: 5, 
+          maxAmount: 19.99, 
+          entries: {},
+          prize: '10 USDT',
+          maxTickets: 100,
+          active: true
+        },
+        'medium': { 
+          name: 'Medium Prize Raffle', 
+          minAmount: 20, 
+          maxAmount: 49.99, 
+          entries: {},
+          prize: '50 USDT',
+          maxTickets: 50,
+          active: true
+        },
+        'large': { 
+          name: 'Large Prize Raffle', 
+          minAmount: 50, 
+          maxAmount: 1000000, 
+          entries: {},
+          prize: '200 USDT',
+          maxTickets: 20,
+          active: true
+        }
+      },
+      users: {},
+      config: {
+        allowedRecipients: [],
+        adminRoleId: null
+      },
+      pendingTips: {}
+    };
+    
+    fs.writeFileSync(dbFile, JSON.stringify(defaultData, null, 2));
+    console.log(`Created default database file for server ${serverId}`);
+  }
+  
+  try {
+    const data = JSON.parse(fs.readFileSync(dbFile, 'utf8'));
+    
+    // Add pendingTips field if it doesn't exist (for backward compatibility)
+    if (!data.pendingTips) {
+      data.pendingTips = {};
+    }
+    
+    return data;
+  } catch (error) {
+    console.error(`Error reading database for server ${serverId}:`, error);
+    return {
+      raffles: {},
+      users: {},
+      config: {
+        allowedRecipients: [],
+        adminRoleId: null
+      },
+      pendingTips: {}
+    };
+  }
+}
+
+function saveDatabase(serverId, data) {
+  const dbFile = path.join(DATA_DIR, `${serverId}.json`);
+  
+  try {
+    fs.writeFileSync(dbFile, JSON.stringify(data, null, 2));
+    return true;
+  } catch (error) {
+    console.error(`Error saving database for server ${serverId}:`, error);
+    return false;
+  }
+}
+
+// Create Discord client
+const client = new Client({
+  intents: [
+    GatewayIntentBits.Guilds,
+    GatewayIntentBits.GuildMessages,
+    GatewayIntentBits.MessageContent
+  ]
+});
+
+// Function to check if user has admin permissions
+async function isAdmin(serverId, userId) {
+  // Bot owner always has admin access
+  if (userId === OWNER_ID) return true;
+  
+  const db = getDatabase(serverId);
+  
+  // If no admin role is set, only the owner has access
+  if (!db.config.adminRoleId) return false;
+  
+  // Get the guild and member
+  const guild = client.guilds.cache.get(serverId);
+  if (!guild) return false;
+  
+  try {
+    const member = await guild.members.fetch(userId);
+    return member.roles.cache.has(db.config.adminRoleId);
+  } catch (error) {
+    console.error('Error checking admin role:', error);
+    return false;
+  }
+}
+
+// Function to add raffle entries
+async function addRaffleEntries(serverId, userId, username, amountUsd, targetRaffleId = null) {
+  const db = getDatabase(serverId);
+  
+  // Initialize user if they don't exist
+  if (!db.users[userId]) {
+    db.users[userId] = {
+      username,
+      totalTipped: 0,
+      entries: {}
+    };
+  }
+  
+  // Update user's total tipped amount
+  db.users[userId].totalTipped += amountUsd;
+  
+  // Track which raffles the user entered and how many tickets
+  const enteredRaffles = [];
+  
+  // If a specific raffle ID was provided, only enter that raffle
+  if (targetRaffleId && db.raffles[targetRaffleId]) {
+    const raffle = db.raffles[targetRaffleId];
+    
+    // Skip inactive raffles
+    if (!raffle.active) {
+      console.log(`Raffle ${targetRaffleId} is inactive`);
+      return enteredRaffles;
+    }
+    
+    // Calculate number of tickets based on the raffle's minAmount
+    const ticketCount = Math.floor(amountUsd / raffle.minAmount);
+    
+    if (ticketCount > 0) {
+      // Initialize entries for this raffle if they don't exist
+      if (!db.users[userId].entries[targetRaffleId]) {
+        db.users[userId].entries[targetRaffleId] = 0;
+      }
+      if (!db.raffles[targetRaffleId].entries[userId]) {
+        db.raffles[targetRaffleId].entries[userId] = 0;
+      }
+      
+      // Check if adding these tickets would exceed the max tickets
+      const currentTotalTickets = Object.values(db.raffles[targetRaffleId].entries).reduce((sum, count) => sum + count, 0);
+      const availableTickets = raffle.maxTickets - currentTotalTickets;
+      const ticketsToAdd = Math.min(ticketCount, availableTickets);
+      
+      if (ticketsToAdd > 0) {
+        // Add tickets
+        db.users[userId].entries[targetRaffleId] += ticketsToAdd;
+        db.raffles[targetRaffleId].entries[userId] += ticketsToAdd;
+        
+        enteredRaffles.push({
+          raffleId: targetRaffleId,
+          raffleName: raffle.name,
+          ticketCount: ticketsToAdd,
+          isFull: ticketsToAdd < ticketCount,
+          minAmount: raffle.minAmount
+        });
+        
+        console.log(`Added ${ticketsToAdd} tickets for ${username} to ${raffle.name} in server ${serverId}`);
+      } else {
+        enteredRaffles.push({
+          raffleId: targetRaffleId,
+          raffleName: raffle.name,
+          ticketCount: 0,
+          isFull: true,
+          minAmount: raffle.minAmount
+        });
+      }
+    }
+  } else {
+    // No specific raffle ID provided, enter all eligible raffles
+    for (const [raffleId, raffle] of Object.entries(db.raffles)) {
+      // Skip inactive raffles
+      if (!raffle.active) continue;
+      
+      if (amountUsd >= raffle.minAmount && amountUsd <= raffle.maxAmount) {
+        // Calculate number of tickets (1 ticket per minAmount)
+        const ticketCount = Math.floor(amountUsd / raffle.minAmount);
+        
+        // Initialize entries for this raffle if they don't exist
+        if (!db.users[userId].entries[raffleId]) {
+          db.users[userId].entries[raffleId] = 0;
+        }
+        if (!db.raffles[raffleId].entries[userId]) {
+          db.raffles[raffleId].entries[userId] = 0;
+        }
+        
+        // Check if adding these tickets would exceed the max tickets
+        const currentTotalTickets = Object.values(db.raffles[raffleId].entries).reduce((sum, count) => sum + count, 0);
+        const availableTickets = raffle.maxTickets - currentTotalTickets;
+        const ticketsToAdd = Math.min(ticketCount, availableTickets);
+        
+        if (ticketsToAdd > 0) {
+          // Add tickets
+          db.users[userId].entries[raffleId] += ticketsToAdd;
+          db.raffles[raffleId].entries[userId] += ticketsToAdd;
+          
+          enteredRaffles.push({
+            raffleId,
+            raffleName: raffle.name,
+            ticketCount: ticketsToAdd,
+            isFull: ticketsToAdd < ticketCount,
+            minAmount: raffle.minAmount
+          });
+          
+          console.log(`Added ${ticketsToAdd} tickets for ${username} to ${raffle.name} in server ${serverId}`);
+        } else {
+          enteredRaffles.push({
+            raffleId,
+            raffleName: raffle.name,
+            ticketCount: 0,
+            isFull: true,
+            minAmount: raffle.minAmount
+          });
+        }
+      }
+    }
+  }
+  
+  saveDatabase(serverId, db);
+  return enteredRaffles;
+}
+
+// Register slash commands when the bot starts
+client.once(Events.ClientReady, async () => {
+  console.log(`Ready! Logged in as ${client.user.tag}`);
+  
+  try {
+    const commands = [
+      {
+        name: 'setup',
+        description: 'Initial setup for the raffle bot',
+        options: [
+          {
+            name: 'admin_role',
+            description: 'Set the admin role for raffle management',
+            type: ApplicationCommandOptionType.Role,
+            required: true
+          }
+        ]
+      },
+      {
+        name: 'admin',
+        description: 'Access admin dashboard'
+      },
+      {
+        name: 'add_recipient',
+        description: 'Add a user or role as an allowed tip recipient',
+        options: [
+          {
+            name: 'recipient',
+            description: 'The user or role to add as a recipient',
+            type: ApplicationCommandOptionType.Mentionable,
+            required: true
+          }
+        ]
+      },
+      {
+        name: 'remove_recipient',
+        description: 'Remove a user or role from allowed tip recipients',
+        options: [
+          {
+            name: 'recipient',
+            description: 'The user or role to remove',
+            type: ApplicationCommandOptionType.Mentionable,
+            required: true
+          }
+        ]
+      },
+      {
+        name: 'create_raffle',
+        description: 'Create a new raffle',
+        options: [
+          {
+            name: 'id',
+            description: 'Unique ID for the raffle (no spaces)',
+            type: ApplicationCommandOptionType.String,
+            required: true
+          },
+          {
+            name: 'name',
+            description: 'Display name for the raffle',
+            type: ApplicationCommandOptionType.String,
+            required: true
+          },
+          {
+            name: 'min_amount',
+            description: 'Minimum USD amount to enter',
+            type: ApplicationCommandOptionType.Number,
+            required: true
+          },
+          {
+            name: 'max_amount',
+            description: 'Maximum USD amount to enter (0 for no limit)',
+            type: ApplicationCommandOptionType.Number,
+            required: true
+          },
+          {
+            name: 'prize',
+            description: 'Prize description (e.g., "100 USDT")',
+            type: ApplicationCommandOptionType.String,
+            required: true
+          },
+          {
+            name: 'max_tickets',
+            description: 'Maximum number of tickets available',
+            type: ApplicationCommandOptionType.Integer,
+            required: true
+          }
+        ]
+      },
+      {
+        name: 'edit_raffle',
+        description: 'Edit an existing raffle',
+        options: [
+          {
+            name: 'id',
+            description: 'ID of the raffle to edit',
+            type: ApplicationCommandOptionType.String,
+            required: true
+          },
+          {
+            name: 'name',
+            description: 'New display name',
+            type: ApplicationCommandOptionType.String,
+            required: false
+          },
+          {
+            name: 'min_amount',
+            description: 'New minimum USD amount',
+            type: ApplicationCommandOptionType.Number,
+            required: false
+          },
+          {
+            name: 'max_amount',
+            description: 'New maximum USD amount (0 for no limit)',
+            type: ApplicationCommandOptionType.Number,
+            required: false
+          },
+          {
+            name: 'prize',
+            description: 'New prize description',
+            type: ApplicationCommandOptionType.String,
+            required: false
+          },
+          {
+            name: 'max_tickets',
+            description: 'New maximum tickets',
+            type: ApplicationCommandOptionType.Integer,
+            required: false
+          },
+          {
+            name: 'active',
+            description: 'Set raffle active status',
+            type: ApplicationCommandOptionType.Boolean,
+            required: false
+          }
+        ]
+      },
+      {
+        name: 'draw',
+        description: 'Draw a winner from a raffle',
+        options: [
+          {
+            name: 'raffle_id',
+            description: 'ID of the raffle to draw from',
+            type: ApplicationCommandOptionType.String,
+            required: true
+          }
+        ]
+      },
+      {
+        name: 'reset_raffle',
+        description: 'Reset entries for a raffle',
+        options: [
+          {
+            name: 'raffle_id',
+            description: 'ID of the raffle to reset',
+            type: ApplicationCommandOptionType.String,
+            required: true
+          }
+        ]
+      },
+      {
+        name: 'tickets',
+        description: 'Check your raffle tickets'
+      },
+      {
+        name: 'raffles',
+        description: 'Show available raffles'
+      },
+      {
+        name: 'raffle_ids',
+        description: 'Show all raffle IDs for tipping'
+      },
+      {
+        name: 'leaderboard',
+        description: 'Show top tippers',
+        options: [
+          {
+            name: 'limit',
+            description: 'Number of users to show (default: 10)',
+            type: ApplicationCommandOptionType.Integer,
+            required: false
+          }
+        ]
+      },
+      {
+        name: 'tip',
+        description: 'Instructions for tipping to enter raffles',
+        options: [
+          {
+            name: 'raffle_id',
+            description: 'ID of the raffle to enter',
+            type: ApplicationCommandOptionType.String,
+            required: false
+          }
+        ]
+      },
+      {
+        name: 'help',
+        description: 'Shows how to use the raffle system'
+      }
+    ];
+    
+    // Register commands globally instead of per-server
+    console.log('Registering global commands...');
+    await client.application.commands.set(commands);
+    console.log('Successfully registered global commands');
+    
+    // Delete any existing guild commands to avoid duplicates
+    for (const serverId of SERVER_IDS) {
+      try {
+        const guild = client.guilds.cache.get(serverId);
+        if (guild) {
+          console.log(`Removing guild-specific commands from: ${guild.name} (${guild.id})`);
+          await guild.commands.set([]);
+          console.log(`Successfully removed guild-specific commands from: ${guild.name}`);
+        }
+      } catch (error) {
+        console.error(`Error removing guild commands for guild ${serverId}:`, error);
+      }
+    }
+  } catch (error) {
+    console.error('Error registering slash commands:', error);
+  }
+});
+
+// Track pending tips
+// Format: { messageId: { senderId, targetRaffleId, timestamp } }
+const pendingTips = new Map();
+
+// Listen for messages to detect tip commands and tip.cc transactions
+client.on(Events.MessageCreate, async (message) => {
+  // Skip bot messages except from tip.cc
+  if (message.author.bot && message.author.id !== TIP_BOT_ID) return;
+  
+  // Only process messages in configured servers
+  if (!message.guild || !SERVER_IDS.includes(message.guild.id)) return;
+  
+  // Check if this is a tip command from a user (not a bot)
+  if (!message.author.bot) {
+    // Look for tip commands with raffle ID
+    // Format: $tip @user amount #raffleID
+    const tipCommandRegex = /\$tip\s+<@!?(\d+)>\s+(.+?)(?:\s+#(\w+))?$/i;
+    const tipMatch = message.content.match(tipCommandRegex);
+    
+    if (tipMatch) {
+      const [, recipientId, amountText, raffleId] = tipMatch;
+      
+      // Store the pending tip with the raffle ID
+      pendingTips.set(message.id, {
+        senderId: message.author.id,
+        recipientId,
+        targetRaffleId: raffleId?.toLowerCase(),
+        timestamp: Date.now(),
+        channelId: message.channel.id
+      });
+      
+      console.log(`Detected tip command with${raffleId ? ' raffle ID #' + raffleId : 'out raffle ID'}`);
+      
+      // Clean up old pending tips (older than 5 minutes)
+      const fiveMinutesAgo = Date.now() - 5 * 60 * 1000;
+      for (const [key, value] of pendingTips.entries()) {
+        if (value.timestamp < fiveMinutesAgo) {
+          pendingTips.delete(key);
+        }
+      }
+    }
+    
+    return;
+  }
+  
+  // From here, we're only processing tip.cc bot messages
+  if (message.author.id !== TIP_BOT_ID) return;
+  
+  console.log(`Received message from tip.cc in server ${message.guild.id}: ${message.content}`);
+  
+  // Check for tip error messages
+  if (message.content.includes('Tip error') || (message.embeds.length > 0 && message.embeds[0].title === 'Tip error')) {
+    console.log('Detected tip error message');
+    return;
+  }
+  
+  // Check if this is a tip confirmation message
+  // Support multiple tip.cc message formats
+  const tipRegexes = [
+    // Format: ✓ @user1 tipped @user2 0.01 BTC ($400.00)
+    /\u2705 <@!?(\d+)> tipped <@!?(\d+)> ([\d.]+) ([A-Z]+)(?:\s+$$\$([\d.]+)$$)?/,
+    
+    // Format: ✓ @user1 sent @user2 0.01 BTC ($400.00)
+    /\u2705 <@!?(\d+)> sent <@!?(\d+)> ([\d.]+) ([A-Z]+)(?:\s+$$\$([\d.]+)$$)?/,
+    
+    // Format: ✓ @user1 sent @user2 and @user3 0.01 BTC ($400.00) each
+    /\u2705 <@!?(\d+)> sent <@!?(\d+)> and <@!?(\d+)> ([\d.]+) ([A-Z]+)(?:\s+$$\$([\d.]+)$$)? each/,
+    
+    // Format with emoji: <emoji> @user1 sent @user2 0.01 BTC (≈ $400.00)
+    /<a?:[^:]+:\d+> <@!?(\d+)> sent <@!?(\d+)> \*\*([\d.]+) ([A-Z]+)\*\*(?:\s+$$≈ \$([\d.]+)$$)?/,
+    
+    // Format with emoji for multiple recipients: <emoji> @user1 sent @user2 and @user3 0.01 BTC (≈ $400.00) each
+    /<a?:[^:]+:\d+> <@!?(\d+)> sent <@!?(\d+)> and <@!?(\d+)> \*\*([\d.]+) ([A-Z]+)\*\*(?:\s+$$≈ \$([\d.]+)$$)? each/
+  ];
+  
+  let match = null;
+  let matchedRegex = -1;
+  
+  for (let i = 0; i < tipRegexes.length; i++) {
+    match = message.content.match(tipRegexes[i]);
+    if (match) {
+      matchedRegex = i;
+      break;
+    }
+  }
+  
+  if (match) {
+    // Process based on which regex matched
+    if (matchedRegex === 0 || matchedRegex === 1 || matchedRegex === 3) {
+      // Single recipient tip
+      const [, senderId, receiverId, amount, currency, rawUsdAmount] = match;
+      
+      // Try to get USD amount, or use the crypto amount as a fallback
+      let usdAmount = parseFloat(rawUsdAmount || amount);
+      
+      // Find the most recent pending tip from this sender
+      let targetRaffleId = null;
+      let pendingTipKey = null;
+      
+      for (const [key, value] of pendingTips.entries()) {
+        if (value.senderId === senderId && value.recipientId === receiverId) {
+          targetRaffleId = value.targetRaffleId;
+          pendingTipKey = key;
+          break;
+        }
+      }
+      
+      // If found, remove it from pending tips
+      if (pendingTipKey) {
+        pendingTips.delete(pendingTipKey);
+      }
+      
+      // Get database for this server
+      const db = getDatabase(message.guild.id);
+      
+      // Check if the receiver is in the allowed recipients list
+      const isAllowedRecipient = db.config.allowedRecipients && db.config.allowedRecipients.some(recipient => {
+        // Check if it's a user ID
+        if (recipient.type === 'user' && recipient.id === receiverId) {
+          return true;
+        }
+        
+        // Check if it's a role ID
+        if (recipient.type === 'role') {
+          // Get the member who received the tip
+          const member = message.guild.members.cache.get(receiverId);
+          // Check if they have the role
+          return member && member.roles.cache.has(recipient.id);
+        }
+        
+        return false;
+      });
+      
+      if (isAllowedRecipient) {
+        const senderUsername = message.mentions.users.get(senderId)?.username || 'Unknown';
+        const receiverUsername = message.mentions.users.get(receiverId)?.username || 'Unknown';
+        
+        console.log(`Valid tip detected for raffle entry in server ${message.guild.id}: ${senderUsername} tipped ${receiverUsername} $${usdAmount}`);
+        
+        // Add raffle entries - with specific raffle ID if provided
+        const entries = await addRaffleEntries(message.guild.id, senderId, senderUsername, usdAmount, targetRaffleId);
+        
+        // Send confirmation message
+        if (entries.length > 0) {
+          const embed = new EmbedBuilder()
+            .setTitle('Raffle Tickets Added!')
+            .setDescription(`Thank you for your tip, <@${senderId}>!`)
+            .setColor('#00FF00')
+            .setFooter({ text: `Use /tickets to see all your tickets` });
+          
+          // Add fields for each raffle entered
+          for (const entry of entries) {
+            let value = entry.ticketCount > 0
+              ? `You received ${entry.ticketCount} ticket(s)! ($${entry.minAmount} per ticket)`
+              : 'This raffle is full!';
+              
+            embed.addFields({
+              name: entry.raffleName,
+              value: value
+            });
+          }
+          
+          message.channel.send({ embeds: [embed] });
+        }
+      }
+    } else if (matchedRegex === 2 || matchedRegex === 4) {
+      // Multiple recipient tip
+      const [, senderId, receiverId1, receiverId2, amount, currency, rawUsdAmount] = match;
+      
+      // Try to get USD amount, or use the crypto amount as a fallback
+      let usdAmount = parseFloat(rawUsdAmount || amount);
+      
+      // Process for first recipient
+      await processTip(message, senderId, receiverId1, usdAmount);
+      
+      // Process for second recipient
+      await processTip(message, senderId, receiverId2, usdAmount);
+    }
+  }
+});
+
+// Helper function to process a tip
+async function processTip(message, senderId, receiverId, usdAmount) {
+  // Find the most recent pending tip from this sender to this recipient
+  let targetRaffleId = null;
+  let pendingTipKey = null;
+  
+  for (const [key, value] of pendingTips.entries()) {
+    if (value.senderId === senderId && value.recipientId === receiverId) {
+      targetRaffleId = value.targetRaffleId;
+      pendingTipKey = key;
+      break;
+    }
+  }
+  
+  // If found, remove it from pending tips
+  if (pendingTipKey) {
+    pendingTips.delete(pendingTipKey);
+  }
+  
+  // Get database for this server
+  const db = getDatabase(message.guild.id);
+  
+  // Check if the receiver is in the allowed recipients list
+  const isAllowedRecipient = db.config.allowedRecipients && db.config.allowedRecipients.some(recipient => {
+    // Check if it's a user ID
+    if (recipient.type === 'user' && recipient.id === receiverId) {
+      return true;
+    }
+    
+    // Check if it's a role ID
+    if (recipient.type === 'role') {
+      // Get the member who received the tip
+      const member = message.guild.members.cache.get(receiverId);
+      // Check if they have the role
+      return member && member.roles.cache.has(recipient.id);
+    }
+    
+    return false;
+  });
+  
+  if (isAllowedRecipient) {
+    const senderUsername = message.mentions.users.get(senderId)?.username || 'Unknown';
+    const receiverUsername = message.mentions.users.get(receiverId)?.username || 'Unknown';
+    
+    console.log(`Valid tip detected for raffle entry in server ${message.guild.id}: ${senderUsername} tipped ${receiverUsername} $${usdAmount}`);
+    
+    // Add raffle entries - with specific raffle ID if provided
+    const entries = await addRaffleEntries(message.guild.id, senderId, senderUsername, usdAmount, targetRaffleId);
+    
+    // Send confirmation message
+    if (entries.length > 0) {
+      const embed = new EmbedBuilder()
+        .setTitle('Raffle Tickets Added!')
+        .setDescription(`Thank you for your tip, <@${senderId}>!`)
+        .setColor('#00FF00')
+        .setFooter({ text: `Use /tickets to see all your tickets` });
+      
+      // Add fields for each raffle entered
+      for (const entry of entries) {
+        let value = entry.ticketCount > 0
+          ? `You received ${entry.ticketCount} ticket(s)! ($${entry.minAmount} per ticket)`
+          : 'This raffle is full!';
+          
+        embed.addFields({
+          name: entry.raffleName,
+          value: value
+        });
+      }
+      
+      message.channel.send({ embeds: [embed] });
+    }
+  }
+}
+
+// Handle slash commands
+client.on(Events.InteractionCreate, async (interaction) => {
+  if (!interaction.isCommand()) return;
+  
+  const { commandName, options, user, guildId } = interaction;
+  
+  // Check if the server is in the allowed list
+  if (!SERVER_IDS.includes(guildId)) {
+    return interaction.reply({ 
+      content: 'This bot is not configured for this server.', 
+      ephemeral: true 
+    });
+  }
+  
+  // Commands that require admin permissions
+  const adminCommands = ['admin', 'add_recipient', 'remove_recipient', 'create_raffle', 'edit_raffle', 'draw', 'reset_raffle'];
+  
+  if (adminCommands.includes(commandName)) {
+    // For setup command, only server admins or the bot owner can use it
+    if (commandName === 'setup') {
+      const member = await interaction.guild.members.fetch(user.id);
+      if (user.id !== OWNER_ID && !member.permissions.has(PermissionFlagsBits.Administrator)) {
+        return interaction.reply({ content: 'Only server administrators can use this command.', ephemeral: true });
+      }
+    } else {
+      // For other admin commands, check if user has the admin role
+      const hasAdminRole = await isAdmin(guildId, user.id);
+      if (!hasAdminRole) {
+        return interaction.reply({ content: 'You do not have permission to use this command.', ephemeral: true });
+      }
+    }
+  }
+  
+  try {
+    switch (commandName) {
+      case 'setup':
+        await handleSetupCommand(interaction);
+        break;
+      case 'admin':
+        await handleAdminCommand(interaction);
+        break;
+      case 'add_recipient':
+        await handleAddRecipientCommand(interaction);
+        break;
+      case 'remove_recipient':
+        await handleRemoveRecipientCommand(interaction);
+        break;
+      case 'create_raffle':
+        await handleCreateRaffleCommand(interaction);
+        break;
+      case 'edit_raffle':
+        await handleEditRaffleCommand(interaction);
+        break;
+      case 'draw':
+        await handleDrawCommand(interaction);
+        break;
+      case 'reset_raffle':
+        await handleResetRaffleCommand(interaction);
+        break;
+      case 'tickets':
+        await handleTicketsCommand(interaction);
+        break;
+      case 'raffles':
+        await handleRafflesCommand(interaction);
+        break;
+      case 'raffle_ids':
+        await handleRaffleIdsCommand(interaction);
+        break;
+      case 'leaderboard':
+        await handleLeaderboardCommand(interaction);
+        break;
+      case 'tip':
+        await handleTipCommand(interaction);
+        break;
+      case 'help':
+        await handleHelpCommand(interaction);
+        break;
+    }
+  } catch (error) {
+    console.error(`Error handling command ${commandName}:`, error);
+    
+    // Check if the interaction has already been replied to
+    if (interaction.replied || interaction.deferred) {
+      await interaction.followUp({ 
+        content: 'There was an error while executing this command!', 
+        ephemeral: true 
+      });
+    } else {
+      await interaction.reply({ 
+        content: 'There was an error while executing this command!', 
+        ephemeral: true 
+      });
+    }
+  }
+});
+
+// Command handlers - now with server ID parameter
+async function handleSetupCommand(interaction) {
+  const adminRole = interaction.options.getRole('admin_role');
+  const serverId = interaction.guildId;
+  
+  const db = getDatabase(serverId);
+  db.config.adminRoleId = adminRole.id;
+  saveDatabase(serverId, db);
+  
+  const embed = new EmbedBuilder()
+    .setTitle('Setup Complete')
+    .setDescription(`CryptoRaffle has been set up successfully!`)
+    .setColor('#00FF00')
+    .addFields(
+      { name: 'Admin Role', value: `<@&${adminRole.id}>` },
+      { name: 'Next Steps', value: 'Use `/add_recipient` to add users or roles that can receive tips for raffle entries.' }
+    );
+  
+  interaction.reply({ embeds: [embed] });
+}
+
+async function handleAdminCommand(interaction) {
+  const serverId = interaction.guildId;
+  const db = getDatabase(serverId);
+  
+  const embed = new EmbedBuilder()
+    .setTitle('CryptoRaffle Admin Dashboard')
+    .setDescription('Use these commands to manage raffles:')
+    .setColor('#FF5500')
+    .addFields(
+      { name: '/add_recipient', value: 'Add a user or role as an allowed tip recipient' },
+      { name: '/remove_recipient', value: 'Remove a user or role from allowed tip recipients' },
+      { name: '/create_raffle', value: 'Create a new raffle' },
+      { name: '/edit_raffle', value: 'Edit an existing raffle' },
+      { name: '/draw', value: 'Draw a winner from a raffle' },
+      { name: '/reset_raffle', value: 'Reset entries for a raffle' },
+      { name: '/leaderboard', value: 'Show top tippers' }
+    );
+  
+  // Add current configuration
+  let recipientsText = 'None';
+  if (db.config.allowedRecipients && db.config.allowedRecipients.length > 0) {
+    recipientsText = db.config.allowedRecipients.map(r => 
+      `${r.type === 'user' ? 'User' : 'Role'}: <@${r.type === 'user' ? '' : '&'}${r.id}>`
+    ).join('\n');
+  }
+  
+  embed.addFields(
+    { name: 'Admin Role', value: db.config.adminRoleId ? `<@&${db.config.adminRoleId}>` : 'Not set' },
+    { name: 'Allowed Recipients', value: recipientsText }
+  );
+  
+  // Add active raffles
+  const activeRaffles = Object.entries(db.raffles)
+    .filter(([_, raffle]) => raffle.active)
+    .map(([id, raffle]) => {
+      const totalTickets = Object.values(raffle.entries).reduce((sum, count) => sum + count, 0);
+      return `${raffle.name} (ID: ${id})\nTickets: ${totalTickets}/${raffle.maxTickets}\nPrize: ${raffle.prize}`;
+    });
+  
+  if (activeRaffles.length > 0) {
+    embed.addFields({ name: 'Active Raffles', value: activeRaffles.join('\n\n') });
+  } else {
+    embed.addFields({ name: 'Active Raffles', value: 'No active raffles' });
+  }
+  
+  interaction.reply({ embeds: [embed], ephemeral: true });
+}
+
+async function handleAddRecipientCommand(interaction) {
+  const recipient = interaction.options.getMentionable('recipient');
+  const serverId = interaction.guildId;
+  const db = getDatabase(serverId);
+  
+  // Initialize allowedRecipients if it doesn't exist
+  if (!db.config.allowedRecipients) {
+    db.config.allowedRecipients = [];
+  }
+  
+  // Determine if it's a user or role
+  const type = recipient.user ? 'user' : 'role';
+  const id = recipient.user ? recipient.user.id : recipient.id;
+  
+  // Check if already in the list
+  const alreadyExists = db.config.allowedRecipients.some(r => 
+    r.type === type && r.id === id
+  );
+  
+  if (alreadyExists) {
+    return interaction.reply({ 
+      content: `This ${type} is already in the allowed recipients list.`, 
+      ephemeral: true 
+    });
+  }
+  
+  // Add to the list
+  db.config.allowedRecipients.push({
+    type,
+    id,
+    name: recipient.user ? recipient.user.username : recipient.name
+  });
+  
+  saveDatabase(serverId, db);
+  
+  interaction.reply({ 
+    content: `Added ${type} ${recipient.user ? recipient.user.username : recipient.name} to allowed recipients.`,
+    ephemeral: true
+  });
+}
+
+async function handleRemoveRecipientCommand(interaction) {
+  const recipient = interaction.options.getMentionable('recipient');
+  const serverId = interaction.guildId;
+  const db = getDatabase(serverId);
+  
+  // Determine if it's a user or role
+  const type = recipient.user ? 'user' : 'role';
+  const id = recipient.user ? recipient.user.id : recipient.id;
+  
+  // Find and remove
+  if (!db.config.allowedRecipients) {
+    return interaction.reply({ 
+      content: `No recipients have been added yet.`, 
+      ephemeral: true 
+    });
+  }
+  
+  const initialLength = db.config.allowedRecipients.length;
+  db.config.allowedRecipients = db.config.allowedRecipients.filter(r => 
+    !(r.type === type && r.id === id)
+  );
+  
+  if (db.config.allowedRecipients.length === initialLength) {
+    return interaction.reply({ 
+      content: `This ${type} was not in the allowed recipients list.`, 
+      ephemeral: true 
+    });
+  }
+  
+  saveDatabase(serverId, db);
+  
+  interaction.reply({ 
+    content: `Removed ${type} ${recipient.user ? recipient.user.username : recipient.name} from allowed recipients.`,
+    ephemeral: true
+  });
+}
+
+async function handleCreateRaffleCommand(interaction) {
+  const raffleId = interaction.options.getString('id').toLowerCase().replace(/\s+/g, '_');
+  const name = interaction.options.getString('name');
+  const minAmount = interaction.options.getNumber('min_amount');
+  let maxAmount = interaction.options.getNumber('max_amount');
+  const prize = interaction.options.getString('prize');
+  const maxTickets = interaction.options.getInteger('max_tickets');
+  const serverId = interaction.guildId;
+  
+  if (maxAmount === 0) maxAmount = 1000000; // Use a large number instead of Infinity for JSON compatibility
+  
+  const db = getDatabase(serverId);
+  
+  // Check if raffle ID already exists
+  if (db.raffles[raffleId]) {
+    return interaction.reply({ 
+      content: `A raffle with ID "${raffleId}" already exists. Use /edit_raffle to modify it.`, 
+      ephemeral: true 
+    });
+  }
+  
+  // Create new raffle
+  db.raffles[raffleId] = {
+    name,
+    minAmount,
+    maxAmount,
+    prize,
+    maxTickets,
+    entries: {},
+    active: true
+  };
+  
+  saveDatabase(serverId, db);
+  
+  const embed = new EmbedBuilder()
+    .setTitle('Raffle Created')
+    .setDescription(`Successfully created raffle: ${name}`)
+    .setColor('#00FF00')
+    .addFields(
+      { name: 'ID', value: raffleId },
+      { name: 'Price Range', value: maxAmount === 1000000 ? `$${minAmount}+` : `$${minAmount} - $${maxAmount}` },
+      { name: 'Prize', value: prize },
+      { name: 'Max Tickets', value: maxTickets.toString() }
+    );
+  
+  interaction.reply({ embeds: [embed] });
+}
+
+async function handleEditRaffleCommand(interaction) {
+  const raffleId = interaction.options.getString('id');
+  const serverId = interaction.guildId;
+  const db = getDatabase(serverId);
+  
+  // Check if raffle exists
+  if (!db.raffles[raffleId]) {
+    return interaction.reply({ 
+      content: `No raffle found with ID "${raffleId}".`, 
+      ephemeral: true 
+    });
+  }
+  
+  const raffle = db.raffles[raffleId];
+  
+  // Update raffle properties if provided
+  if (interaction.options.getString('name')) {
+    raffle.name = interaction.options.getString('name');
+  }
+  
+  if (interaction.options.getNumber('min_amount') !== null) {
+    raffle.minAmount = interaction.options.getNumber('min_amount');
+  }
+  
+  if (interaction.options.getNumber('max_amount') !== null) {
+    raffle.maxAmount = interaction.options.getNumber('max_amount') === 0 
+      ? 1000000 // Use a large number instead of Infinity for JSON compatibility
+      : interaction.options.getNumber('max_amount');
+  }
+  
+  if (interaction.options.getString('prize')) {
+    raffle.prize = interaction.options.getString('prize');
+  }
+  
+  if (interaction.options.getInteger('max_tickets') !== null) {
+    raffle.maxTickets = interaction.options.getInteger('max_tickets');
+  }
+  
+  if (interaction.options.getBoolean('active') !== null) {
+    raffle.active = interaction.options.getBoolean('active');
+  }
+  
+  saveDatabase(serverId, db);
+  
+  const embed = new EmbedBuilder()
+    .setTitle('Raffle Updated')
+    .setDescription(`Successfully updated raffle: ${raffle.name}`)
+    .setColor('#00FF00')
+    .addFields(
+      { name: 'ID', value: raffleId },
+      { name: 'Price Range', value: raffle.maxAmount === 1000000 ? `$${raffle.minAmount}+` : `$${raffle.minAmount} - $${raffle.maxAmount}` },
+      { name: 'Prize', value: raffle.prize },
+      { name: 'Max Tickets', value: raffle.maxTickets.toString() },
+      { name: 'Status', value: raffle.active ? 'Active' : 'Inactive' }
+    );
+  
+  interaction.reply({ embeds: [embed] });
+}
+
+async function handleDrawCommand(interaction) {
+  const raffleId = interaction.options.getString('raffle_id');
+  const serverId = interaction.guildId;
+  const db = getDatabase(serverId);
+  
+  // Check if raffle exists
+  if (!db.raffles[raffleId]) {
+    return interaction.reply({ 
+      content: `No raffle found with ID "${raffleId}".`, 
+      ephemeral: true 
+    });
+  }
+  
+  const raffle = db.raffles[raffleId];
+  const entries = raffle.entries;
+  
+  if (!entries || Object.keys(entries).length === 0) {
+    return interaction.reply({ 
+      content: `No entries in the ${raffle.name} yet.`, 
+      ephemeral: true 
+    });
+  }
+  
+  // Create weighted entries array
+  const weightedEntries = [];
+  for (const [userId, count] of Object.entries(entries)) {
+    for (let i = 0; i < count; i++) {
+      weightedEntries.push(userId);
+    }
+  }
+  
+  if (weightedEntries.length === 0) {
+    return interaction.reply({ 
+      content: `No valid entries in the ${raffle.name}.`, 
+      ephemeral: true 
+    });
+  }
+  
+  // Draw a random winner
+  const winnerIndex = Math.floor(Math.random() * weightedEntries.length);
+  const winnerId = weightedEntries[winnerIndex];
+  const winnerUsername = db.users[winnerId]?.username || 'Unknown';
+  
+  const embed = new EmbedBuilder()
+    .setTitle(`${raffle.name} Winner!`)
+    .setDescription(`Congratulations to <@${winnerId}> (${winnerUsername})!`)
+    .addFields(
+      { name: 'Prize', value: raffle.prize },
+      { name: 'Winning Odds', value: `${entries[winnerId]} out of ${weightedEntries.length} tickets (${((entries[winnerId] / weightedEntries.length) * 100).toFixed(2)}%)` }
+    )
+    .setColor('#FFD700')
+    .setTimestamp();
+  
+  // Add buttons for admin actions
+  const row = new ActionRowBuilder()
+    .addComponents(
+      new ButtonBuilder()
+        .setCustomId(`reset_${raffleId}_${serverId}`)
+        .setLabel('Reset Raffle')
+        .setStyle(ButtonStyle.Danger),
+      new ButtonBuilder()
+        .setCustomId(`redraw_${raffleId}_${serverId}`)
+        .setLabel('Draw Again')
+        .setStyle(ButtonStyle.Secondary)
+    );
+  
+  await interaction.reply({ embeds: [embed], components: [row] });
+}
+
+async function handleResetRaffleCommand(interaction) {
+  const raffleId = interaction.options.getString('raffle_id');
+  const serverId = interaction.guildId;
+  const db = getDatabase(serverId);
+  
+  // Check if raffle exists
+  if (!db.raffles[raffleId]) {
+    return interaction.reply({ 
+      content: `No raffle found with ID "${raffleId}".`, 
+      ephemeral: true 
+    });
+  }
+  
+  const raffle = db.raffles[raffleId];
+  
+  // Reset entries
+  raffle.entries = {};
+  
+  // Remove entries from users
+  for (const userId in db.users) {
+    if (db.users[userId].entries && db.users[userId].entries[raffleId]) {
+      delete db.users[userId].entries[raffleId];
+    }
+  }
+  
+  saveDatabase(serverId, db);
+  
+  interaction.reply({ 
+    content: `Successfully reset all entries for "${raffle.name}".`,
+    ephemeral: true
+  });
+}
+
+async function handleTicketsCommand(interaction) {
+  const serverId = interaction.guildId;
+  const db = getDatabase(serverId);
+  const userId = interaction.user.id;
+  const userData = db.users[userId];
+  
+  if (!userData || !userData.entries || Object.keys(userData.entries).length === 0) {
+    return interaction.reply({ content: 'You don\'t have any raffle tickets yet. Tip to enter!', ephemeral: true });
+  }
+  
+  const embed = new EmbedBuilder()
+    .setTitle('Your Raffle Tickets')
+    .setDescription(`Total amount tipped: $${userData.totalTipped.toFixed(2)}`)
+    .setColor('#0099FF');
+  
+  for (const [raffleId, count] of Object.entries(userData.entries)) {
+    const raffle = db.raffles[raffleId];
+    if (raffle && count > 0) {
+      const totalTickets = Object.values(raffle.entries).reduce((sum, count) => sum + count, 0);
+      const odds = ((count / totalTickets) * 100).toFixed(2);
+      
+      embed.addFields({
+        name: raffle.name,
+        value: `${count} ticket(s) - ${odds}% chance of winning\nPrize: ${raffle.prize}`
+      });
+    }
+  }
+  
+  interaction.reply({ embeds: [embed], ephemeral: true });
+}
+
+async function handleRafflesCommand(interaction) {
+  const serverId = interaction.guildId;
+  const db = getDatabase(serverId);
+  
+  const embed = new EmbedBuilder()
+    .setTitle('Available Raffles')
+    .setDescription('Tip to enter these raffles:')
+    .setColor('#0099FF');
+  
+  let hasActiveRaffles = false;
+  
+  for (const [raffleId, raffle] of Object.entries(db.raffles)) {
+    if (!raffle.active) continue;
+    
+    hasActiveRaffles = true;
+    const entryCount = Object.values(raffle.entries).reduce((sum, count) => sum + count, 0);
+    const priceRange = raffle.maxAmount === 1000000 
+      ? `$${raffle.minAmount}+` 
+      : `$${raffle.minAmount} - $${raffle.maxAmount}`;
+    
+    embed.addFields({
+      name: raffle.name,
+      value: `ID: #${raffleId}\nPrice range: ${priceRange}\nTickets: 1 per $${raffle.minAmount} tipped\nTotal entries: ${entryCount}/${raffle.maxTickets}\nPrize: ${raffle.prize}`
+    });
+  }
+  
+  if (!hasActiveRaffles) {
+    embed.setDescription('There are no active raffles at the moment.');
+  }
+  
+  interaction.reply({ embeds: [embed] });
+}
+
+async function handleRaffleIdsCommand(interaction) {
+  const serverId = interaction.guildId;
+  const db = getDatabase(serverId);
+  
+  const embed = new EmbedBuilder()
+    .setTitle('Raffle IDs for Tipping')
+    .setDescription('Use these IDs when tipping to specify which raffle to enter:\n`$tip @user amount #raffleID`')
+    .setColor('#0099FF');
+  
+  let hasActiveRaffles = false;
+  
+  for (const [raffleId, raffle] of Object.entries(db.raffles)) {
+    if (!raffle.active) continue;
+    
+    hasActiveRaffles = true;
+    const entryCount = Object.values(raffle.entries).reduce((sum, count) => sum + count, 0);
+    
+    embed.addFields({
+      name: raffle.name,
+      value: `ID: \`#${raffleId}\`\nPrice: $${raffle.minAmount} per ticket\nTotal entries: ${entryCount}/${raffle.maxTickets}\nPrize: ${raffle.prize}`
+    });
+  }
+  
+  if (!hasActiveRaffles) {
+    embed.setDescription('There are no active raffles at the moment.');
+  }
+  
+  interaction.reply({ embeds: [embed] });
+}
+
+async function handleTipCommand(interaction) {
+  const raffleId = interaction.options.getString('raffle_id');
+  const serverId = interaction.guildId;
+  const db = getDatabase(serverId);
+  
+  // Get allowed recipients
+  let recipientsText = 'No recipients configured yet. An admin needs to add recipients with `/add_recipient`.';
+  if (db.config.allowedRecipients && db.config.allowedRecipients.length > 0) {
+    recipientsText = db.config.allowedRecipients.map(r => 
+      `<@${r.type === 'user' ? '' : '&'}${r.id}>`
+    ).join(', ');
+  }
+  
+  const embed = new EmbedBuilder()
+    .setTitle('How to Enter Raffles')
+    .setColor('#00FF00');
+  
+  if (raffleId && db.raffles[raffleId]) {
+    // Specific raffle info
+    const raffle = db.raffles[raffleId];
+    const ticketsPerDollar = 1 / raffle.minAmount;
+    
+    embed.setDescription(`To enter the **${raffle.name}** raffle, tip one of these recipients:`)
+      .addFields(
+        { name: 'Recipients', value: recipientsText },
+        { name: 'Tip Command', value: `\`$tip @recipient amount #${raffleId}\`` },
+        { name: 'Raffle Details', value: `Price: $${raffle.minAmount} per ticket\nPrize: ${raffle.prize}\nTickets: ${ticketsPerDollar} per $1 tipped` }
+      );
+  } else {
+    // General tipping info
+    embed.setDescription('To enter raffles, tip one of these recipients:')
+      .addFields(
+        { name: 'Recipients', value: recipientsText },
+        { name: 'Tip Command (any raffle)', value: '`$tip @recipient amount`' },
+        { name: 'Tip Command (specific raffle)', value: '`$tip @recipient amount #raffleID`' },
+        { name: 'Available Raffles', value: 'Use `/raffles` to see all available raffles and their IDs' }
+      );
+  }
+  
+  interaction.reply({ embeds: [embed] });
+}
+
+async function handleLeaderboardCommand(interaction) {
+  const serverId = interaction.guildId;
+  const limit = interaction.options.getInteger('limit') || 10;
+  const db = getDatabase(serverId);
+  
+  // Get all users and sort by total tipped amount
+  const users = Object.entries(db.users)
+    .map(([id, data]) => ({
+      id,
+      username: data.username,
+      totalTipped: data.totalTipped
+    }))
+    .sort((a, b) => b.totalTipped - a.totalTipped)
+    .slice(0, limit);
+  
+  if (users.length === 0) {
+    return interaction.reply({ content: 'No tips recorded yet.', ephemeral: true });
+  }
+  
+  const embed = new EmbedBuilder()
+    .setTitle('Top Tippers')
+    .setDescription('Users who have tipped the most:')
+    .setColor('#FFD700');
+  
+  users.forEach((user, index) => {
+    embed.addFields({
+      name: `${index + 1}. ${user.username}`,
+      value: `$${user.totalTipped.toFixed(2)}`
+    });
+  });
+  
+  interaction.reply({ embeds: [embed] });
+}
+
+async function handleHelpCommand(interaction) {
+  const serverId = interaction.guildId;
+  const db = getDatabase(serverId);
+  
+  // Get allowed recipients
+  let recipientsText = 'No recipients configured yet. Ask an admin to add recipients.';
+  if (db.config.allowedRecipients && db.config.allowedRecipients.length > 0) {
+    recipientsText = db.config.allowedRecipients.map(r => 
+      `<@${r.type === 'user' ? '' : '&'}${r.id}>`
+    ).join(', ');
+  }
+  
+  const embed = new EmbedBuilder()
+    .setTitle('CryptoRaffle Help Guide')
+    .setDescription('Welcome to CryptoRaffle! Here\'s how to participate and win prizes.')
+    .setColor('#4B0082')
+    .addFields(
+      { 
+        name: 'How to Enter Raffles', 
+        value: 'Send tips to designated recipients to automatically receive raffle tickets.' 
+      },
+      { 
+        name: 'Tipping Methods', 
+        value: `**Standard Tip (enters all eligible raffles):**
+\`$tip @recipient amount\`
+
+**Specific Raffle Tip:**
+\`$tip @recipient amount #raffleID\`
+
+The bot will wait for tip.cc to confirm your tip before assigning tickets.` 
+      },
+      { 
+        name: 'Allowed Recipients', 
+        value: recipientsText 
+      },
+      { 
+        name: 'User Commands', 
+        value: `/help - Shows this help message
+/tickets - Check your raffle tickets
+/raffles - View all available raffles
+/raffle_ids - Get IDs for specific raffles
+/tip - Get tipping instructions
+/leaderboard - See top tippers` 
+      },
+      { 
+        name: 'How Winning Works', 
+        value: `Each $${db.raffles.small?.minAmount || '5'} you tip gives you 1 ticket in the eligible raffle.
+More tickets = higher chance of winning!
+Admins will draw winners periodically.
+Your odds are shown when you check your tickets.` 
+      },
+      { 
+        name: 'Tips & Tricks', 
+        value: `- Different raffles have different prize pools
+- Check /raffles to see which raffles are currently active
+- Use /raffle_ids to get the exact IDs for targeting specific raffles
+- The more you tip, the better your chances!` 
+      }
+    )
+    .setFooter({ text: 'Good luck and happy tipping!' });
+  
+  interaction.reply({ embeds: [embed] });
+}
+
+// Button interaction handler
+client.on(Events.InteractionCreate, async (interaction) => {
+  if (!interaction.isButton()) return;
+  
+  // Handle raffle reset and redraw buttons
+  if (interaction.customId.startsWith('reset_')) {
+    const [, raffleId, serverId] = interaction.customId.split('_');
+    
+    // Check if user has admin permissions
+    const hasAdminRole = await isAdmin(serverId, interaction.user.id);
+    if (!hasAdminRole) {
+      return interaction.reply({ content: 'You do not have permission to use this button.', ephemeral: true });
+    }
+    
+    const db = getDatabase(serverId);
+    
+    // Check if raffle exists
+    if (!db.raffles[raffleId]) {
+      return interaction.reply({ content: `Raffle not found.`, ephemeral: true });
+    }
+    
+    const raffle = db.raffles[raffleId];
+    
+    // Reset entries
+    raffle.entries = {};
+    
+    // Remove entries from users
+    for (const userId in db.users) {
+      if (db.users[userId].entries && db.users[userId].entries[raffleId]) {
+        delete db.users[userId].entries[raffleId];
+      }
+    }
+    
+    saveDatabase(serverId, db);
+    
+    await interaction.update({ content: `Raffle ${raffle.name} has been reset.`, embeds: [], components: [] });
+  }
+  
+  if (interaction.customId.startsWith('redraw_')) {
+    const [, raffleId, serverId] = interaction.customId.split('_');
+    
+    // Check if user has admin permissions
+    const hasAdminRole = await isAdmin(serverId, interaction.user.id);
+    if (!hasAdminRole) {
+      return interaction.reply({ content: 'You do not have permission to use this button.', ephemeral: true });
+    }
+    
+    // Update the message to indicate a redraw is happening
+    await interaction.update({ content: 'Redrawing...', components: [] });
+    
+    // Create a fake options object for the handler
+    const fakeOptions = {
+      getString: (name) => name === 'raffle_id' ? raffleId : null
+    };
+    
+    // Create a fake interaction object
+    const fakeInteraction = {
+      options: fakeOptions,
+      reply: (content) => interaction.followUp(content),
+      user: interaction.user,
+      guild: interaction.guild,
+      guildId: serverId
+    };
+    
+    // Call the draw handler
+    await handleDrawCommand(fakeInteraction);
+  }
+});
+
+// Login to Discord
+client.login(process.env.DISCORD_TOKEN);
+
+console.log('CryptoRaffle bot is starting...');
