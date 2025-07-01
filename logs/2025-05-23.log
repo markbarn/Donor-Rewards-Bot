@@ -1,0 +1,51 @@
+[2025-05-23T17:38:47.214Z] INFO: Loaded event: interactionCreate
+[2025-05-23T17:38:47.248Z] INFO: Loaded event: messageCreate
+[2025-05-23T17:38:47.250Z] INFO: Loaded event: ready
+[2025-05-23T17:38:47.855Z] INFO: Ready! Logged in as Donor Rewards#3082
+[2025-05-23T17:38:47.856Z] INFO: Ready! Logged in as Donor Rewards#3082
+[2025-05-23T17:38:47.857Z] INFO: Initialized default features for server 1342205247791169576
+[2025-05-23T17:38:47.858Z] INFO: Initialized default features for server 1345581045000572960
+[2025-05-23T17:38:47.860Z] INFO: Initialized default features for server 1334390405386735626
+[2025-05-23T17:38:47.866Z] ERROR: Invalid command file: add_recipient.js
+[2025-05-23T17:38:47.869Z] INFO: Loaded command: admin
+[2025-05-23T17:38:47.872Z] ERROR: Invalid command file: analytics.js
+[2025-05-23T17:38:47.875Z] ERROR: Invalid command file: blacklist.js
+[2025-05-23T17:38:47.881Z] ERROR: Error loading command bot_info.js: Cannot find package 'node-schedule' imported from /home/daimond/cryptoraffle/utils/scheduler.js
+[2025-05-23T17:38:47.886Z] INFO: Loaded command: assign_entries
+[2025-05-23T17:38:47.890Z] ERROR: Error loading command create_draw.js: The requested module './logger.js' does not provide an export named 'logger'
+[2025-05-23T17:38:47.892Z] INFO: Loaded command: draws
+[2025-05-23T17:38:47.897Z] ERROR: Invalid command file: edit_draw.js
+[2025-05-23T17:38:47.899Z] ERROR: Invalid command file: reset_draw.js
+[2025-05-23T17:38:47.901Z] ERROR: Error loading command schedule_draw.js: Cannot find package 'node-schedule' imported from /home/daimond/cryptoraffle/utils/scheduler.js
+[2025-05-23T17:38:47.903Z] INFO: Loaded command: select_winner
+[2025-05-23T17:38:47.905Z] ERROR: Invalid command file: feature_toggle_advanced.js
+[2025-05-23T17:38:47.907Z] ERROR: Invalid command file: feature_toggle_core.js
+[2025-05-23T17:38:47.909Z] ERROR: Invalid command file: feature_toggle_extra.js
+[2025-05-23T17:38:47.912Z] INFO: Loaded command: help
+[2025-05-23T17:38:47.913Z] ERROR: Invalid command file: ping.js
+[2025-05-23T17:38:47.916Z] ERROR: Invalid command file: setup.js
+[2025-05-23T17:38:47.918Z] INFO: Loaded command: donate
+[2025-05-23T17:38:47.920Z] INFO: Loaded command: donor_roles
+[2025-05-23T17:38:47.922Z] ERROR: Error loading command entries.js: The requested module './logger.js' does not provide an export named 'logger'
+[2025-05-23T17:38:47.925Z] ERROR: Error loading command entry_leaderboard.js: The requested module './logger.js' does not provide an export named 'logger'
+[2025-05-23T17:38:47.928Z] ERROR: Error loading command leaderboard.js: The requested module './logger.js' does not provide an export named 'logger'
+[2025-05-23T17:38:47.930Z] INFO: Loaded command: privacy
+[2025-05-23T17:38:47.933Z] ERROR: Error loading command profile.js: The requested module './logger.js' does not provide an export named 'logger'
+[2025-05-23T17:38:47.934Z] INFO: Registering 8 global commands...
+[2025-05-23T17:38:48.412Z] INFO: Successfully registered global commands
+[2025-05-23T17:38:48.412Z] INFO: Removing guild-specific commands from: daimondsteel259's server (1342205247791169576)
+[2025-05-23T17:38:48.561Z] INFO: Successfully removed guild-specific commands from: daimondsteel259's server
+[2025-05-23T17:38:48.561Z] INFO: Removing guild-specific commands from: Aegisum Playground (1345581045000572960)
+[2025-05-23T17:38:48.698Z] INFO: Successfully removed guild-specific commands from: Aegisum Playground
+[2025-05-23T17:38:48.698Z] INFO: Removing guild-specific commands from: Aegisum (1334390405386735626)
+[2025-05-23T17:38:48.833Z] INFO: Successfully removed guild-specific commands from: Aegisum
+[2025-05-23T17:38:48.834Z] INFO: Bot startup complete
+[2025-05-23T17:44:08.898Z] INFO: Assigned 1 entries to screendoor_zombie (1112677055662919692) for draw montlydonor in server 1334390405386735626
+[2025-05-23T17:44:35.719Z] ERROR: Error handling interaction: Unknown interaction
+[2025-05-23T17:44:35.850Z] ERROR: Error sending error message: Unknown interaction
+[2025-05-23T17:44:55.734Z] ERROR: Error handling interaction: Unknown interaction
+[2025-05-23T17:44:55.835Z] ERROR: Error sending error message: Interaction has already been acknowledged.
+[2025-05-23T17:45:18.893Z] ERROR: Error handling interaction: Unknown interaction
+[2025-05-23T17:45:19.002Z] ERROR: Error sending error message: Interaction has already been acknowledged.
+[2025-05-23T17:47:18.913Z] ERROR: Error handling interaction: Unknown interaction
+[2025-05-23T17:47:19.024Z] ERROR: Error sending error message: Unknown interaction

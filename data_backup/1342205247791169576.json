@@ -1,0 +1,36 @@
+{
+  "raffles": {
+    "small": {
+      "name": "Small Prize Raffle",
+      "minAmount": 5,
+      "maxAmount": 19.99,
+      "entries": {},
+      "prize": "10 USDT",
+      "maxTickets": 100,
+      "active": true
+    },
+    "medium": {
+      "name": "Medium Prize Raffle",
+      "minAmount": 20,
+      "maxAmount": 49.99,
+      "entries": {},
+      "prize": "50 USDT",
+      "maxTickets": 50,
+      "active": true
+    },
+    "large": {
+      "name": "Large Prize Raffle",
+      "minAmount": 50,
+      "maxAmount": 1000000,
+      "entries": {},
+      "prize": "200 USDT",
+      "maxTickets": 20,
+      "active": true
+    }
+  },
+  "users": {},
+  "config": {
+    "allowedRecipients": [],
+    "adminRoleId": null
+  }
+}

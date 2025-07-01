@@ -1,0 +1,131 @@
+[2025-05-23 16:48:12] ERROR: Error loading command add_recipient.js: Cannot use 'in' operator to search for 'data' in undefined
+[2025-05-23 16:48:12] ERROR: Error loading command analytics.js: Cannot use 'in' operator to search for 'data' in undefined
+[2025-05-23 16:48:12] ERROR: Error loading command blacklist.js: Cannot use 'in' operator to search for 'data' in undefined
+[2025-05-23 16:48:12] ERROR: Error loading command bot_info.js: Cannot use 'in' operator to search for 'data' in undefined
+[2025-05-23 16:48:12] ERROR: Error loading command create_draw.js: Cannot use 'in' operator to search for 'data' in undefined
+[2025-05-23 16:48:12] ERROR: Error loading command draws.js: Cannot use 'in' operator to search for 'data' in undefined
+[2025-05-23 16:48:12] ERROR: Error loading command edit_draw.js: Cannot use 'in' operator to search for 'data' in undefined
+[2025-05-23 16:48:12] ERROR: Error loading command reset_draw.js: Cannot use 'in' operator to search for 'data' in undefined
+[2025-05-23 16:48:12] ERROR: Error loading command select_winner.js: Cannot use 'in' operator to search for 'data' in undefined
+[2025-05-23 16:48:12] ERROR: Error loading command feature_toggle_advanced.js: Cannot use 'in' operator to search for 'data' in undefined
+[2025-05-23 16:48:12] ERROR: Error loading command feature_toggle_core.js: Cannot use 'in' operator to search for 'data' in undefined
+[2025-05-23 16:48:12] ERROR: Error loading command feature_toggle_extra.js: Cannot use 'in' operator to search for 'data' in undefined
+[2025-05-23 16:48:12] ERROR: Error loading command help.js: Cannot use 'in' operator to search for 'data' in undefined
+[2025-05-23 16:48:12] ERROR: Error loading command ping.js: Cannot use 'in' operator to search for 'data' in undefined
+[2025-05-23 16:48:12] ERROR: Error loading command setup.js: Cannot use 'in' operator to search for 'data' in undefined
+[2025-05-23 16:48:12] ERROR: Error loading command entries.js: Cannot use 'in' operator to search for 'data' in undefined
+[2025-05-23 16:48:12] ERROR: Error loading command entry_leaderboard.js: Cannot use 'in' operator to search for 'data' in undefined
+[2025-05-23 16:48:12] ERROR: Error loading command leaderboard.js: Cannot use 'in' operator to search for 'data' in undefined
+[2025-05-23 16:48:12] ERROR: Error loading command privacy.js: Cannot use 'in' operator to search for 'data' in undefined
+[2025-05-23 16:48:12] ERROR: Error loading command profile.js: Cannot use 'in' operator to search for 'data' in undefined
+[2025-05-23 16:48:54] ERROR: Command error in admin: Unknown interaction
+[2025-05-23 16:48:54] ERROR: DiscordAPIError[10062]: Unknown interaction
+    at handleErrors (/home/daimond/cryptoraffle/node_modules/@discordjs/rest/dist/index.js:748:13)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async BurstHandler.runRequest (/home/daimond/cryptoraffle/node_modules/@discordjs/rest/dist/index.js:852:23)
+    at async _REST.request (/home/daimond/cryptoraffle/node_modules/@discordjs/rest/dist/index.js:1293:22)
+    at async ChatInputCommandInteraction.reply (/home/daimond/cryptoraffle/node_modules/discord.js/src/structures/interfaces/InteractionResponses.js:194:22)
+    at async Object.execute (file:///home/daimond/cryptoraffle/commands/admin/admin.js:109:5)
+    at async handleCommandInteraction (file:///home/daimond/cryptoraffle/events/interactionCreate.js:124:5)
+    at async Object.execute (file:///home/daimond/cryptoraffle/events/interactionCreate.js:16:9)
+[2025-05-23 16:48:54] ERROR: Error sending error message: Interaction has already been acknowledged.
+[2025-05-23 16:48:56] ERROR: Error handling button interaction manage_draws: Unknown interaction
+[2025-05-23 16:48:56] ERROR: Command error in undefined: Unknown interaction
+[2025-05-23 16:48:56] ERROR: DiscordAPIError[10062]: Unknown interaction
+    at handleErrors (/home/daimond/cryptoraffle/node_modules/@discordjs/rest/dist/index.js:748:13)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async BurstHandler.runRequest (/home/daimond/cryptoraffle/node_modules/@discordjs/rest/dist/index.js:852:23)
+    at async _REST.request (/home/daimond/cryptoraffle/node_modules/@discordjs/rest/dist/index.js:1293:22)
+    at async ButtonInteraction.reply (/home/daimond/cryptoraffle/node_modules/discord.js/src/structures/interfaces/InteractionResponses.js:194:22)
+    at async handleButtonInteraction (file:///home/daimond/cryptoraffle/handlers/buttonHandler.js:25:7)
+    at async Object.execute (file:///home/daimond/cryptoraffle/events/interactionCreate.js:18:9)
+[2025-05-23 16:48:56] ERROR: Error sending error message: Interaction has already been acknowledged.
+[2025-05-23 17:05:33] ERROR: Command error in admin: Unknown interaction
+[2025-05-23 17:05:33] ERROR: DiscordAPIError[10062]: Unknown interaction
+    at handleErrors (/home/daimond/cryptoraffle/node_modules/@discordjs/rest/dist/index.js:748:13)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async BurstHandler.runRequest (/home/daimond/cryptoraffle/node_modules/@discordjs/rest/dist/index.js:852:23)
+    at async _REST.request (/home/daimond/cryptoraffle/node_modules/@discordjs/rest/dist/index.js:1293:22)
+    at async ChatInputCommandInteraction.reply (/home/daimond/cryptoraffle/node_modules/discord.js/src/structures/interfaces/InteractionResponses.js:194:22)
+    at async Object.execute (file:///home/daimond/cryptoraffle/commands/admin/admin.js:109:5)
+    at async handleCommandInteraction (file:///home/daimond/cryptoraffle/events/interactionCreate.js:124:5)
+    at async Object.execute (file:///home/daimond/cryptoraffle/events/interactionCreate.js:16:9)
+[2025-05-23 17:05:34] ERROR: Error sending error message: Interaction has already been acknowledged.
+[2025-05-23 17:06:58] ERROR: Command error in bot_info: Unknown interaction
+[2025-05-23 17:06:58] ERROR: DiscordAPIError[10062]: Unknown interaction
+    at handleErrors (/home/daimond/cryptoraffle/node_modules/@discordjs/rest/dist/index.js:748:13)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async BurstHandler.runRequest (/home/daimond/cryptoraffle/node_modules/@discordjs/rest/dist/index.js:852:23)
+    at async _REST.request (/home/daimond/cryptoraffle/node_modules/@discordjs/rest/dist/index.js:1293:22)
+    at async ChatInputCommandInteraction.reply (/home/daimond/cryptoraffle/node_modules/discord.js/src/structures/interfaces/InteractionResponses.js:194:22)
+    at async Object.execute (file:///home/daimond/cryptoraffle/commands/admin/bot_info.js:87:5)
+    at async handleCommandInteraction (file:///home/daimond/cryptoraffle/events/interactionCreate.js:124:5)
+    at async Object.execute (file:///home/daimond/cryptoraffle/events/interactionCreate.js:16:9)
+[2025-05-23 17:06:58] ERROR: Error sending error message: Unknown interaction
+[2025-05-23 17:07:45] ERROR: Error handling interaction: Unknown interaction
+[2025-05-23 17:07:45] ERROR: DiscordAPIError[10062]: Unknown interaction
+    at handleErrors (/home/daimond/cryptoraffle/node_modules/@discordjs/rest/dist/index.js:748:13)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async BurstHandler.runRequest (/home/daimond/cryptoraffle/node_modules/@discordjs/rest/dist/index.js:852:23)
+    at async _REST.request (/home/daimond/cryptoraffle/node_modules/@discordjs/rest/dist/index.js:1293:22)
+    at async ChatInputCommandInteraction.reply (/home/daimond/cryptoraffle/node_modules/discord.js/src/structures/interfaces/InteractionResponses.js:194:22)
+    at async Object.execute (file:///home/daimond/cryptoraffle/events/interactionCreate.js:16:9)
+[2025-05-23 17:07:45] ERROR: Error sending error message: Interaction has already been acknowledged.
+[2025-05-23 17:08:07] ERROR: Command error in entries: Unknown interaction
+[2025-05-23 17:08:08] ERROR: DiscordAPIError[10062]: Unknown interaction
+    at handleErrors (/home/daimond/cryptoraffle/node_modules/@discordjs/rest/dist/index.js:748:13)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async BurstHandler.runRequest (/home/daimond/cryptoraffle/node_modules/@discordjs/rest/dist/index.js:852:23)
+    at async _REST.request (/home/daimond/cryptoraffle/node_modules/@discordjs/rest/dist/index.js:1293:22)
+    at async ChatInputCommandInteraction.reply (/home/daimond/cryptoraffle/node_modules/discord.js/src/structures/interfaces/InteractionResponses.js:194:22)
+    at async Object.execute (file:///home/daimond/cryptoraffle/commands/user/entries.js:94:5)
+    at async handleCommandInteraction (file:///home/daimond/cryptoraffle/events/interactionCreate.js:124:5)
+    at async Object.execute (file:///home/daimond/cryptoraffle/events/interactionCreate.js:16:9)
+[2025-05-23 17:08:08] ERROR: Error sending error message: Interaction has already been acknowledged.
+[2025-05-23 17:08:54] ERROR: Error handling interaction: Unknown interaction
+[2025-05-23 17:08:54] ERROR: DiscordAPIError[10062]: Unknown interaction
+    at handleErrors (/home/daimond/cryptoraffle/node_modules/@discordjs/rest/dist/index.js:748:13)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async BurstHandler.runRequest (/home/daimond/cryptoraffle/node_modules/@discordjs/rest/dist/index.js:852:23)
+    at async _REST.request (/home/daimond/cryptoraffle/node_modules/@discordjs/rest/dist/index.js:1293:22)
+    at async ChatInputCommandInteraction.reply (/home/daimond/cryptoraffle/node_modules/discord.js/src/structures/interfaces/InteractionResponses.js:194:22)
+    at async Object.execute (file:///home/daimond/cryptoraffle/events/interactionCreate.js:16:9)
+[2025-05-23 17:08:54] ERROR: Error sending error message: Unknown interaction
+[2025-05-23 17:09:21] ERROR: Error handling interaction: Unknown interaction
+[2025-05-23 17:09:21] ERROR: DiscordAPIError[10062]: Unknown interaction
+    at handleErrors (/home/daimond/cryptoraffle/node_modules/@discordjs/rest/dist/index.js:748:13)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async BurstHandler.runRequest (/home/daimond/cryptoraffle/node_modules/@discordjs/rest/dist/index.js:852:23)
+    at async _REST.request (/home/daimond/cryptoraffle/node_modules/@discordjs/rest/dist/index.js:1293:22)
+    at async ChatInputCommandInteraction.reply (/home/daimond/cryptoraffle/node_modules/discord.js/src/structures/interfaces/InteractionResponses.js:194:22)
+    at async Object.execute (file:///home/daimond/cryptoraffle/events/interactionCreate.js:16:9)
+[2025-05-23 17:09:21] ERROR: Error sending error message: Interaction has already been acknowledged.
+[2025-05-23 17:09:29] ERROR: Command error in privacy: Unknown interaction
+[2025-05-23 17:09:29] ERROR: DiscordAPIError[10062]: Unknown interaction
+    at handleErrors (/home/daimond/cryptoraffle/node_modules/@discordjs/rest/dist/index.js:748:13)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async BurstHandler.runRequest (/home/daimond/cryptoraffle/node_modules/@discordjs/rest/dist/index.js:852:23)
+    at async _REST.request (/home/daimond/cryptoraffle/node_modules/@discordjs/rest/dist/index.js:1293:22)
+    at async ChatInputCommandInteraction.reply (/home/daimond/cryptoraffle/node_modules/discord.js/src/structures/interfaces/InteractionResponses.js:194:22)
+    at async Object.execute (file:///home/daimond/cryptoraffle/commands/user/privacy.js:70:5)
+    at async handleCommandInteraction (file:///home/daimond/cryptoraffle/events/interactionCreate.js:124:5)
+    at async Object.execute (file:///home/daimond/cryptoraffle/events/interactionCreate.js:16:9)
+[2025-05-23 17:09:29] ERROR: Error sending error message: Interaction has already been acknowledged.
+[2025-05-23 17:09:41] ERROR: Error handling interaction: Unknown interaction
+[2025-05-23 17:09:41] ERROR: DiscordAPIError[10062]: Unknown interaction
+    at handleErrors (/home/daimond/cryptoraffle/node_modules/@discordjs/rest/dist/index.js:748:13)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async BurstHandler.runRequest (/home/daimond/cryptoraffle/node_modules/@discordjs/rest/dist/index.js:852:23)
+    at async _REST.request (/home/daimond/cryptoraffle/node_modules/@discordjs/rest/dist/index.js:1293:22)
+    at async ChatInputCommandInteraction.reply (/home/daimond/cryptoraffle/node_modules/discord.js/src/structures/interfaces/InteractionResponses.js:194:22)
+    at async Object.execute (file:///home/daimond/cryptoraffle/events/interactionCreate.js:16:9)
+[2025-05-23 17:09:41] ERROR: Error sending error message: Interaction has already been acknowledged.
+[2025-05-23 17:11:45] ERROR: Error handling interaction: Unknown interaction
+[2025-05-23 17:11:45] ERROR: DiscordAPIError[10062]: Unknown interaction
+    at handleErrors (/home/daimond/cryptoraffle/node_modules/@discordjs/rest/dist/index.js:748:13)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async BurstHandler.runRequest (/home/daimond/cryptoraffle/node_modules/@discordjs/rest/dist/index.js:852:23)
+    at async _REST.request (/home/daimond/cryptoraffle/node_modules/@discordjs/rest/dist/index.js:1293:22)
+    at async ChatInputCommandInteraction.reply (/home/daimond/cryptoraffle/node_modules/discord.js/src/structures/interfaces/InteractionResponses.js:194:22)
+    at async Object.execute (file:///home/daimond/cryptoraffle/events/interactionCreate.js:16:9)
+[2025-05-23 17:11:45] ERROR: Error sending error message: Interaction has already been acknowledged.

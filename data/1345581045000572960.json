@@ -4,29 +4,34 @@
       "username": "rem_021",
       "totalTipped": 15.824900000000001,
       "entries": {},
-      "totalDonated": 0
+      "totalDonated": 0,
+      "privacyEnabled": false
     },
     "715274042424426616": {
       "username": "chinchita",
       "totalDonated": 0,
-      "entries": {}
+      "entries": {},
+      "privacyEnabled": false
     },
     "757811037880975490": {
       "username": "pkm_25",
       "totalDonated": 0,
-      "entries": {}
+      "entries": {},
+      "privacyEnabled": false
     },
     "1351456484046667799": {
       "username": "sugarknight0036_72582",
       "totalDonated": 83.60501395382781,
       "entries": {
         "small": 300
-      }
+      },
+      "privacyEnabled": false
     },
     "1112677055662919692": {
       "username": "screendoor_zombie",
       "totalDonated": 0,
-      "entries": {}
+      "entries": {},
+      "privacyEnabled": false
     }
   },
   "config": {
@@ -44,7 +49,70 @@
     ],
     "adminRoleId": "1369013609362886697",
     "notificationChannelId": null,
-    "logChannelId": "1346673744969728010"
+    "logChannelId": "1346673744969728010",
+    "featureToggles": {
+      "vipDraws": true,
+      "streakBonuses": true,
+      "referralSystem": true,
+      "milestoneRewards": true,
+      "luckyNumbers": true,
+      "multiWinnerDraws": true,
+      "personalDashboard": true,
+      "drawNotifications": true,
+      "donationStreaks": true,
+      "achievementSystem": true,
+      "seasonalLeaderboards": true,
+      "advancedAnalytics": true,
+      "automatedDraws": true,
+      "drawTemplates": true,
+      "bulkUserManagement": true,
+      "customEmbedThemes": true,
+      "dailyWeeklyChallenges": true,
+      "donationMultipliers": true,
+      "communityGoals": true,
+      "seasonalEvents": true,
+      "donorSpotlight": true,
+      "blacklistSystem": true,
+      "antifraudDetection": true,
+      "cooldownPeriods": true,
+      "adminActionLogging": true,
+      "roleBasedPermissions": true,
+      "backupAutomation": true,
+      "anonymousMode": true,
+      "contextSensitiveHelp": true
+    },
+    "theme": {
+      "primary": "#4CAF50",
+      "secondary": "#2196F3",
+      "accent": "#FF9800",
+      "error": "#F44336",
+      "warning": "#FFC107",
+      "info": "#00BCD4",
+      "success": "#8BC34A",
+      "vip": "#9C27B0",
+      "special": "#E91E63"
+    },
+    "acceptedCryptocurrencies": [
+      "AEGS",
+      "LTC",
+      "SOL",
+      "USDT",
+      "BTC",
+      "XRP",
+      "DOGE",
+      "SHIB",
+      "SHIC",
+      "BNB",
+      "USDC",
+      "ETH",
+      "XLA",
+      "ADA",
+      "AVAX",
+      "TON",
+      "TRON",
+      "PEP",
+      "BONC"
+    ]
   },
   "pendingTips": {},
   "donationDraws": {
@@ -118,5 +186,23 @@
       "totalEntries": 300,
       "winnerEntries": 300
     }
-  ]
+  ],
+  "entryHistory": {},
+  "backups": {},
+  "achievements": {},
+  "referrals": {},
+  "challenges": {},
+  "templates": {},
+  "scheduledTasks": {},
+  "donationMultipliers": {},
+  "luckyNumbers": {},
+  "analytics": {
+    "dailyDonations": {},
+    "weeklyDonations": {},
+    "monthlyDonations": {},
+    "totalDonations": 0,
+    "donorCount": 0,
+    "averageDonation": 0,
+    "lastUpdated": 1748075733734
+  }
 }

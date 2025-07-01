@@ -1,0 +1,38 @@
+[2025-05-24T02:35:58.895Z] INFO: Detected tip command without draw ID
+[2025-05-24T02:35:59.304Z] ERROR: CoinGecko error for AEGS: CoinGecko API error: 400
+[2025-05-24T07:17:33.064Z] INFO: Detected tip command without draw ID
+[2025-05-24T07:17:33.561Z] ERROR: CoinGecko error for VGC: CoinGecko API error: 400
+[2025-05-24T07:17:33.779Z] INFO: CoinMarketCap price for VGC: $null
+[2025-05-24T07:17:41.188Z] INFO: Detected tip command without draw ID
+[2025-05-24T07:17:41.569Z] ERROR: CoinGecko error for AEGS: CoinGecko API error: 400
+[2025-05-24T07:17:59.269Z] INFO: Detected tip command without draw ID
+[2025-05-24T07:17:59.659Z] ERROR: CoinGecko error for BTCZ: CoinGecko API error: 400
+[2025-05-24T07:17:59.816Z] INFO: CoinMarketCap price for BTCZ: $0.00005332789476511368
+[2025-05-24T07:18:15.666Z] INFO: Detected tip command without draw ID
+[2025-05-24T07:18:34.190Z] INFO: Detected tip command without draw ID
+[2025-05-24T07:18:44.175Z] INFO: Detected tip command without draw ID
+[2025-05-24T07:19:05.158Z] INFO: Detected tip command without draw ID
+[2025-05-24T07:19:07.744Z] INFO: Detected tip command without draw ID
+[2025-05-24T07:19:08.061Z] ERROR: CoinGecko error for INI: CoinGecko API error: 400
+[2025-05-24T07:19:23.235Z] INFO: Detected tip command without draw ID
+[2025-05-24T07:19:23.579Z] ERROR: CoinGecko error for JUP: CoinGecko API error: 400
+[2025-05-24T07:19:23.733Z] INFO: CoinMarketCap price for JUP: $0.5624213233868641
+[2025-05-24T07:19:27.477Z] INFO: Detected tip command without draw ID
+[2025-05-24T07:19:27.872Z] ERROR: CoinGecko error for LDOGE: CoinGecko API error: 400
+[2025-05-24T07:19:27.945Z] INFO: CoinMarketCap price for LDOGE: $0.000025152425999999998
+[2025-05-24T07:19:53.327Z] INFO: Detected tip command without draw ID
+[2025-05-24T07:19:53.825Z] ERROR: CoinGecko error for RIC: CoinGecko API error: 400
+[2025-05-24T07:19:54.214Z] INFO: CoinMarketCap price for RIC: $null
+[2025-05-24T07:20:39.624Z] INFO: Detected tip command without draw ID
+[2025-05-24T07:20:39.956Z] ERROR: CoinGecko error for SMLO: CoinGecko API error: 400
+[2025-05-24T07:20:42.599Z] INFO: Detected tip command without draw ID
+[2025-05-24T07:20:42.962Z] ERROR: CoinGecko error for SOL: CoinGecko API error: 400
+[2025-05-24T07:20:43.114Z] INFO: CoinMarketCap price for SOL: $175.29731771721845
+[2025-05-24T07:20:57.115Z] INFO: Detected tip command without draw ID
+[2025-05-24T07:21:01.123Z] INFO: Detected tip command without draw ID
+[2025-05-24T07:21:01.459Z] ERROR: CoinGecko error for XLM: CoinGecko API error: 400
+[2025-05-24T07:21:01.793Z] INFO: CoinMarketCap price for XLM: $0.2911742639817278
+[2025-05-24T07:21:04.483Z] INFO: Detected tip command without draw ID
+[2025-05-24T07:21:05.060Z] ERROR: CoinGecko error for USDT: CoinGecko API error: 400
+[2025-05-24T07:21:05.131Z] INFO: CoinMarketCap price for USDT: $1.0001581222028413
+[2025-05-24T07:21:10.527Z] INFO: Detected tip command without draw ID

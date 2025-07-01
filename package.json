@@ -1,15 +1,25 @@
 {
-  "name": "cryptoraffle",
-  "version": "1.0.0",
-  "description": "Discord bot for managing crypto raffles with tip.cc integration",
-  "main": "bot.js",
+  "name": "donor-rewards-bot",
+  "version": "2.0.1",
+  "description": "A Discord bot for managing donation rewards and draws",
+  "main": "index.js",
   "type": "module",
   "scripts": {
-    "start": "node bot.js"
+    "start": "node index.js",
+    "dev": "node --watch index.js"
   },
   "dependencies": {
     "discord.js": "^14.14.1",
-    "dotenv": "^16.3.1",
-    "node-fetch": "^3.3.2"
-  }
+    "dotenv": "^16.5.0",
+    "node-fetch": "^3.3.2",
+    "node-schedule": "^2.1.1"
+  },
+  "keywords": [
+    "discord",
+    "bot",
+    "donations",
+    "rewards"
+  ],
+  "author": "Aegisum Eco System",
+  "license": "MIT"
 }
