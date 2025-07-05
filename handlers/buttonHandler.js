@@ -291,10 +291,16 @@ async function handleConfirmButton(interaction, params) {
 
 // Handle cancel buttons (cancel_X, etc.)
 async function handleCancelButton(interaction, params) {
-  await interaction.update({
+  await interaction.deferUpdate().catch(e => {});
+  await interaction.editReply({
     content: 'Action cancelled.',
     components: [],
     embeds: []
+  }).catch(e => {
+    interaction.followUp({
+      content: 'Action cancelled.',
+      flags: MessageFlags.Ephemeral
+    }).catch(e => {});
   });
 }
 
@@ -326,7 +332,13 @@ async function handleRefreshButton(interaction, params) {
     case 'dashboard':
       // Refresh the admin dashboard
       const { embed, components } = await createAdminDashboard(guildId);
-      await interaction.update({ embeds: [embed], components });
+      await interaction.deferUpdate().catch(e => {});
+      await interaction.editReply({ embeds: [embed], components }).catch(e => {
+        interaction.followUp({
+          content: 'Dashboard refreshed.',
+          flags: MessageFlags.Ephemeral
+        }).catch(e => {});
+      });
       break;
     default:
       await interaction.reply({
