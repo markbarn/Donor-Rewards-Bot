@@ -32,10 +32,11 @@ export async function execute(interaction) {
     collector.on('collect', async i => {
       try {
         // Handle the button interaction
+        await i.deferUpdate().catch(e => {})
         await handleHelpButtonInteraction(i, db, isAdmin)
       } catch (error) {
         logger.error("Error handling help button interaction:", error)
-        await i.reply({ content: "An error occurred. Please try again.", ephemeral: true })
+        await i.followUp({ content: "An error occurred. Please try again.", ephemeral: true }).catch(e => {})
       }
     })
     
@@ -152,7 +153,7 @@ async function handleHelpButtonInteraction(interaction, db, isAdmin) {
     case "help_main_menu":
       const mainEmbed = createMainHelpEmbed(db, isAdmin)
       const mainButtons = createMainHelpButtons(isAdmin)
-      await interaction.update({ 
+      await interaction.editReply({ 
         embeds: [mainEmbed], 
         components: mainButtons
       })
@@ -266,7 +267,7 @@ async function showUserCommands(interaction, db, page = 1) {
       )
     }
 
-    await interaction.update({
+    await interaction.editReply({
       embeds: [embed],
       components: [navigationRow]
     })
@@ -329,7 +330,7 @@ async function showDrawCommands(interaction, db) {
         .setEmoji("🏠")
     )
 
-    await interaction.update({
+    await interaction.editReply({
       embeds: [embed],
       components: [navigationRow]
     })
@@ -407,7 +408,7 @@ async function showAdminCommands(interaction, db) {
         .setEmoji("🏠")
     )
 
-    await interaction.update({
+    await interaction.editReply({
       embeds: [embed],
       components: [navigationRow]
     })
@@ -478,7 +479,7 @@ async function showAchievementSystem(interaction, db) {
         .setEmoji("🏠")
     )
 
-    await interaction.update({
+    await interaction.editReply({
       embeds: [embed],
       components: [navigationRow]
     })
