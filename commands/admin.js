@@ -225,7 +225,7 @@ export async function execute(interaction) {
 
     const errorMessage = {
       content: "❌ An error occurred while executing the admin command.",
-      flags: MessageFlags.Ephemeral,
+      ephemeral: true
     }
 
     try {
@@ -928,37 +928,55 @@ async function handleFixAchievements(interaction, db) {
         id: "first_steps",
         name: "First Steps",
         description: "Made your first donation",
-        check: (user) => user.donations && user.donations.length > 0,
+        check: (user) => {
+          logger.info(`First Steps check: donations=${user.donations?.length || 0}`);
+          return user.donations && user.donations.length > 0;
+        },
       },
       {
         id: "generous_donor",
         name: "Generous Donor",
         description: "Donated at least $100",
-        check: (user) => user.totalDonated >= 100,
+        check: (user) => {
+          logger.info(`Generous Donor check: totalDonated=${user.totalDonated || 0}`);
+          return user.totalDonated >= 100;
+        },
       },
       {
         id: "big_spender",
         name: "Big Spender",
         description: "Donated at least $500",
-        check: (user) => user.totalDonated >= 500,
+        check: (user) => {
+          logger.info(`Big Spender check: totalDonated=${user.totalDonated || 0}`);
+          return user.totalDonated >= 500;
+        },
       },
       {
         id: "whale",
         name: "Whale",
         description: "Donated at least $1,000",
-        check: (user) => user.totalDonated >= 1000,
+        check: (user) => {
+          logger.info(`Whale check: totalDonated=${user.totalDonated || 0}`);
+          return user.totalDonated >= 1000;
+        },
       },
       {
         id: "lucky_winner",
         name: "Lucky Winner",
         description: "Won a donation draw",
-        check: (user) => user.wins && user.wins > 0,
+        check: (user) => {
+          logger.info(`Lucky Winner check: wins=${user.wins || 0}`);
+          return user.wins && user.wins > 0;
+        },
       },
       {
         id: "streak_master",
         name: "Streak Master",
         description: "Maintained a 7-day donation streak",
-        check: (user) => user.streak && user.streak.longest >= 7,
+        check: (user) => {
+          logger.info(`Streak Master check: longest=${user.streak?.longest || 0}`);
+          return user.streak && user.streak.longest >= 7;
+        },
       }
     ]
     
@@ -986,6 +1004,14 @@ async function handleFixAchievements(interaction, db) {
         }
       }
       
+      // Debug log user data
+      logger.info(`Processing user ${userId}:`)
+      logger.info(`  - Total donated: $${user.totalDonated ? user.totalDonated.toFixed(2) : 0}`)
+      logger.info(`  - Donations count: ${user.donations ? user.donations.length : 0}`)
+      logger.info(`  - Wins: ${user.wins || 0}`)
+      logger.info(`  - Longest streak: ${user.streak?.longest || 0}`)
+      logger.info(`  - Current achievements: ${user.achievements.join(', ') || 'None'}`)
+      
       // Check each achievement
       for (const achievement of achievements) {
         // Skip if already earned
@@ -995,7 +1021,10 @@ async function handleFixAchievements(interaction, db) {
         }
         
         // Check if achievement should be awarded
-        if (achievement.check(user)) {
+        const qualifies = achievement.check(user)
+        logger.info(`Achievement check for ${achievement.id}: ${qualifies ? 'QUALIFIES' : 'DOES NOT QUALIFY'}`)
+        
+        if (qualifies) {
           user.achievements.push(achievement.id)
           achievementsAssigned++
           logger.info(`🏆 Fixed achievement: ${achievement.name} for user ${userId}`)

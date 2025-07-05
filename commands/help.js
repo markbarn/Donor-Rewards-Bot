@@ -18,7 +18,7 @@ export async function execute(interaction) {
     logger.error("Error in help command:", error)
     await interaction.reply({
       content: "❌ An error occurred while fetching help information.",
-      flags: MessageFlags.Ephemeral,
+      ephemeral: true
     })
   }
 }
@@ -95,26 +95,21 @@ async function showMainHelpMenu(interaction, db, isAdmin) {
       components.push(row2)
     }
 
-    const response = await interaction.reply({ 
+    await interaction.reply({ 
       embeds: [embed], 
       components: components,
-      flags: MessageFlags.Ephemeral 
+      ephemeral: true
     })
 
     // Create collector for button interactions
-    const collector = response.createMessageComponentCollector({ 
+    const collector = interaction.channel.createMessageComponentCollector({ 
+      filter: i => i.user.id === interaction.user.id,
       time: 300000 // 5 minutes
     })
 
     collector.on("collect", async (i) => {
-      // Verify the user who clicked is the same who initiated
-      if (i.user.id !== interaction.user.id) {
-        await i.reply({ 
-          content: "This menu is not for you. Please use the `/help` command to get your own menu.", 
-          ephemeral: true 
-        })
-        return
-      }
+      // The filter already ensures this is the correct user
+      try {
 
       // Handle button clicks
       switch (i.customId) {
@@ -143,6 +138,13 @@ async function showMainHelpMenu(interaction, db, isAdmin) {
           await showUserCommands(i, db, 1)
           break
       }
+      } catch (error) {
+        logger.error("Error handling button interaction:", error);
+        await i.reply({ 
+          content: "An error occurred while processing your request. Please try again.", 
+          ephemeral: true 
+        });
+      }
     })
 
     collector.on("end", async () => {
@@ -160,7 +162,7 @@ async function showMainHelpMenu(interaction, db, isAdmin) {
     await interaction.editReply({
       content: "❌ An error occurred while displaying the help menu.",
       components: [],
-      flags: MessageFlags.Ephemeral,
+      ephemeral: true
     })
   }
 }
