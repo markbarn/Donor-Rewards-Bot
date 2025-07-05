@@ -1,4 +1,4 @@
-import { SlashCommandBuilder, EmbedBuilder, ActionRowBuilder, ButtonBuilder, ButtonStyle, MessageFlags } from "discord.js"
+import { SlashCommandBuilder, EmbedBuilder, ActionRowBuilder, ButtonBuilder, ButtonStyle } from "discord.js"
 import { getDatabase } from "../utils/database.js"
 import { logger } from "../utils/logger.js"
 
@@ -12,8 +12,41 @@ export async function execute(interaction) {
     // Check if user has admin permissions
     const isAdmin = await checkAdminPermissions(interaction, db)
     
-    // Show main help menu first
-    await showMainHelpMenu(interaction, db, isAdmin)
+    // Create the main help embed
+    const embed = createMainHelpEmbed(db, isAdmin)
+    
+    // Create the button rows
+    const rows = createMainHelpButtons(isAdmin)
+    
+    // Send the initial reply
+    await interaction.reply({
+      embeds: [embed],
+      components: rows,
+      ephemeral: true
+    })
+    
+    // Set up a collector for button interactions
+    const filter = i => i.user.id === interaction.user.id
+    const collector = interaction.channel.createMessageComponentCollector({ filter, time: 300000 }) // 5 minutes
+    
+    collector.on('collect', async i => {
+      try {
+        // Handle the button interaction
+        await handleHelpButtonInteraction(i, db, isAdmin)
+      } catch (error) {
+        logger.error("Error handling help button interaction:", error)
+        await i.reply({ content: "An error occurred. Please try again.", ephemeral: true })
+      }
+    })
+    
+    collector.on('end', async () => {
+      try {
+        // Remove the buttons when the collector ends
+        await interaction.editReply({ components: [] })
+      } catch (error) {
+        logger.error("Error removing help buttons:", error)
+      }
+    })
   } catch (error) {
     logger.error("Error in help command:", error)
     await interaction.reply({
@@ -23,147 +56,113 @@ export async function execute(interaction) {
   }
 }
 
-async function showMainHelpMenu(interaction, db, isAdmin) {
-  try {
-    const embed = new EmbedBuilder()
-      .setTitle("🆘 Help - Donor Rewards Bot")
-      .setDescription("Complete command reference for the Donor Rewards Bot")
-      .setColor(db.config?.theme?.info || "#00BCD4")
+// Create the main help embed
+function createMainHelpEmbed(db, isAdmin) {
+  const embed = new EmbedBuilder()
+    .setTitle("🆘 Help - Donor Rewards Bot")
+    .setDescription("Complete command reference for the Donor Rewards Bot")
+    .setColor(db.config?.theme?.info || "#00BCD4")
 
-    // Essential Commands
-    embed.addFields({
-      name: "🚀 Essential Commands",
-      value: [
-        "`/donate` - Get donation instructions and accepted coins",
-        "`/draws list` - View all available draws",
-        "`/user entries` - Check your draw entries",
-        "`/user profile` - View your donation profile",
-        "`/ping` - Check bot status",
-      ].join("\n"),
-      inline: false,
-    })
+  // Essential Commands
+  embed.addFields({
+    name: "🚀 Essential Commands",
+    value: [
+      "`/donate` - Get donation instructions and accepted coins",
+      "`/draws list` - View all available draws",
+      "`/user entries` - Check your draw entries",
+      "`/user profile` - View your donation profile",
+      "`/ping` - Check bot status",
+    ].join("\n"),
+    inline: false,
+  })
 
-    // Add category buttons
-    const row = new ActionRowBuilder().addComponents(
+  // Add quick start guide
+  embed.addFields({
+    name: "💡 Quick Start Guide",
+    value: [
+      "1. Use `/donate` to learn how to donate",
+      "2. Use `/draws list` to see available draws",
+      "3. Donate using tip.cc: `$tip @recipient amount SYMBOL`",
+      "4. Check your entries with `/user entries`",
+      "5. View your profile with `/user profile`",
+    ].join("\n"),
+    inline: false,
+  })
+
+  embed.setFooter({ text: "Powered By Aegisum Eco System • Main Help Menu" })
+  
+  return embed
+}
+
+// Create the main help buttons
+function createMainHelpButtons(isAdmin) {
+  const rows = []
+  
+  // Main category buttons
+  const row1 = new ActionRowBuilder().addComponents(
+    new ButtonBuilder()
+      .setCustomId("help_user_commands")
+      .setLabel("User Commands")
+      .setStyle(ButtonStyle.Primary)
+      .setEmoji("👤"),
+    new ButtonBuilder()
+      .setCustomId("help_draw_commands")
+      .setLabel("Draw Commands")
+      .setStyle(ButtonStyle.Primary)
+      .setEmoji("🎁"),
+    new ButtonBuilder()
+      .setCustomId("help_achievement_system")
+      .setLabel("Achievement System")
+      .setStyle(ButtonStyle.Primary)
+      .setEmoji("🏆")
+  )
+  
+  rows.push(row1)
+  
+  // Add admin button if user has admin permissions
+  if (isAdmin) {
+    const row2 = new ActionRowBuilder().addComponents(
       new ButtonBuilder()
-        .setCustomId("help_user_commands")
-        .setLabel("User Commands")
-        .setStyle(ButtonStyle.Primary)
-        .setEmoji("👤"),
-      new ButtonBuilder()
-        .setCustomId("help_draw_commands")
-        .setLabel("Draw Commands")
-        .setStyle(ButtonStyle.Primary)
-        .setEmoji("🎁"),
-      new ButtonBuilder()
-        .setCustomId("help_achievement_system")
-        .setLabel("Achievement System")
-        .setStyle(ButtonStyle.Primary)
-        .setEmoji("🏆")
+        .setCustomId("help_admin_commands")
+        .setLabel("Admin Commands")
+        .setStyle(ButtonStyle.Danger)
+        .setEmoji("⚙️")
     )
+    rows.push(row2)
+  }
+  
+  return rows
+}
 
-    // Add admin button if user has admin permissions
-    const row2 = new ActionRowBuilder()
-    if (isAdmin) {
-      row2.addComponents(
-        new ButtonBuilder()
-          .setCustomId("help_admin_commands")
-          .setLabel("Admin Commands")
-          .setStyle(ButtonStyle.Danger)
-          .setEmoji("⚙️")
-      )
-    }
-
-    // Add quick start guide
-    embed.addFields({
-      name: "💡 Quick Start Guide",
-      value: [
-        "1. Use `/donate` to learn how to donate",
-        "2. Use `/draws list` to see available draws",
-        "3. Donate using tip.cc: `$tip @recipient amount SYMBOL`",
-        "4. Check your entries with `/user entries`",
-        "5. View your profile with `/user profile`",
-      ].join("\n"),
-      inline: false,
-    })
-
-    embed.setFooter({ text: "Powered By Aegisum Eco System • Main Help Menu" })
-
-    // Send the message with buttons
-    const components = [row]
-    if (row2.components.length > 0) {
-      components.push(row2)
-    }
-
-    await interaction.reply({ 
-      embeds: [embed], 
-      components: components,
-      ephemeral: true
-    })
-
-    // Create collector for button interactions
-    const collector = interaction.channel.createMessageComponentCollector({ 
-      filter: i => i.user.id === interaction.user.id,
-      time: 300000 // 5 minutes
-    })
-
-    collector.on("collect", async (i) => {
-      // The filter already ensures this is the correct user
-      try {
-
-      // Handle button clicks
-      switch (i.customId) {
-        case "help_user_commands":
-          await showUserCommands(i, db, 1)
-          break
-        case "help_draw_commands":
-          await showDrawCommands(i, db)
-          break
-        case "help_admin_commands":
-          await showAdminCommands(i, db)
-          break
-        case "help_achievement_system":
-          await showAchievementSystem(i, db)
-          break
-        case "help_main_menu":
-          await i.update({ 
-            embeds: [embed], 
-            components: components
-          })
-          break
-        case "help_user_commands_next":
-          await showUserCommands(i, db, 2)
-          break
-        case "help_user_commands_prev":
-          await showUserCommands(i, db, 1)
-          break
-      }
-      } catch (error) {
-        logger.error("Error handling button interaction:", error);
-        await i.reply({ 
-          content: "An error occurred while processing your request. Please try again.", 
-          ephemeral: true 
-        });
-      }
-    })
-
-    collector.on("end", async () => {
-      // Remove buttons after timeout
-      try {
-        await interaction.editReply({ 
-          components: [] 
-        })
-      } catch (error) {
-        logger.error("Error removing buttons from help menu:", error)
-      }
-    })
-  } catch (error) {
-    logger.error("Error showing main help menu:", error)
-    await interaction.editReply({
-      content: "❌ An error occurred while displaying the help menu.",
-      components: [],
-      ephemeral: true
-    })
+// Handle button interactions
+async function handleHelpButtonInteraction(interaction, db, isAdmin) {
+  switch (interaction.customId) {
+    case "help_user_commands":
+      await showUserCommands(interaction, db, 1)
+      break
+    case "help_draw_commands":
+      await showDrawCommands(interaction, db)
+      break
+    case "help_admin_commands":
+      await showAdminCommands(interaction, db)
+      break
+    case "help_achievement_system":
+      await showAchievementSystem(interaction, db)
+      break
+    case "help_main_menu":
+      const mainEmbed = createMainHelpEmbed(db, isAdmin)
+      const mainButtons = createMainHelpButtons(isAdmin)
+      await interaction.update({ 
+        embeds: [mainEmbed], 
+        components: mainButtons
+      })
+      break
+    case "help_user_commands_next":
+      await showUserCommands(interaction, db, 2)
+      break
+    case "help_user_commands_prev":
+      await showUserCommands(interaction, db, 1)
+      break
   }
 }
 
@@ -273,10 +272,15 @@ async function showUserCommands(interaction, db, page = 1) {
     })
   } catch (error) {
     logger.error("Error showing user commands:", error)
-    await interaction.update({
+    await interaction.reply({
       content: "❌ An error occurred while displaying user commands.",
-      components: [],
-      embeds: []
+      ephemeral: true
+    }).catch(() => {
+      interaction.editReply({
+        content: "❌ An error occurred while displaying user commands.",
+        components: [],
+        embeds: []
+      }).catch(e => logger.error("Failed to send error message:", e))
     })
   }
 }
@@ -331,10 +335,15 @@ async function showDrawCommands(interaction, db) {
     })
   } catch (error) {
     logger.error("Error showing draw commands:", error)
-    await interaction.update({
+    await interaction.reply({
       content: "❌ An error occurred while displaying draw commands.",
-      components: [],
-      embeds: []
+      ephemeral: true
+    }).catch(() => {
+      interaction.editReply({
+        content: "❌ An error occurred while displaying draw commands.",
+        components: [],
+        embeds: []
+      }).catch(e => logger.error("Failed to send error message:", e))
     })
   }
 }
@@ -404,10 +413,15 @@ async function showAdminCommands(interaction, db) {
     })
   } catch (error) {
     logger.error("Error showing admin commands:", error)
-    await interaction.update({
+    await interaction.reply({
       content: "❌ An error occurred while displaying admin commands.",
-      components: [],
-      embeds: []
+      ephemeral: true
+    }).catch(() => {
+      interaction.editReply({
+        content: "❌ An error occurred while displaying admin commands.",
+        components: [],
+        embeds: []
+      }).catch(e => logger.error("Failed to send error message:", e))
     })
   }
 }
@@ -470,10 +484,15 @@ async function showAchievementSystem(interaction, db) {
     })
   } catch (error) {
     logger.error("Error showing achievement system:", error)
-    await interaction.update({
+    await interaction.reply({
       content: "❌ An error occurred while displaying achievement information.",
-      components: [],
-      embeds: []
+      ephemeral: true
+    }).catch(() => {
+      interaction.editReply({
+        content: "❌ An error occurred while displaying achievement information.",
+        components: [],
+        embeds: []
+      }).catch(e => logger.error("Failed to send error message:", e))
     })
   }
 }
