@@ -1,0 +1,162 @@
+[2025-07-01T17:14:05.506Z] [INFO] Logger initialized with level: DEBUG
+[2025-07-01T17:14:05.510Z] [INFO] Starting Donor Rewards Bot v2.1.0
+[2025-07-01T17:14:05.510Z] [INFO] Environment: development
+[2025-07-01T17:14:05.549Z] [INFO] Loading event handlers...
+[2025-07-01T17:14:05.550Z] [INFO] Found 3 event files
+[2025-07-01T17:14:05.554Z] [INFO] Loaded event: interactionCreate
+[2025-07-01T17:14:05.586Z] [INFO] Loaded event: messageCreate
+[2025-07-01T17:14:05.588Z] [INFO] Loaded event: ready
+[2025-07-01T17:14:05.588Z] [INFO] Loading commands...
+[2025-07-01T17:14:05.603Z] [INFO] Loaded command: admin
+[2025-07-01T17:14:05.605Z] [INFO] Loaded command: donate
+[2025-07-01T17:14:05.609Z] [INFO] Loaded command: draws
+[2025-07-01T17:14:05.611Z] [INFO] Loaded command: help
+[2025-07-01T17:14:05.613Z] [INFO] Loaded command: ping
+[2025-07-01T17:14:05.615Z] [INFO] Loaded command: help
+[2025-07-01T17:14:05.616Z] [INFO] Loaded 5 commands
+[2025-07-01T17:14:05.616Z] [INFO] Connecting to Discord...
+[2025-07-01T17:14:05.849Z] [ERROR] Failed to login: | Error: An invalid token was provided.
+Error [TokenInvalid]: An invalid token was provided.
+    at WebSocketManager.connect (/home/daimond/cryptoraffle/Donor-rewards-bot/node_modules/discord.js/src/client/websocket/WebSocketManager.js:139:26)
+    at Client.login (/home/daimond/cryptoraffle/Donor-rewards-bot/node_modules/discord.js/src/client/Client.js:229:21)
+    at file:///home/daimond/cryptoraffle/Donor-rewards-bot/index.js:114:4
+[2025-07-01T17:16:37.112Z] [INFO] Logger initialized with level: DEBUG
+[2025-07-01T17:16:37.117Z] [INFO] Starting Donor Rewards Bot v2.1.0
+[2025-07-01T17:16:37.117Z] [INFO] Environment: development
+[2025-07-01T17:16:37.151Z] [INFO] Loading event handlers...
+[2025-07-01T17:16:37.152Z] [INFO] Found 3 event files
+[2025-07-01T17:16:37.156Z] [INFO] Loaded event: interactionCreate
+[2025-07-01T17:16:37.186Z] [INFO] Loaded event: messageCreate
+[2025-07-01T17:16:37.188Z] [INFO] Loaded event: ready
+[2025-07-01T17:16:37.188Z] [INFO] Loading commands...
+[2025-07-01T17:16:37.202Z] [INFO] Loaded command: admin
+[2025-07-01T17:16:37.204Z] [INFO] Loaded command: donate
+[2025-07-01T17:16:37.208Z] [INFO] Loaded command: draws
+[2025-07-01T17:16:37.210Z] [INFO] Loaded command: help
+[2025-07-01T17:16:37.211Z] [INFO] Loaded command: ping
+[2025-07-01T17:16:37.214Z] [INFO] Loaded command: help
+[2025-07-01T17:16:37.214Z] [INFO] Loaded 5 commands
+[2025-07-01T17:16:37.215Z] [INFO] Connecting to Discord...
+[2025-07-01T17:16:38.090Z] [INFO] Bot logged in as Donor Rewards#3082
+[2025-07-01T17:16:38.091Z] [INFO] Bot startup complete
+[2025-07-01T17:16:38.155Z] [INFO] Ready! Logged in as Donor Rewards#3082
+[2025-07-01T17:16:38.156Z] [INFO] Created default database file for server  1334390405386735626
+[2025-07-01T17:16:38.158Z] [INFO] ✅ Prepared command: admin
+[2025-07-01T17:16:38.158Z] [INFO] ✅ Prepared command: donate
+[2025-07-01T17:16:38.159Z] [INFO] ✅ Prepared command: draws
+[2025-07-01T17:16:38.159Z] [INFO] ✅ Prepared command: help
+[2025-07-01T17:16:38.159Z] [INFO] ✅ Prepared command: ping
+[2025-07-01T17:16:38.159Z] [INFO] Registering 5 global commands...
+[2025-07-01T17:16:38.667Z] [INFO] Successfully registered 5 global commands
+[2025-07-01T17:16:38.667Z] [INFO] ✅ Registered: admin
+[2025-07-01T17:16:38.667Z] [INFO] ✅ Registered: donate
+[2025-07-01T17:16:38.668Z] [INFO] ✅ Registered: draws
+[2025-07-01T17:16:38.668Z] [INFO] ✅ Registered: help
+[2025-07-01T17:16:38.668Z] [INFO] ✅ Registered: ping
+[2025-07-01T17:18:32.935Z] [INFO] Admin command executed: edit_draw by daimondsteel2509_aegs
+[2025-07-01T17:18:50.167Z] [INFO] Draws command executed: leaderboard by daimondsteel2509_aegs
+[2025-07-01T17:18:56.480Z] [INFO] Draws command executed: list by daimondsteel2509_aegs
+[2025-07-01T17:22:24.232Z] [INFO] Admin command executed: setup by daimondsteel2509_aegs
+[2025-07-01T17:22:24.539Z] [INFO] Bot setup completed for server 1334390405386735626 by daimondsteel2509_aegs
+[2025-07-01T17:22:31.069Z] [INFO] Draws command executed: list by daimondsteel2509_aegs
+[2025-07-01T17:22:51.115Z] [INFO] Draws command executed: leaderboard by daimondsteel2509_aegs
+[2025-07-01T17:23:53.907Z] [INFO] Draws command executed: leaderboard by daimondsteel2509_aegs
+[2025-07-01T17:24:11.707Z] [INFO] Admin command executed: blacklist by daimondsteel2509_aegs
+[2025-07-01T17:24:12.117Z] [INFO] Blacklist action: add_user by daimondsteel2509_aegs
+[2025-07-01T17:25:09.894Z] [INFO] Admin command executed: dashboard by daimondsteel2509_aegs
+[2025-07-01T17:25:36.853Z] [INFO] Admin command executed: analytics by daimondsteel2509_aegs
+[2025-07-01T17:25:55.423Z] [INFO] Admin command executed: add_recipient by daimondsteel2509_aegs
+[2025-07-01T17:26:05.985Z] [INFO] Admin command executed: analytics by daimondsteel2509_aegs
+[2025-07-01T17:27:30.880Z] [INFO] Admin command executed: analytics by daimondsteel2509_aegs
+[2025-07-01T17:27:42.557Z] [INFO] Admin command executed: analytics by daimondsteel2509_aegs
+[2025-07-01T17:27:53.039Z] [INFO] Admin command executed: assign_entries by daimondsteel2509_aegs
+[2025-07-01T17:28:21.004Z] [INFO] Admin command executed: assign_entries by daimondsteel2509_aegs
+[2025-07-01T17:28:21.568Z] [INFO] Manual entries assigned: 1 each to 1 users for draw small by daimondsteel2509_aegs
+[2025-07-01T17:28:55.964Z] [INFO] Admin command executed: assign_entries by daimondsteel2509_aegs
+[2025-07-01T17:28:56.444Z] [INFO] Manual entries assigned: 1 each to 5 users for draw small by daimondsteel2509_aegs
+[2025-07-01T17:29:48.529Z] [INFO] Admin command executed: blacklist by daimondsteel2509_aegs
+[2025-07-01T17:29:48.867Z] [INFO] Blacklist action: add_user by daimondsteel2509_aegs
+[2025-07-01T17:30:13.285Z] [INFO] Admin command executed: assign_entries by daimondsteel2509_aegs
+[2025-07-01T17:30:13.549Z] [INFO] Manual entries assigned: 1 each to 1 users for draw small by daimondsteel2509_aegs
+[2025-07-01T17:30:50.357Z] [INFO] Admin command executed: create_draw by daimondsteel2509_aegs
+[2025-07-01T17:30:50.732Z] [INFO] Draw created: draw_1751391050358 by daimondsteel2509_aegs
+[2025-07-01T17:30:59.519Z] [INFO] Admin command executed: dashboard by daimondsteel2509_aegs
+[2025-07-01T17:33:50.120Z] [INFO] Draws command executed: info by daimondsteel2509_aegs
+[2025-07-01T17:34:18.761Z] [INFO] Admin command executed: features by daimondsteel2509_aegs
+[2025-07-01T17:35:10.149Z] [INFO] Draws command executed: list by daimondsteel2509_aegs
+[2025-07-01T17:35:28.074Z] [INFO] Admin command executed: edit_draw by daimondsteel2509_aegs
+[2025-07-01T17:35:28.375Z] [INFO] Draw edited: large by daimondsteel2509_aegs
+[2025-07-01T17:37:13.130Z] [INFO] Draws command executed: leaderboard by daimondsteel2509_aegs
+[2025-07-01T17:37:19.241Z] [INFO] Draws command executed: leaderboard by daimondsteel2509_aegs
+[2025-07-01T17:38:51.488Z] [INFO] Admin command executed: features by daimondsteel2509_aegs
+[2025-07-01T17:39:49.493Z] [INFO] Draws command executed: ids by daimondsteel2509_aegs
+[2025-07-01T17:42:03.589Z] [INFO] Received SIGINT signal. Shutting down gracefully...
+[2025-07-01T18:06:12.575Z] [INFO] Logger initialized with level: DEBUG
+[2025-07-01T18:06:12.580Z] [INFO] Starting Donor Rewards Bot v2.1.0
+[2025-07-01T18:06:12.580Z] [INFO] Environment: development
+[2025-07-01T18:06:12.619Z] [INFO] Loading event handlers...
+[2025-07-01T18:06:12.620Z] [INFO] Found 3 event files
+[2025-07-01T18:06:12.624Z] [INFO] Loaded event: interactionCreate
+[2025-07-01T18:06:12.656Z] [INFO] Loaded event: messageCreate
+[2025-07-01T18:06:12.658Z] [INFO] Loaded event: ready
+[2025-07-01T18:06:12.659Z] [INFO] Loading commands...
+[2025-07-01T18:06:12.673Z] [INFO] Loaded command: admin
+[2025-07-01T18:06:12.676Z] [INFO] Loaded command: donate
+[2025-07-01T18:06:12.679Z] [INFO] Loaded command: draws
+[2025-07-01T18:06:12.681Z] [INFO] Loaded command: help
+[2025-07-01T18:06:12.683Z] [INFO] Loaded command: ping
+[2025-07-01T18:06:12.687Z] [INFO] Loaded command: user
+[2025-07-01T18:06:12.687Z] [INFO] Loaded 6 commands
+[2025-07-01T18:06:12.687Z] [INFO] Connecting to Discord...
+[2025-07-01T18:06:13.271Z] [INFO] Bot logged in as Donor Rewards#3082
+[2025-07-01T18:06:13.271Z] [INFO] Bot startup complete
+[2025-07-01T18:06:13.340Z] [INFO] Ready! Logged in as Donor Rewards#3082
+[2025-07-01T18:06:13.342Z] [INFO] ✅ Prepared command: admin
+[2025-07-01T18:06:13.343Z] [INFO] ✅ Prepared command: donate
+[2025-07-01T18:06:13.343Z] [INFO] ✅ Prepared command: draws
+[2025-07-01T18:06:13.343Z] [INFO] ✅ Prepared command: help
+[2025-07-01T18:06:13.343Z] [INFO] ✅ Prepared command: ping
+[2025-07-01T18:06:13.343Z] [INFO] ✅ Prepared command: user
+[2025-07-01T18:06:13.344Z] [INFO] Registering 6 global commands...
+[2025-07-01T18:06:13.687Z] [INFO] Successfully registered 6 global commands
+[2025-07-01T18:06:13.688Z] [INFO] ✅ Registered: admin
+[2025-07-01T18:06:13.688Z] [INFO] ✅ Registered: donate
+[2025-07-01T18:06:13.688Z] [INFO] ✅ Registered: draws
+[2025-07-01T18:06:13.688Z] [INFO] ✅ Registered: help
+[2025-07-01T18:06:13.688Z] [INFO] ✅ Registered: ping
+[2025-07-01T18:06:13.688Z] [INFO] ✅ Registered: user
+[2025-07-01T18:06:38.569Z] [DEBUG] No tip match found in message: 
+[2025-07-01T18:07:59.294Z] [INFO] User command executed: profile by daimondsteel2509_aegs
+[2025-07-01T18:08:13.617Z] [INFO] Admin command executed: clean_recipients by daimondsteel2509_aegs
+[2025-07-01T18:08:13.886Z] [INFO] Recipients cleaned: removed 1 invalid entries by daimondsteel2509_aegs
+[2025-07-01T18:08:29.542Z] [INFO] Admin command executed: add_recipient by daimondsteel2509_aegs
+[2025-07-01T18:09:15.374Z] [INFO] Admin command executed: remove_recipient by daimondsteel2509_aegs
+[2025-07-01T18:09:15.679Z] [INFO] Recipient removed: <@1335058459720417280> by daimondsteel2509_aegs
+[2025-07-01T18:09:38.653Z] [INFO] Admin command executed: remove_recipient by daimondsteel2509_aegs
+[2025-07-01T18:10:24.130Z] [DEBUG] No tip match found in message: 
+[2025-07-01T18:11:12.064Z] [DEBUG] No tip match found in message: 
+[2025-07-01T18:12:06.052Z] [INFO] Admin command executed: analytics by daimondsteel2509_aegs
+[2025-07-01T18:12:24.197Z] [INFO] Admin command executed: blacklist by daimondsteel2509_aegs
+[2025-07-01T18:12:42.129Z] [INFO] Admin command executed: assign_entries by daimondsteel2509_aegs
+[2025-07-01T18:12:42.408Z] [INFO] Manual entries assigned: 1 each to 1 users for draw small by daimondsteel2509_aegs
+[2025-07-01T18:13:27.381Z] [INFO] Admin command executed: dashboard by daimondsteel2509_aegs
+[2025-07-01T18:14:43.232Z] [INFO] User command executed: privacy by daimondsteel2509_aegs
+[2025-07-01T18:14:51.137Z] [INFO] User command executed: entries by daimondsteel2509_aegs
+[2025-07-01T18:15:15.464Z] [INFO] User command executed: select_draw by daimondsteel2509_aegs
+[2025-07-01T18:15:41.141Z] [DEBUG] No tip match found in message: 
+[2025-07-01T18:16:07.661Z] [INFO] User command executed: profile by daimondsteel2509_aegs
+[2025-07-01T18:16:28.842Z] [DEBUG] No tip match found in message: 
+[2025-07-01T18:16:45.601Z] [INFO] Admin command executed: setup by daimondsteel2509_aegs
+[2025-07-01T18:16:45.919Z] [INFO] Bot setup completed for server 1334390405386735626 by daimondsteel2509_aegs
+[2025-07-01T18:17:07.313Z] [INFO] Admin command executed: add_recipient by daimondsteel2509_aegs
+[2025-07-01T18:17:07.688Z] [INFO] Recipient added: <@1335058459720417280> by daimondsteel2509_aegs
+[2025-07-01T18:17:50.569Z] [INFO] Admin command executed: blacklist by daimondsteel2509_aegs
+[2025-07-01T18:17:51.061Z] [INFO] Blacklist action: list by daimondsteel2509_aegs
+[2025-07-01T18:18:01.976Z] [INFO] Draws command executed: list by daimondsteel2509_aegs
+[2025-07-01T18:18:33.634Z] [INFO] Admin command executed: create_draw by daimondsteel2509_aegs
+[2025-07-01T18:18:33.964Z] [INFO] Draw created: draw_1751393913635 by daimondsteel2509_aegs
+[2025-07-01T18:18:48.467Z] [INFO] User command executed: select_draw by daimondsteel2509_aegs
+[2025-07-01T18:19:06.814Z] [INFO] User command executed: select_draw by daimondsteel2509_aegs
+[2025-07-01T18:19:32.165Z] [DEBUG] No tip match found in message: <a:USDT:904070421371047956> <@!659745190382141453> sent <@1335058459720417280> **0.1000 USDT** (≈ $0.10).
+[2025-07-01T18:19:52.469Z] [DEBUG] No tip match found in message: <:AEGS:1373256640392073328> <@!659745190382141453> sent <@1335058459720417280> **250.00 AEGS**.
+[2025-07-01T18:20:06.534Z] [INFO] Received SIGINT signal. Shutting down gracefully...

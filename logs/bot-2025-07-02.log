@@ -1,0 +1,81 @@
+[2025-07-02T16:24:28.350Z] [INFO] Logger initialized with level: DEBUG
+[2025-07-02T16:24:28.355Z] [INFO] Starting Donor Rewards Bot v2.1.0
+[2025-07-02T16:24:28.355Z] [INFO] Environment: development
+[2025-07-02T16:24:28.393Z] [INFO] Loading event handlers...
+[2025-07-02T16:24:28.393Z] [INFO] Found 3 event files
+[2025-07-02T16:24:28.398Z] [INFO] Loaded event: interactionCreate
+[2025-07-02T16:24:28.430Z] [INFO] Loaded event: messageCreate
+[2025-07-02T16:24:28.432Z] [INFO] Loaded event: ready
+[2025-07-02T16:24:28.432Z] [INFO] Loading commands...
+[2025-07-02T16:24:28.439Z] [INFO] Loaded command: achievements
+[2025-07-02T16:24:28.451Z] [INFO] Loaded command: admin
+[2025-07-02T16:24:28.454Z] [INFO] Loaded command: donate
+[2025-07-02T16:24:28.457Z] [INFO] Loaded command: draws
+[2025-07-02T16:24:28.459Z] [INFO] Loaded command: help
+[2025-07-02T16:24:28.463Z] [INFO] Loaded command: leaderboard
+[2025-07-02T16:24:28.467Z] [INFO] Loaded command: lucky
+[2025-07-02T16:24:28.470Z] [INFO] Loaded command: milestones
+[2025-07-02T16:24:28.471Z] [INFO] Loaded command: ping
+[2025-07-02T16:24:28.475Z] [INFO] Loaded command: referral
+[2025-07-02T16:24:28.478Z] [INFO] Loaded command: user
+[2025-07-02T16:24:28.478Z] [INFO] Loaded 11 commands
+[2025-07-02T16:24:28.479Z] [INFO] Connecting to Discord...
+[2025-07-02T16:24:29.202Z] [INFO] Bot logged in as Donor Rewards#3082
+[2025-07-02T16:24:29.202Z] [INFO] Bot startup complete
+[2025-07-02T16:24:29.258Z] [INFO] Ready! Logged in as Donor Rewards#3082
+[2025-07-02T16:24:29.260Z] [INFO] ✅ Prepared command: achievements
+[2025-07-02T16:24:29.261Z] [INFO] ✅ Prepared command: admin
+[2025-07-02T16:24:29.261Z] [INFO] ✅ Prepared command: donate
+[2025-07-02T16:24:29.262Z] [INFO] ✅ Prepared command: draws
+[2025-07-02T16:24:29.262Z] [INFO] ✅ Prepared command: help
+[2025-07-02T16:24:29.262Z] [INFO] ✅ Prepared command: leaderboard
+[2025-07-02T16:24:29.262Z] [INFO] ✅ Prepared command: lucky
+[2025-07-02T16:24:29.262Z] [INFO] ✅ Prepared command: milestones
+[2025-07-02T16:24:29.263Z] [INFO] ✅ Prepared command: ping
+[2025-07-02T16:24:29.263Z] [INFO] ✅ Prepared command: referral
+[2025-07-02T16:24:29.263Z] [INFO] ✅ Prepared command: user
+[2025-07-02T16:24:29.263Z] [INFO] Registering 11 global commands...
+[2025-07-02T16:24:29.612Z] [INFO] Successfully registered 11 global commands
+[2025-07-02T16:24:29.613Z] [INFO] ✅ Registered: achievements
+[2025-07-02T16:24:29.613Z] [INFO] ✅ Registered: admin
+[2025-07-02T16:24:29.613Z] [INFO] ✅ Registered: donate
+[2025-07-02T16:24:29.613Z] [INFO] ✅ Registered: draws
+[2025-07-02T16:24:29.613Z] [INFO] ✅ Registered: help
+[2025-07-02T16:24:29.613Z] [INFO] ✅ Registered: leaderboard
+[2025-07-02T16:24:29.614Z] [INFO] ✅ Registered: lucky
+[2025-07-02T16:24:29.614Z] [INFO] ✅ Registered: milestones
+[2025-07-02T16:24:29.614Z] [INFO] ✅ Registered: ping
+[2025-07-02T16:24:29.614Z] [INFO] ✅ Registered: referral
+[2025-07-02T16:24:29.614Z] [INFO] ✅ Registered: user
+[2025-07-02T16:24:52.294Z] [DEBUG] No tip match found in message: 
+[2025-07-02T16:25:00.660Z] [DEBUG] No tip match found in message: 
+[2025-07-02T16:27:14.399Z] [DEBUG] Detected tip: sugarknight0036_72582 sent 1.0000 USDT to daimondsteel2509_aegs
+[2025-07-02T16:27:14.400Z] [DEBUG] No allowed recipients configured
+[2025-07-02T16:27:32.982Z] [DEBUG] Detected tip: sugarknight0036_72582 sent 50,000.00 SHIC to daimondsteel2509_aegs
+[2025-07-02T16:27:32.982Z] [DEBUG] No allowed recipients configured
+[2025-07-02T16:27:50.617Z] [DEBUG] No tip match found in message: 
+[2025-07-02T16:28:59.147Z] [DEBUG] Detected tip: daimondsteel2509_aegs sent 0.0900 USDT to aegisum
+[2025-07-02T16:28:59.148Z] [DEBUG] Extracted price from tip.cc message: $1
+[2025-07-02T16:28:59.265Z] [DEBUG] CoinGecko price for USDT: $1
+[2025-07-02T16:28:59.266Z] [DEBUG] Matched sender daimondsteel2509_aegs to user ID 659745190382141453
+[2025-07-02T16:28:59.267Z] [ERROR] Error processing tip.cc donation: | Error: Cannot read properties of undefined (reading 'length')
+TypeError: Cannot read properties of undefined (reading 'length')
+    at file:///home/daimond/cryptoraffle/Donor-rewards-bot/events/messageCreate.js:350:95
+    at Array.reduce (<anonymous>)
+    at processTip (file:///home/daimond/cryptoraffle/Donor-rewards-bot/events/messageCreate.js:350:52)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async handleTipccDonation (file:///home/daimond/cryptoraffle/Donor-rewards-bot/events/messageCreate.js:59:5)
+    at async Module.execute (file:///home/daimond/cryptoraffle/Donor-rewards-bot/events/messageCreate.js:13:7)
+[2025-07-02T16:28:59.270Z] [ERROR] TypeError: Cannot read properties of undefined (reading 'length')
+    at file:///home/daimond/cryptoraffle/Donor-rewards-bot/events/messageCreate.js:350:95
+    at Array.reduce (<anonymous>)
+    at processTip (file:///home/daimond/cryptoraffle/Donor-rewards-bot/events/messageCreate.js:350:52)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async handleTipccDonation (file:///home/daimond/cryptoraffle/Donor-rewards-bot/events/messageCreate.js:59:5)
+    at async Module.execute (file:///home/daimond/cryptoraffle/Donor-rewards-bot/events/messageCreate.js:13:7)
+[2025-07-02T16:29:13.514Z] [DEBUG] No tip match found in message: 
+[2025-07-02T16:29:16.386Z] [DEBUG] DEFAULT_THEME: | Data: {"primary":"#4CAF50","secondary":"#2196F3","accent":"#FF9800","error":"#F44336","warning":"#FFC107","info":"#00BCD4","success":"#8BC34A","vip":"#9C27B0","special":"#E91E63"}
+[2025-07-02T16:29:16.388Z] [DEBUG] ACHIEVEMENTS: | Data: ["first_donation","generous_donor","big_spender","whale","lucky_winner","streak_master","community_pillar"]
+[2025-07-02T16:30:06.345Z] [INFO] User 659745190382141453 set lucky numbers: 1, 8, 5
+[2025-07-02T16:32:29.132Z] [INFO] User command executed: privacy by daimondsteel2509_aegs
+[2025-07-02T16:32:50.241Z] [INFO] Received SIGINT signal. Shutting down gracefully...

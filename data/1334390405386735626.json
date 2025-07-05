@@ -127,17 +127,84 @@
       "entries": {},
       "createdBy": "659745190382141453",
       "createdAt": 1748109824933
+    },
+    "draw_1751688344736": {
+      "id": "draw_1751688344736",
+      "name": "Testdraw1",
+      "reward": "1",
+      "minAmount": 0.01,
+      "maxAmount": 1000000,
+      "maxEntries": 100,
+      "vipOnly": false,
+      "manualEntriesOnly": false,
+      "active": true,
+      "entries": {
+        "659745190382141453": 47
+      },
+      "createdBy": "659745190382141453",
+      "createdAt": 1751688344736
     }
   },
   "users": {
     "659745190382141453": {
       "username": "daimondsteel2509",
-      "totalDonated": 6.377744419957828,
+      "totalDonated": 6.856536419957828,
       "entries": {
-        "montlydonor": 37
+        "montlydonor": 37,
+        "draw_1751688344736": 47
       },
       "privacyEnabled": true,
-      "wins": 2
+      "wins": 2,
+      "selectedDraw": "draw_1751688344736",
+      "luckyNumbers": [
+        1
+      ],
+      "referralCode": "IJWLMZ",
+      "achievements": [
+        "lucky_winner"
+      ],
+      "donations": [
+        {
+          "amount": 0.1,
+          "currency": "LTC",
+          "originalAmount": 0.0011,
+          "timestamp": 1751694197021,
+          "recipient": "1335058459720417280"
+        },
+        {
+          "amount": 0.1,
+          "currency": "LTC",
+          "originalAmount": 0.0011,
+          "timestamp": 1751694773400,
+          "recipient": "1335058459720417280"
+        },
+        {
+          "amount": 0.11,
+          "currency": "LTC",
+          "originalAmount": 0.0013,
+          "timestamp": 1751694793241,
+          "recipient": "1335058459720417280"
+        },
+        {
+          "amount": 0.1,
+          "currency": "USDT",
+          "originalAmount": 0.1,
+          "timestamp": 1751695626282,
+          "recipient": "1335058459720417280"
+        },
+        {
+          "amount": 0.06879199999999999,
+          "currency": "AEGS",
+          "originalAmount": 100,
+          "timestamp": 1751697008391,
+          "recipient": "1335058459720417280"
+        }
+      ],
+      "streaks": {
+        "current": 5,
+        "longest": 5,
+        "lastDonation": 1751697008391
+      }
     },
     "1112677055662919692": {
       "username": "screendoor_zombie",
@@ -146,19 +213,24 @@
         "montlydonor": 4
       },
       "privacyEnabled": false,
-      "wins": 1
+      "wins": 1,
+      "achievements": [
+        "lucky_winner"
+      ]
     },
     "1368964830114877541": {
       "username": "aegisumdrops",
       "totalDonated": 0.07755548705057497,
       "entries": {},
-      "privacyEnabled": false
+      "privacyEnabled": false,
+      "achievements": []
     },
     "268317949893279745": {
       "username": "hippocritical2550",
       "totalDonated": 6.185637853800001,
       "entries": {},
-      "privacyEnabled": false
+      "privacyEnabled": false,
+      "achievements": []
     },
     "1306325116774383617": {
       "username": "dimeattree",
@@ -166,70 +238,87 @@
       "entries": {
         "supportdraw": 4
       },
-      "privacyEnabled": false
+      "privacyEnabled": false,
+      "achievements": []
     },
     "458048449041006592": {
       "username": "luketherock868",
       "totalDonated": 3.9960899999999997,
       "entries": {},
-      "privacyEnabled": false
+      "privacyEnabled": false,
+      "achievements": []
     },
     "778507526261702686": {
       "username": "mr.khan4505",
       "totalDonated": 0.0003329911488778293,
       "entries": {},
-      "privacyEnabled": false
+      "privacyEnabled": false,
+      "achievements": []
     },
     "1025473625886830727": {
       "username": "_boguta",
       "totalDonated": 0.000359990431219275,
       "entries": {},
-      "privacyEnabled": false
+      "privacyEnabled": false,
+      "achievements": []
     },
     "284732630279127043": {
       "username": "badonkabonc",
       "totalDonated": 15.477521368800002,
       "entries": {},
       "privacyEnabled": false,
-      "wins": 1
+      "wins": 1,
+      "achievements": [
+        "lucky_winner"
+      ]
     },
     "1351456484046667799": {
       "username": "sugarknight0036_72582",
       "totalDonated": 0.615073263607,
       "entries": {},
-      "privacyEnabled": false
+      "privacyEnabled": false,
+      "achievements": []
     },
     "757811037880975490": {
       "username": "pkm_25",
       "totalDonated": 50.02031424,
       "entries": {},
-      "privacyEnabled": false
+      "privacyEnabled": false,
+      "achievements": []
     },
     "855249903911305216": {
       "username": "cryptotusa",
       "totalDonated": 17.986036000000002,
       "entries": {},
-      "privacyEnabled": false
+      "privacyEnabled": false,
+      "achievements": []
     },
     "544589842282053694": {
       "username": "quxlant",
       "totalDonated": 9.99,
       "entries": {},
       "privacyEnabled": false,
-      "wins": 1
+      "wins": 1,
+      "achievements": [
+        "lucky_winner"
+      ]
     },
     "788083598128840716": {
       "username": "chayping",
       "totalDonated": 5,
       "entries": {},
-      "privacyEnabled": false
+      "privacyEnabled": false,
+      "achievements": []
     },
     "882795921631490109": {
       "username": "drew02846088",
       "totalDonated": 13.4458248,
       "entries": {},
       "privacyEnabled": false,
-      "wins": 1
+      "wins": 1,
+      "achievements": [
+        "lucky_winner"
+      ]
     },
     "421519277661880320": {
       "username": "olzoy",
@@ -345,7 +434,8 @@
       "entries": {
         "supportdraw": 1
       },
-      "privacyEnabled": false
+      "privacyEnabled": false,
+      "achievements": []
     },
     "403606490285604864": {
       "username": "erikbond",
@@ -456,7 +546,8 @@
       "entries": {
         "montlydonor": 0
       },
-      "privacyEnabled": false
+      "privacyEnabled": false,
+      "achievements": []
     },
     "437375311840018432": {
       "totalDonated": 0,
@@ -481,25 +572,6 @@
   },
   "config": {
     "allowedRecipients": [
-      {
-        "type": "role"
-      },
-      {
-        "type": "role",
-        "id": "1334745512682717204",
-        "name": "AegisumDonation"
-      },
-      {
-        "type": "user",
-        "id": "1335058459720417280",
-        "name": "aegisum"
-      },
-      {
-        "id": "659745190382141453",
-        "type": "user",
-        "name": "daimondsteel2509"
-      },
-      "daimondsteel259",
       "<@1335058459720417280>"
     ],
     "adminRoleId": "1369571698004856842",
@@ -571,7 +643,15 @@
       "special": "#E91E63"
     },
     "globalBlacklist": {
-      "users": [],
+      "users": [
+        {
+          "id": "1035737205727047691",
+          "username": "clyntor",
+          "reason": "staff",
+          "addedBy": "659745190382141453",
+          "addedAt": 1751690825389
+        }
+      ],
       "roles": []
     },
     "seasonalLeaderboard": {
@@ -584,7 +664,45 @@
       "donation": 0
     },
     "adminRoles": {},
-    "language": "en"
+    "language": "en",
+    "donorRoles": {
+      "1341175531932221471": {
+        "name": "Bronze Donor",
+        "minAmount": 5,
+        "maxAmount": 25,
+        "id": "1341175531932221471"
+      },
+      "1341175633866391684": {
+        "name": "Silver Donor",
+        "minAmount": 26,
+        "maxAmount": 50,
+        "id": "1341175633866391684"
+      },
+      "1341175703659348059": {
+        "name": "Gold Donor",
+        "minAmount": 51,
+        "maxAmount": 100,
+        "id": "1341175703659348059"
+      },
+      "1341175847280971907": {
+        "name": "Platinum Donor",
+        "minAmount": 101,
+        "maxAmount": 250,
+        "id": "1341175847280971907"
+      },
+      "1341176124020883496": {
+        "name": "Diamond Donor",
+        "minAmount": 251,
+        "maxAmount": 500,
+        "id": "1341176124020883496"
+      },
+      "1357183499185950882": {
+        "name": "Onyx Donor",
+        "minAmount": 500,
+        "maxAmount": null,
+        "id": "1357183499185950882"
+      }
+    }
   },
   "pendingTips": {},
   "drawHistory": [

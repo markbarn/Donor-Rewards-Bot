@@ -1,0 +1,663 @@
+[2025-07-05T00:51:59.188Z] [INFO] Logger initialized with level: DEBUG
+[2025-07-05T00:51:59.192Z] [INFO] Starting Donor Rewards Bot v2.1.0
+[2025-07-05T00:51:59.193Z] [INFO] Environment: development
+[2025-07-05T00:51:59.234Z] [INFO] Loading event handlers...
+[2025-07-05T00:51:59.234Z] [INFO] Found 3 event files
+[2025-07-05T00:51:59.238Z] [INFO] Loaded event: interactionCreate
+[2025-07-05T00:51:59.270Z] [INFO] Loaded event: messageCreate
+[2025-07-05T00:51:59.273Z] [INFO] Loaded event: ready
+[2025-07-05T00:51:59.273Z] [INFO] Loading commands...
+[2025-07-05T00:51:59.279Z] [INFO] Loaded command: achievements
+[2025-07-05T00:51:59.292Z] [INFO] Loaded command: admin
+[2025-07-05T00:51:59.295Z] [INFO] Loaded command: donate
+[2025-07-05T00:51:59.298Z] [INFO] Loaded command: draws
+[2025-07-05T00:51:59.300Z] [INFO] Loaded command: help
+[2025-07-05T00:51:59.304Z] [INFO] Loaded command: leaderboard
+[2025-07-05T00:51:59.308Z] [INFO] Loaded command: lucky
+[2025-07-05T00:51:59.311Z] [INFO] Loaded command: milestones
+[2025-07-05T00:51:59.313Z] [INFO] Loaded command: ping
+[2025-07-05T00:51:59.316Z] [INFO] Loaded command: referral
+[2025-07-05T00:51:59.320Z] [INFO] Loaded command: user
+[2025-07-05T00:51:59.321Z] [INFO] Loaded 11 commands
+[2025-07-05T00:51:59.321Z] [INFO] Connecting to Discord...
+[2025-07-05T00:51:59.937Z] [INFO] Bot logged in as Donor Rewards#3082
+[2025-07-05T00:51:59.937Z] [INFO] Bot startup complete
+[2025-07-05T00:52:00.018Z] [INFO] Ready! Logged in as Donor Rewards#3082
+[2025-07-05T00:52:00.020Z] [INFO] ✅ Prepared command: achievements
+[2025-07-05T00:52:00.021Z] [INFO] ✅ Prepared command: admin
+[2025-07-05T00:52:00.021Z] [INFO] ✅ Prepared command: donate
+[2025-07-05T00:52:00.022Z] [INFO] ✅ Prepared command: draws
+[2025-07-05T00:52:00.022Z] [INFO] ✅ Prepared command: help
+[2025-07-05T00:52:00.022Z] [INFO] ✅ Prepared command: leaderboard
+[2025-07-05T00:52:00.022Z] [INFO] ✅ Prepared command: lucky
+[2025-07-05T00:52:00.022Z] [INFO] ✅ Prepared command: milestones
+[2025-07-05T00:52:00.023Z] [INFO] ✅ Prepared command: ping
+[2025-07-05T00:52:00.023Z] [INFO] ✅ Prepared command: referral
+[2025-07-05T00:52:00.023Z] [INFO] ✅ Prepared command: user
+[2025-07-05T00:52:00.024Z] [INFO] Registering 11 global commands...
+[2025-07-05T00:52:00.277Z] [INFO] Successfully registered 11 global commands
+[2025-07-05T00:52:00.278Z] [INFO] ✅ Registered: achievements
+[2025-07-05T00:52:00.278Z] [INFO] ✅ Registered: admin
+[2025-07-05T00:52:00.278Z] [INFO] ✅ Registered: donate
+[2025-07-05T00:52:00.278Z] [INFO] ✅ Registered: draws
+[2025-07-05T00:52:00.279Z] [INFO] ✅ Registered: help
+[2025-07-05T00:52:00.279Z] [INFO] ✅ Registered: leaderboard
+[2025-07-05T00:52:00.279Z] [INFO] ✅ Registered: lucky
+[2025-07-05T00:52:00.279Z] [INFO] ✅ Registered: milestones
+[2025-07-05T00:52:00.279Z] [INFO] ✅ Registered: ping
+[2025-07-05T00:52:00.279Z] [INFO] ✅ Registered: referral
+[2025-07-05T00:52:00.279Z] [INFO] ✅ Registered: user
+[2025-07-05T00:52:12.593Z] [DEBUG] No tip match found in message: 
+[2025-07-05T00:52:42.796Z] [INFO] Admin command executed: dashboard by daimondsteel2509_aegs
+[2025-07-05T00:53:00.540Z] [INFO] Admin command executed: clean_recipients by daimondsteel2509_aegs
+[2025-07-05T00:53:00.789Z] [INFO] Recipients cleaned: removed 0 invalid entries by daimondsteel2509_aegs
+[2025-07-05T00:53:18.388Z] [INFO] Admin command executed: remove_recipient by daimondsteel2509_aegs
+[2025-07-05T00:53:18.601Z] [INFO] Recipient removed: <@1335058459720417280> by daimondsteel2509_aegs
+[2025-07-05T00:53:36.127Z] [INFO] Admin command executed: remove_recipient by daimondsteel2509_aegs
+[2025-07-05T00:53:36.357Z] [INFO] Recipient removed: daimondsteel259 by daimondsteel2509_aegs
+[2025-07-05T00:53:51.447Z] [INFO] Admin command executed: remove_recipient by daimondsteel2509_aegs
+[2025-07-05T00:53:51.696Z] [INFO] Recipient removed: AegisumDonation by daimondsteel2509_aegs
+[2025-07-05T00:53:58.617Z] [INFO] Admin command executed: remove_recipient by daimondsteel2509_aegs
+[2025-07-05T00:53:58.839Z] [INFO] Recipient removed: aegisum by daimondsteel2509_aegs
+[2025-07-05T00:54:08.587Z] [INFO] Admin command executed: remove_recipient by daimondsteel2509_aegs
+[2025-07-05T00:54:08.880Z] [INFO] Recipient removed: daimondsteel2509 by daimondsteel2509_aegs
+[2025-07-05T00:54:32.986Z] [INFO] Admin command executed: add_recipient by daimondsteel2509_aegs
+[2025-07-05T00:54:33.510Z] [INFO] Recipient added: AegisumDonation (role) by daimondsteel2509_aegs
+[2025-07-05T00:54:50.987Z] [INFO] Admin command executed: add_recipient by daimondsteel2509_aegs
+[2025-07-05T00:54:51.212Z] [INFO] Recipient added: <@1335058459720417280> (username) by daimondsteel2509_aegs
+[2025-07-05T00:55:10.351Z] [INFO] Draws command executed: ids by daimondsteel2509_aegs
+[2025-07-05T00:56:15.124Z] [INFO] User command executed: select_draw by daimondsteel2509_aegs
+[2025-07-05T00:56:54.809Z] [DEBUG] Detected tip: daimondsteel2509_aegs sent 0.1818 TON to SELFSwap
+[2025-07-05T00:56:54.811Z] [DEBUG] No allowed recipients configured
+[2025-07-05T00:57:17.716Z] [DEBUG] Detected tip: daimondsteel2509_aegs sent 0.0011 LTC to aegisum
+[2025-07-05T00:57:17.716Z] [DEBUG] Recipient aegisum not in allowed list
+[2025-07-05T00:57:57.929Z] [INFO] User command executed: donor_roles by daimondsteel2509_aegs
+[2025-07-05T00:58:14.788Z] [INFO] User command executed: achievements by daimondsteel2509_aegs
+[2025-07-05T00:58:25.167Z] [INFO] User command executed: achievements by daimondsteel2509_aegs
+[2025-07-05T00:58:41.857Z] [INFO] Received SIGINT signal. Shutting down gracefully...
+[2025-07-05T03:42:47.382Z] [INFO] Loaded event: interactionCreate
+[2025-07-05T03:42:47.419Z] [INFO] Loaded event: messageCreate
+[2025-07-05T03:42:47.421Z] [INFO] Loaded event: ready
+[2025-07-05T03:42:47.428Z] [INFO] Loaded command: achievements
+[2025-07-05T03:42:47.438Z] [INFO] Loaded command: admin
+[2025-07-05T03:42:47.441Z] [INFO] Loaded command: donate
+[2025-07-05T03:42:47.444Z] [INFO] Loaded command: draws
+[2025-07-05T03:42:47.446Z] [INFO] Loaded command: help
+[2025-07-05T03:42:47.449Z] [INFO] Loaded command: leaderboard
+[2025-07-05T03:42:47.452Z] [INFO] Loaded command: lucky
+[2025-07-05T03:42:47.455Z] [INFO] Loaded command: milestones
+[2025-07-05T03:42:47.457Z] [INFO] Loaded command: ping
+[2025-07-05T03:42:47.460Z] [INFO] Loaded command: referral
+[2025-07-05T03:42:47.464Z] [INFO] Loaded command: user
+[2025-07-05T03:42:48.001Z] [INFO] Bot startup complete
+[2025-07-05T03:42:48.056Z] [INFO] Ready! Logged in as Donor Rewards#3082
+[2025-07-05T03:42:48.057Z] [INFO] ✅ Prepared command: achievements
+[2025-07-05T03:42:48.059Z] [INFO] ✅ Prepared command: admin
+[2025-07-05T03:42:48.059Z] [INFO] ✅ Prepared command: donate
+[2025-07-05T03:42:48.059Z] [INFO] ✅ Prepared command: draws
+[2025-07-05T03:42:48.060Z] [INFO] ✅ Prepared command: help
+[2025-07-05T03:42:48.060Z] [INFO] ✅ Prepared command: leaderboard
+[2025-07-05T03:42:48.060Z] [INFO] ✅ Prepared command: lucky
+[2025-07-05T03:42:48.060Z] [INFO] ✅ Prepared command: milestones
+[2025-07-05T03:42:48.060Z] [INFO] ✅ Prepared command: ping
+[2025-07-05T03:42:48.061Z] [INFO] ✅ Prepared command: referral
+[2025-07-05T03:42:48.061Z] [INFO] ✅ Prepared command: user
+[2025-07-05T03:42:48.061Z] [INFO] Registering 11 global commands...
+[2025-07-05T03:42:48.319Z] [INFO] Successfully registered 11 global commands
+[2025-07-05T03:42:48.320Z] [INFO] ✅ Registered: achievements
+[2025-07-05T03:42:48.320Z] [INFO] ✅ Registered: admin
+[2025-07-05T03:42:48.320Z] [INFO] ✅ Registered: donate
+[2025-07-05T03:42:48.320Z] [INFO] ✅ Registered: draws
+[2025-07-05T03:42:48.320Z] [INFO] ✅ Registered: help
+[2025-07-05T03:42:48.321Z] [INFO] ✅ Registered: leaderboard
+[2025-07-05T03:42:48.321Z] [INFO] ✅ Registered: lucky
+[2025-07-05T03:42:48.321Z] [INFO] ✅ Registered: milestones
+[2025-07-05T03:42:48.321Z] [INFO] ✅ Registered: ping
+[2025-07-05T03:42:48.321Z] [INFO] ✅ Registered: referral
+[2025-07-05T03:42:48.321Z] [INFO] ✅ Registered: user
+[2025-07-05T03:50:14.410Z] [INFO] Loaded event: interactionCreate
+[2025-07-05T03:50:14.447Z] [INFO] Loaded event: messageCreate
+[2025-07-05T03:50:14.449Z] [INFO] Loaded event: ready
+[2025-07-05T03:50:14.456Z] [INFO] Loaded command: achievements
+[2025-07-05T03:50:14.467Z] [INFO] Loaded command: admin
+[2025-07-05T03:50:14.470Z] [INFO] Loaded command: donate
+[2025-07-05T03:50:14.473Z] [INFO] Loaded command: draws
+[2025-07-05T03:50:14.475Z] [INFO] Loaded command: help
+[2025-07-05T03:50:14.478Z] [INFO] Loaded command: leaderboard
+[2025-07-05T03:50:14.481Z] [INFO] Loaded command: lucky
+[2025-07-05T03:50:14.484Z] [INFO] Loaded command: milestones
+[2025-07-05T03:50:14.486Z] [INFO] Loaded command: ping
+[2025-07-05T03:50:14.489Z] [INFO] Loaded command: referral
+[2025-07-05T03:50:14.492Z] [INFO] Loaded command: user
+[2025-07-05T03:50:15.141Z] [INFO] Bot startup complete
+[2025-07-05T03:50:15.193Z] [INFO] Ready! Logged in as Donor Rewards#3082
+[2025-07-05T03:50:15.195Z] [INFO] ✅ Prepared command: achievements
+[2025-07-05T03:50:15.196Z] [INFO] ✅ Prepared command: admin
+[2025-07-05T03:50:15.196Z] [INFO] ✅ Prepared command: donate
+[2025-07-05T03:50:15.196Z] [INFO] ✅ Prepared command: draws
+[2025-07-05T03:50:15.196Z] [INFO] ✅ Prepared command: help
+[2025-07-05T03:50:15.197Z] [INFO] ✅ Prepared command: leaderboard
+[2025-07-05T03:50:15.197Z] [INFO] ✅ Prepared command: lucky
+[2025-07-05T03:50:15.197Z] [INFO] ✅ Prepared command: milestones
+[2025-07-05T03:50:15.197Z] [INFO] ✅ Prepared command: ping
+[2025-07-05T03:50:15.198Z] [INFO] ✅ Prepared command: referral
+[2025-07-05T03:50:15.198Z] [INFO] ✅ Prepared command: user
+[2025-07-05T03:50:15.198Z] [INFO] Registering 11 global commands...
+[2025-07-05T03:50:15.444Z] [INFO] Successfully registered 11 global commands
+[2025-07-05T03:50:15.444Z] [INFO] ✅ Registered: achievements
+[2025-07-05T03:50:15.444Z] [INFO] ✅ Registered: admin
+[2025-07-05T03:50:15.444Z] [INFO] ✅ Registered: donate
+[2025-07-05T03:50:15.445Z] [INFO] ✅ Registered: draws
+[2025-07-05T03:50:15.445Z] [INFO] ✅ Registered: help
+[2025-07-05T03:50:15.445Z] [INFO] ✅ Registered: leaderboard
+[2025-07-05T03:50:15.445Z] [INFO] ✅ Registered: lucky
+[2025-07-05T03:50:15.445Z] [INFO] ✅ Registered: milestones
+[2025-07-05T03:50:15.445Z] [INFO] ✅ Registered: ping
+[2025-07-05T03:50:15.445Z] [INFO] ✅ Registered: referral
+[2025-07-05T03:50:15.446Z] [INFO] ✅ Registered: user
+[2025-07-05T03:50:35.367Z] [INFO] Admin command executed: dashboard by daimondsteel2509_aegs
+[2025-07-05T03:50:56.054Z] [INFO] Admin command executed: add_recipient by daimondsteel2509_aegs
+[2025-07-05T03:51:15.255Z] [INFO] Admin command executed: dashboard by daimondsteel2509_aegs
+[2025-07-05T03:52:56.593Z] [INFO] Admin command executed: remove_recipient by daimondsteel2509_aegs
+[2025-07-05T03:58:10.094Z] [INFO] Loaded event: interactionCreate
+[2025-07-05T03:58:10.130Z] [INFO] Loaded event: messageCreate
+[2025-07-05T03:58:10.132Z] [INFO] Loaded event: ready
+[2025-07-05T03:58:10.139Z] [INFO] Loaded command: achievements
+[2025-07-05T03:58:10.150Z] [INFO] Loaded command: admin
+[2025-07-05T03:58:10.153Z] [INFO] Loaded command: donate
+[2025-07-05T03:58:10.156Z] [INFO] Loaded command: draws
+[2025-07-05T03:58:10.158Z] [INFO] Loaded command: help
+[2025-07-05T03:58:10.161Z] [INFO] Loaded command: leaderboard
+[2025-07-05T03:58:10.165Z] [INFO] Loaded command: lucky
+[2025-07-05T03:58:10.168Z] [INFO] Loaded command: milestones
+[2025-07-05T03:58:10.170Z] [INFO] Loaded command: ping
+[2025-07-05T03:58:10.173Z] [INFO] Loaded command: referral
+[2025-07-05T03:58:10.176Z] [INFO] Loaded command: user
+[2025-07-05T03:58:10.709Z] [INFO] Bot startup complete
+[2025-07-05T03:58:10.787Z] [INFO] Ready! Logged in as Donor Rewards#3082
+[2025-07-05T03:58:10.789Z] [INFO] ✅ Prepared command: achievements
+[2025-07-05T03:58:10.790Z] [INFO] ✅ Prepared command: admin
+[2025-07-05T03:58:10.791Z] [INFO] ✅ Prepared command: donate
+[2025-07-05T03:58:10.791Z] [INFO] ✅ Prepared command: draws
+[2025-07-05T03:58:10.791Z] [INFO] ✅ Prepared command: help
+[2025-07-05T03:58:10.791Z] [INFO] ✅ Prepared command: leaderboard
+[2025-07-05T03:58:10.791Z] [INFO] ✅ Prepared command: lucky
+[2025-07-05T03:58:10.792Z] [INFO] ✅ Prepared command: milestones
+[2025-07-05T03:58:10.792Z] [INFO] ✅ Prepared command: ping
+[2025-07-05T03:58:10.792Z] [INFO] ✅ Prepared command: referral
+[2025-07-05T03:58:10.793Z] [INFO] ✅ Prepared command: user
+[2025-07-05T03:58:10.793Z] [INFO] Registering 11 global commands...
+[2025-07-05T03:58:11.032Z] [INFO] Successfully registered 11 global commands
+[2025-07-05T03:58:11.032Z] [INFO] ✅ Registered: achievements
+[2025-07-05T03:58:11.032Z] [INFO] ✅ Registered: admin
+[2025-07-05T03:58:11.032Z] [INFO] ✅ Registered: donate
+[2025-07-05T03:58:11.033Z] [INFO] ✅ Registered: draws
+[2025-07-05T03:58:11.033Z] [INFO] ✅ Registered: help
+[2025-07-05T03:58:11.033Z] [INFO] ✅ Registered: leaderboard
+[2025-07-05T03:58:11.033Z] [INFO] ✅ Registered: lucky
+[2025-07-05T03:58:11.033Z] [INFO] ✅ Registered: milestones
+[2025-07-05T03:58:11.033Z] [INFO] ✅ Registered: ping
+[2025-07-05T03:58:11.034Z] [INFO] ✅ Registered: referral
+[2025-07-05T03:58:11.034Z] [INFO] ✅ Registered: user
+[2025-07-05T03:58:54.857Z] [INFO] Admin command executed: clean_recipients by daimondsteel2509_aegs
+[2025-07-05T03:58:55.140Z] [INFO] Recipients cleaned: removed 4 invalid entries by daimondsteel2509_aegs
+[2025-07-05T03:59:17.392Z] [INFO] Admin command executed: remove_recipient by daimondsteel2509_aegs
+[2025-07-05T03:59:28.704Z] [INFO] Admin command executed: remove_recipient by daimondsteel2509_aegs
+[2025-07-05T03:59:28.952Z] [INFO] Recipient removed: <@1335058459720417280> by daimondsteel2509_aegs
+[2025-07-05T03:59:39.256Z] [INFO] Admin command executed: remove_recipient by daimondsteel2509_aegs
+[2025-07-05T03:59:39.507Z] [INFO] Recipient removed: daimondsteel259 by daimondsteel2509_aegs
+[2025-07-05T03:59:49.344Z] [INFO] Admin command executed: add_recipient by daimondsteel2509_aegs
+[2025-07-05T03:59:49.592Z] [INFO] Recipient added: <@1335058459720417280> by daimondsteel2509_aegs
+[2025-07-05T04:00:36.516Z] [INFO] User command executed: select_draw by daimondsteel2509_aegs
+[2025-07-05T04:00:45.898Z] [INFO] Draws command executed: ids by daimondsteel2509_aegs
+[2025-07-05T04:05:44.735Z] [INFO] Admin command executed: create_draw by daimondsteel2509_aegs
+[2025-07-05T04:05:45.123Z] [INFO] Draw created: draw_1751688344736 by daimondsteel2509_aegs
+[2025-07-05T04:07:05.573Z] [INFO] User command executed: select_draw by daimondsteel2509_aegs
+[2025-07-05T04:18:57.490Z] [INFO] Loaded event: interactionCreate
+[2025-07-05T04:18:57.528Z] [INFO] Loaded event: messageCreate
+[2025-07-05T04:18:57.531Z] [INFO] Loaded event: ready
+[2025-07-05T04:18:57.537Z] [INFO] Loaded command: achievements
+[2025-07-05T04:18:57.548Z] [INFO] Loaded command: admin
+[2025-07-05T04:18:57.551Z] [INFO] Loaded command: donate
+[2025-07-05T04:18:57.554Z] [INFO] Loaded command: draws
+[2025-07-05T04:18:57.556Z] [INFO] Loaded command: help
+[2025-07-05T04:18:57.559Z] [INFO] Loaded command: leaderboard
+[2025-07-05T04:18:57.562Z] [INFO] Loaded command: lucky
+[2025-07-05T04:18:57.565Z] [INFO] Loaded command: milestones
+[2025-07-05T04:18:57.567Z] [INFO] Loaded command: ping
+[2025-07-05T04:18:57.570Z] [INFO] Loaded command: referral
+[2025-07-05T04:18:57.574Z] [INFO] Loaded command: user
+[2025-07-05T04:18:58.317Z] [INFO] Bot startup complete
+[2025-07-05T04:18:58.374Z] [INFO] Ready! Logged in as Donor Rewards#3082
+[2025-07-05T04:18:58.376Z] [INFO] ✅ Prepared command: achievements
+[2025-07-05T04:18:58.377Z] [INFO] ✅ Prepared command: admin
+[2025-07-05T04:18:58.377Z] [INFO] ✅ Prepared command: donate
+[2025-07-05T04:18:58.378Z] [INFO] ✅ Prepared command: draws
+[2025-07-05T04:18:58.378Z] [INFO] ✅ Prepared command: help
+[2025-07-05T04:18:58.378Z] [INFO] ✅ Prepared command: leaderboard
+[2025-07-05T04:18:58.378Z] [INFO] ✅ Prepared command: lucky
+[2025-07-05T04:18:58.378Z] [INFO] ✅ Prepared command: milestones
+[2025-07-05T04:18:58.379Z] [INFO] ✅ Prepared command: ping
+[2025-07-05T04:18:58.379Z] [INFO] ✅ Prepared command: referral
+[2025-07-05T04:18:58.379Z] [INFO] ✅ Prepared command: user
+[2025-07-05T04:18:58.379Z] [INFO] Registering 11 global commands...
+[2025-07-05T04:18:58.855Z] [INFO] Successfully registered 11 global commands
+[2025-07-05T04:18:58.856Z] [INFO] ✅ Registered: achievements
+[2025-07-05T04:18:58.856Z] [INFO] ✅ Registered: admin
+[2025-07-05T04:18:58.856Z] [INFO] ✅ Registered: donate
+[2025-07-05T04:18:58.856Z] [INFO] ✅ Registered: draws
+[2025-07-05T04:18:58.856Z] [INFO] ✅ Registered: help
+[2025-07-05T04:18:58.856Z] [INFO] ✅ Registered: leaderboard
+[2025-07-05T04:18:58.857Z] [INFO] ✅ Registered: lucky
+[2025-07-05T04:18:58.857Z] [INFO] ✅ Registered: milestones
+[2025-07-05T04:18:58.857Z] [INFO] ✅ Registered: ping
+[2025-07-05T04:18:58.857Z] [INFO] ✅ Registered: referral
+[2025-07-05T04:18:58.857Z] [INFO] ✅ Registered: user
+[2025-07-05T04:36:21.863Z] [INFO] Admin command executed: add_recipient by daimondsteel2509_aegs
+[2025-07-05T04:41:30.806Z] [INFO] Loaded event: interactionCreate
+[2025-07-05T04:41:30.839Z] [INFO] Loaded event: messageCreate
+[2025-07-05T04:41:30.841Z] [INFO] Loaded event: ready
+[2025-07-05T04:41:30.848Z] [INFO] Loaded command: achievements
+[2025-07-05T04:41:30.860Z] [INFO] Loaded command: admin
+[2025-07-05T04:41:30.862Z] [INFO] Loaded command: donate
+[2025-07-05T04:41:30.865Z] [INFO] Loaded command: draws
+[2025-07-05T04:41:30.868Z] [INFO] Loaded command: help
+[2025-07-05T04:41:30.871Z] [INFO] Loaded command: leaderboard
+[2025-07-05T04:41:30.874Z] [INFO] Loaded command: lucky
+[2025-07-05T04:41:30.877Z] [INFO] Loaded command: milestones
+[2025-07-05T04:41:30.879Z] [INFO] Loaded command: ping
+[2025-07-05T04:41:30.882Z] [INFO] Loaded command: referral
+[2025-07-05T04:41:30.886Z] [INFO] Loaded command: user
+[2025-07-05T04:41:31.459Z] [INFO] Bot startup complete
+[2025-07-05T04:41:31.527Z] [INFO] Ready! Logged in as Donor Rewards#3082
+[2025-07-05T04:41:31.529Z] [INFO] ✅ Prepared command: achievements
+[2025-07-05T04:41:31.530Z] [INFO] ✅ Prepared command: admin
+[2025-07-05T04:41:31.531Z] [INFO] ✅ Prepared command: donate
+[2025-07-05T04:41:31.531Z] [INFO] ✅ Prepared command: draws
+[2025-07-05T04:41:31.531Z] [INFO] ✅ Prepared command: help
+[2025-07-05T04:41:31.531Z] [INFO] ✅ Prepared command: leaderboard
+[2025-07-05T04:41:31.531Z] [INFO] ✅ Prepared command: lucky
+[2025-07-05T04:41:31.532Z] [INFO] ✅ Prepared command: milestones
+[2025-07-05T04:41:31.532Z] [INFO] ✅ Prepared command: ping
+[2025-07-05T04:41:31.532Z] [INFO] ✅ Prepared command: referral
+[2025-07-05T04:41:31.532Z] [INFO] ✅ Prepared command: user
+[2025-07-05T04:41:31.533Z] [INFO] Registering 11 global commands...
+[2025-07-05T04:41:31.741Z] [INFO] Successfully registered 11 global commands
+[2025-07-05T04:41:31.742Z] [INFO] ✅ Registered: achievements
+[2025-07-05T04:41:31.742Z] [INFO] ✅ Registered: admin
+[2025-07-05T04:41:31.742Z] [INFO] ✅ Registered: donate
+[2025-07-05T04:41:31.742Z] [INFO] ✅ Registered: draws
+[2025-07-05T04:41:31.742Z] [INFO] ✅ Registered: help
+[2025-07-05T04:41:31.742Z] [INFO] ✅ Registered: leaderboard
+[2025-07-05T04:41:31.743Z] [INFO] ✅ Registered: lucky
+[2025-07-05T04:41:31.743Z] [INFO] ✅ Registered: milestones
+[2025-07-05T04:41:31.743Z] [INFO] ✅ Registered: ping
+[2025-07-05T04:41:31.743Z] [INFO] ✅ Registered: referral
+[2025-07-05T04:41:31.743Z] [INFO] ✅ Registered: user
+[2025-07-05T04:43:15.846Z] [INFO] Admin command executed: analytics by daimondsteel2509_aegs
+[2025-07-05T04:43:24.915Z] [INFO] Admin command executed: analytics by daimondsteel2509_aegs
+[2025-07-05T04:43:32.449Z] [INFO] Admin command executed: analytics by daimondsteel2509_aegs
+[2025-07-05T04:43:51.056Z] [INFO] Admin command executed: cryptocurrencies by daimondsteel2509_aegs
+[2025-07-05T04:43:51.404Z] [INFO] Cryptocurrency management: list  by daimondsteel2509_aegs
+[2025-07-05T04:44:34.306Z] [INFO] Admin command executed: dashboard by daimondsteel2509_aegs
+[2025-07-05T04:44:45.073Z] [INFO] Admin command executed: features by daimondsteel2509_aegs
+[2025-07-05T04:45:28.926Z] [INFO] Admin command executed: remove_recipient by daimondsteel2509_aegs
+[2025-07-05T04:45:29.464Z] [INFO] Recipient removed: <@1335058459720417280> by daimondsteel2509_aegs
+[2025-07-05T04:45:43.566Z] [INFO] Admin command executed: add_recipient by daimondsteel2509_aegs
+[2025-07-05T04:45:44.363Z] [INFO] Recipient added: <@1335058459720417280> by daimondsteel2509_aegs
+[2025-07-05T04:45:58.351Z] [INFO] Draws command executed: ids by daimondsteel2509_aegs
+[2025-07-05T04:46:17.987Z] [INFO] Draws command executed: info by daimondsteel2509_aegs
+[2025-07-05T04:46:46.373Z] [INFO] Draws command executed: leaderboard by daimondsteel2509_aegs
+[2025-07-05T04:47:05.388Z] [INFO] Admin command executed: blacklist by daimondsteel2509_aegs
+[2025-07-05T04:47:05.676Z] [INFO] Blacklist action: add_user by daimondsteel2509_aegs
+[2025-07-05T04:47:17.543Z] [INFO] Draws command executed: list by daimondsteel2509_aegs
+[2025-07-05T04:49:00.752Z] [INFO] Lucky numbers cleared by daimondsteel2509_aegs
+[2025-07-05T04:49:11.655Z] [INFO] Lucky numbers set: 1 by daimondsteel2509_aegs
+[2025-07-05T04:52:50.467Z] [INFO] 🔍 Processing tip.cc message: "<:LTC:904095822604550144> <@!659745190382141453> sent <@1335058459720417280> **0.0011 LTC** (≈ $0.10)."
+[2025-07-05T04:52:50.470Z] [INFO] 🔍 No tip match found in message: "<:LTC:904095822604550144> <@!659745190382141453> sent <@1335058459720417280> **0.0011 LTC** (≈ $0.10)."
+[2025-07-05T05:14:02.289Z] [INFO] Loaded event: interactionCreate
+[2025-07-05T05:14:02.345Z] [INFO] Loaded event: messageCreate
+[2025-07-05T05:14:02.348Z] [INFO] Loaded event: ready
+[2025-07-05T05:14:02.355Z] [INFO] Loaded command: achievements
+[2025-07-05T05:14:02.367Z] [INFO] Loaded command: admin
+[2025-07-05T05:14:02.370Z] [INFO] Loaded command: donate
+[2025-07-05T05:14:02.373Z] [INFO] Loaded command: draws
+[2025-07-05T05:14:02.376Z] [INFO] Loaded command: help
+[2025-07-05T05:14:02.379Z] [INFO] Loaded command: leaderboard
+[2025-07-05T05:14:02.382Z] [INFO] Loaded command: lucky
+[2025-07-05T05:14:02.385Z] [INFO] Loaded command: milestones
+[2025-07-05T05:14:02.387Z] [INFO] Loaded command: ping
+[2025-07-05T05:14:02.391Z] [INFO] Loaded command: referral
+[2025-07-05T05:14:02.395Z] [INFO] Loaded command: user
+[2025-07-05T05:14:02.958Z] [INFO] Bot startup complete
+[2025-07-05T05:14:03.029Z] [INFO] Ready! Logged in as Donor Rewards#3082
+[2025-07-05T05:14:03.031Z] [INFO] ✅ Prepared command: achievements
+[2025-07-05T05:14:03.032Z] [INFO] ✅ Prepared command: admin
+[2025-07-05T05:14:03.033Z] [INFO] ✅ Prepared command: donate
+[2025-07-05T05:14:03.033Z] [INFO] ✅ Prepared command: draws
+[2025-07-05T05:14:03.033Z] [INFO] ✅ Prepared command: help
+[2025-07-05T05:14:03.033Z] [INFO] ✅ Prepared command: leaderboard
+[2025-07-05T05:14:03.034Z] [INFO] ✅ Prepared command: lucky
+[2025-07-05T05:14:03.034Z] [INFO] ✅ Prepared command: milestones
+[2025-07-05T05:14:03.034Z] [INFO] ✅ Prepared command: ping
+[2025-07-05T05:14:03.034Z] [INFO] ✅ Prepared command: referral
+[2025-07-05T05:14:03.035Z] [INFO] ✅ Prepared command: user
+[2025-07-05T05:14:03.035Z] [INFO] Registering 11 global commands...
+[2025-07-05T05:14:03.474Z] [INFO] Successfully registered 11 global commands
+[2025-07-05T05:14:03.475Z] [INFO] ✅ Registered: achievements
+[2025-07-05T05:14:03.475Z] [INFO] ✅ Registered: admin
+[2025-07-05T05:14:03.475Z] [INFO] ✅ Registered: donate
+[2025-07-05T05:14:03.475Z] [INFO] ✅ Registered: draws
+[2025-07-05T05:14:03.475Z] [INFO] ✅ Registered: help
+[2025-07-05T05:14:03.475Z] [INFO] ✅ Registered: leaderboard
+[2025-07-05T05:14:03.476Z] [INFO] ✅ Registered: lucky
+[2025-07-05T05:14:03.476Z] [INFO] ✅ Registered: milestones
+[2025-07-05T05:14:03.476Z] [INFO] ✅ Registered: ping
+[2025-07-05T05:14:03.476Z] [INFO] ✅ Registered: referral
+[2025-07-05T05:14:03.476Z] [INFO] ✅ Registered: user
+[2025-07-05T05:16:17.050Z] [ERROR] Error in user command: | Data: {}
+[2025-07-05T05:16:28.526Z] [ERROR] Error in user command: | Data: {}
+[2025-07-05T05:17:02.710Z] [INFO] 🔍 Processing tip.cc message: "<:LTC:904095822604550144> <@!659745190382141453> sent <@1335058459720417280> **0.0006 LTC** (≈ $0.06)."
+[2025-07-05T05:17:02.711Z] [INFO] 🔍 Detected tip: 659745190382141453 sent 0.0006 LTC to 1335058459720417280
+[2025-07-05T05:17:02.712Z] [INFO] 🔍 Recipient aegisum (1335058459720417280) not in allowed list: ["<@1335058459720417280>"]
+[2025-07-05T05:17:17.258Z] [INFO] Admin command executed: add_recipient by daimondsteel2509_aegs
+[2025-07-05T05:17:37.784Z] [INFO] Admin command executed: add_recipient by daimondsteel2509_aegs
+[2025-07-05T05:17:38.049Z] [INFO] Recipient added: 1335058459720417280 by daimondsteel2509_aegs
+[2025-07-05T05:18:01.851Z] [INFO] 🔍 Processing tip.cc message: "<:LTC:904095822604550144> <@!659745190382141453> sent <@1335058459720417280> **0.0006 LTC** (≈ $0.06)."
+[2025-07-05T05:18:01.852Z] [INFO] 🔍 Detected tip: 659745190382141453 sent 0.0006 LTC to 1335058459720417280
+[2025-07-05T05:18:01.853Z] [INFO] 🔍 Recipient aegisum (1335058459720417280) not in allowed list: ["<@1335058459720417280>","1335058459720417280"]
+[2025-07-05T05:25:59.558Z] [INFO] Loaded event: interactionCreate
+[2025-07-05T05:25:59.594Z] [INFO] Loaded event: messageCreate
+[2025-07-05T05:25:59.596Z] [INFO] Loaded event: ready
+[2025-07-05T05:25:59.603Z] [INFO] Loaded command: achievements
+[2025-07-05T05:25:59.614Z] [INFO] Loaded command: admin
+[2025-07-05T05:25:59.616Z] [INFO] Loaded command: donate
+[2025-07-05T05:25:59.619Z] [INFO] Loaded command: draws
+[2025-07-05T05:25:59.621Z] [INFO] Loaded command: help
+[2025-07-05T05:25:59.625Z] [INFO] Loaded command: leaderboard
+[2025-07-05T05:25:59.628Z] [INFO] Loaded command: lucky
+[2025-07-05T05:25:59.630Z] [INFO] Loaded command: milestones
+[2025-07-05T05:25:59.632Z] [INFO] Loaded command: ping
+[2025-07-05T05:25:59.636Z] [INFO] Loaded command: referral
+[2025-07-05T05:25:59.642Z] [INFO] Loaded command: user
+[2025-07-05T05:26:00.201Z] [INFO] Bot startup complete
+[2025-07-05T05:26:00.265Z] [INFO] Ready! Logged in as Donor Rewards#3082
+[2025-07-05T05:26:00.267Z] [INFO] ✅ Prepared command: achievements
+[2025-07-05T05:26:00.268Z] [INFO] ✅ Prepared command: admin
+[2025-07-05T05:26:00.268Z] [INFO] ✅ Prepared command: donate
+[2025-07-05T05:26:00.268Z] [INFO] ✅ Prepared command: draws
+[2025-07-05T05:26:00.269Z] [INFO] ✅ Prepared command: help
+[2025-07-05T05:26:00.269Z] [INFO] ✅ Prepared command: leaderboard
+[2025-07-05T05:26:00.269Z] [INFO] ✅ Prepared command: lucky
+[2025-07-05T05:26:00.269Z] [INFO] ✅ Prepared command: milestones
+[2025-07-05T05:26:00.269Z] [INFO] ✅ Prepared command: ping
+[2025-07-05T05:26:00.270Z] [INFO] ✅ Prepared command: referral
+[2025-07-05T05:26:00.270Z] [INFO] ✅ Prepared command: user
+[2025-07-05T05:26:00.270Z] [INFO] Registering 11 global commands...
+[2025-07-05T05:26:00.811Z] [INFO] Successfully registered 11 global commands
+[2025-07-05T05:26:00.811Z] [INFO] ✅ Registered: achievements
+[2025-07-05T05:26:00.811Z] [INFO] ✅ Registered: admin
+[2025-07-05T05:26:00.811Z] [INFO] ✅ Registered: donate
+[2025-07-05T05:26:00.811Z] [INFO] ✅ Registered: draws
+[2025-07-05T05:26:00.812Z] [INFO] ✅ Registered: help
+[2025-07-05T05:26:00.812Z] [INFO] ✅ Registered: leaderboard
+[2025-07-05T05:26:00.812Z] [INFO] ✅ Registered: lucky
+[2025-07-05T05:26:00.812Z] [INFO] ✅ Registered: milestones
+[2025-07-05T05:26:00.812Z] [INFO] ✅ Registered: ping
+[2025-07-05T05:26:00.812Z] [INFO] ✅ Registered: referral
+[2025-07-05T05:26:00.812Z] [INFO] ✅ Registered: user
+[2025-07-05T05:26:50.436Z] [INFO] Admin command executed: remove_recipient by daimondsteel2509_aegs
+[2025-07-05T05:26:50.739Z] [INFO] Recipient removed: 1335058459720417280 by daimondsteel2509_aegs
+[2025-07-05T05:26:59.565Z] [INFO] Admin command executed: remove_recipient by daimondsteel2509_aegs
+[2025-07-05T05:26:59.785Z] [INFO] Recipient removed: <@1335058459720417280> by daimondsteel2509_aegs
+[2025-07-05T05:27:08.383Z] [INFO] Admin command executed: add_recipient by daimondsteel2509_aegs
+[2025-07-05T05:27:08.625Z] [INFO] Recipient added: <@1335058459720417280> by daimondsteel2509_aegs
+[2025-07-05T05:28:57.207Z] [INFO] Admin command executed: dashboard by daimondsteel2509_aegs
+[2025-07-05T05:29:25.824Z] [INFO] Admin command executed: features by daimondsteel2509_aegs
+[2025-07-05T05:30:22.168Z] [INFO] 🔍 Processing tip.cc message: "<:LTC:904095822604550144> <@!659745190382141453> sent <@1335058459720417280> **0.0011 LTC** (≈ $0.10)."
+[2025-07-05T05:30:22.170Z] [INFO] 🔍 Detected tip: 659745190382141453 sent 0.0011 LTC to 1335058459720417280
+[2025-07-05T05:30:22.170Z] [INFO] 🔍 Extracted price from tip.cc message: $0.1
+[2025-07-05T05:30:22.170Z] [INFO] 🔍 USD value calculated: $0.10
+[2025-07-05T05:30:22.171Z] [ERROR] 🔍 Could not find sender 659745190382141453 in guild
+[2025-07-05T05:36:48.967Z] [INFO] Loaded event: interactionCreate
+[2025-07-05T05:36:49.004Z] [INFO] Loaded event: messageCreate
+[2025-07-05T05:36:49.006Z] [INFO] Loaded event: ready
+[2025-07-05T05:36:49.013Z] [INFO] Loaded command: achievements
+[2025-07-05T05:36:49.026Z] [INFO] Loaded command: admin
+[2025-07-05T05:36:49.028Z] [INFO] Loaded command: donate
+[2025-07-05T05:36:49.031Z] [INFO] Loaded command: draws
+[2025-07-05T05:36:49.033Z] [INFO] Loaded command: help
+[2025-07-05T05:36:49.036Z] [INFO] Loaded command: leaderboard
+[2025-07-05T05:36:49.039Z] [INFO] Loaded command: lucky
+[2025-07-05T05:36:49.042Z] [INFO] Loaded command: milestones
+[2025-07-05T05:36:49.044Z] [INFO] Loaded command: ping
+[2025-07-05T05:36:49.047Z] [INFO] Loaded command: referral
+[2025-07-05T05:36:49.051Z] [INFO] Loaded command: user
+[2025-07-05T05:36:49.569Z] [INFO] Bot startup complete
+[2025-07-05T05:36:49.655Z] [INFO] Ready! Logged in as Donor Rewards#3082
+[2025-07-05T05:36:49.657Z] [INFO] ✅ Prepared command: achievements
+[2025-07-05T05:36:49.660Z] [INFO] ✅ Prepared command: admin
+[2025-07-05T05:36:49.660Z] [INFO] ✅ Prepared command: donate
+[2025-07-05T05:36:49.660Z] [INFO] ✅ Prepared command: draws
+[2025-07-05T05:36:49.661Z] [INFO] ✅ Prepared command: help
+[2025-07-05T05:36:49.661Z] [INFO] ✅ Prepared command: leaderboard
+[2025-07-05T05:36:49.661Z] [INFO] ✅ Prepared command: lucky
+[2025-07-05T05:36:49.662Z] [INFO] ✅ Prepared command: milestones
+[2025-07-05T05:36:49.662Z] [INFO] ✅ Prepared command: ping
+[2025-07-05T05:36:49.662Z] [INFO] ✅ Prepared command: referral
+[2025-07-05T05:36:49.663Z] [INFO] ✅ Prepared command: user
+[2025-07-05T05:36:49.664Z] [INFO] Registering 11 global commands...
+[2025-07-05T05:36:49.891Z] [INFO] Successfully registered 11 global commands
+[2025-07-05T05:36:49.891Z] [INFO] ✅ Registered: achievements
+[2025-07-05T05:36:49.892Z] [INFO] ✅ Registered: admin
+[2025-07-05T05:36:49.892Z] [INFO] ✅ Registered: donate
+[2025-07-05T05:36:49.892Z] [INFO] ✅ Registered: draws
+[2025-07-05T05:36:49.892Z] [INFO] ✅ Registered: help
+[2025-07-05T05:36:49.892Z] [INFO] ✅ Registered: leaderboard
+[2025-07-05T05:36:49.893Z] [INFO] ✅ Registered: lucky
+[2025-07-05T05:36:49.893Z] [INFO] ✅ Registered: milestones
+[2025-07-05T05:36:49.893Z] [INFO] ✅ Registered: ping
+[2025-07-05T05:36:49.893Z] [INFO] ✅ Registered: referral
+[2025-07-05T05:36:49.893Z] [INFO] ✅ Registered: user
+[2025-07-05T05:39:10.304Z] [INFO] Admin command executed: configure_donor_roles by daimondsteel2509_aegs
+[2025-07-05T05:39:10.640Z] [INFO] Donor roles configuration: auto_setup by daimondsteel2509_aegs
+[2025-07-05T05:42:50.958Z] [INFO] Admin command executed: fix_achievements by daimondsteel2509_aegs
+[2025-07-05T05:42:50.960Z] [INFO] 🏆 Fixed achievement: Lucky Winner for user 659745190382141453
+[2025-07-05T05:42:50.960Z] [INFO] 🏆 Fixed achievement: Lucky Winner for user 1112677055662919692
+[2025-07-05T05:42:50.961Z] [INFO] 🏆 Fixed achievement: Lucky Winner for user 284732630279127043
+[2025-07-05T05:42:50.961Z] [INFO] 🏆 Fixed achievement: Lucky Winner for user 544589842282053694
+[2025-07-05T05:42:50.961Z] [INFO] 🏆 Fixed achievement: Lucky Winner for user 882795921631490109
+[2025-07-05T05:42:51.248Z] [INFO] Achievement fix completed: 5 achievements assigned to 17 users by daimondsteel2509_aegs
+[2025-07-05T05:43:17.017Z] [INFO] 🔍 Processing tip.cc message: "<:LTC:904095822604550144> <@!659745190382141453> sent <@1335058459720417280> **0.0011 LTC** (≈ $0.10)."
+[2025-07-05T05:43:17.019Z] [INFO] 🔍 Detected tip: 659745190382141453 sent 0.0011 LTC to 1335058459720417280
+[2025-07-05T05:43:17.020Z] [INFO] 🔍 Extracted price from tip.cc message: $0.1
+[2025-07-05T05:43:17.020Z] [INFO] 🔍 USD value calculated: $0.10
+[2025-07-05T05:43:17.020Z] [INFO] 🔍 Matched sender 659745190382141453 to user ID 659745190382141453
+[2025-07-05T05:43:17.021Z] [INFO] 💰 Processing donation: $0.10 USD
+[2025-07-05T05:43:17.023Z] [ERROR] Error checking achievements: | Data: {}
+[2025-07-05T05:43:17.023Z] [INFO] 🎯 Adding entries to eligible draws
+[2025-07-05T05:43:17.023Z] [INFO] 🎯 Added 10 entries to draw: Testdraw1
+[2025-07-05T05:43:17.024Z] [INFO] ✅ Donation processed successfully
+[2025-07-05T05:43:17.378Z] [INFO] Processed donation: 659745190382141453 -> $0.10 (10 entries)
+[2025-07-05T05:49:03.321Z] [INFO] Loaded event: interactionCreate
+[2025-07-05T05:49:03.360Z] [INFO] Loaded event: messageCreate
+[2025-07-05T05:49:03.363Z] [INFO] Loaded event: ready
+[2025-07-05T05:49:03.370Z] [INFO] Loaded command: achievements
+[2025-07-05T05:49:03.384Z] [INFO] Loaded command: admin
+[2025-07-05T05:49:03.387Z] [INFO] Loaded command: donate
+[2025-07-05T05:49:03.391Z] [INFO] Loaded command: draws
+[2025-07-05T05:49:03.393Z] [INFO] Loaded command: help
+[2025-07-05T05:49:03.396Z] [INFO] Loaded command: leaderboard
+[2025-07-05T05:49:03.400Z] [INFO] Loaded command: lucky
+[2025-07-05T05:49:03.403Z] [INFO] Loaded command: milestones
+[2025-07-05T05:49:03.405Z] [INFO] Loaded command: ping
+[2025-07-05T05:49:03.408Z] [INFO] Loaded command: referral
+[2025-07-05T05:49:03.413Z] [INFO] Loaded command: user
+[2025-07-05T05:49:04.186Z] [INFO] Bot startup complete
+[2025-07-05T05:49:04.245Z] [INFO] Ready! Logged in as Donor Rewards#3082
+[2025-07-05T05:49:04.247Z] [INFO] ✅ Prepared command: achievements
+[2025-07-05T05:49:04.248Z] [INFO] ✅ Prepared command: admin
+[2025-07-05T05:49:04.249Z] [INFO] ✅ Prepared command: donate
+[2025-07-05T05:49:04.249Z] [INFO] ✅ Prepared command: draws
+[2025-07-05T05:49:04.249Z] [INFO] ✅ Prepared command: help
+[2025-07-05T05:49:04.249Z] [INFO] ✅ Prepared command: leaderboard
+[2025-07-05T05:49:04.249Z] [INFO] ✅ Prepared command: lucky
+[2025-07-05T05:49:04.250Z] [INFO] ✅ Prepared command: milestones
+[2025-07-05T05:49:04.250Z] [INFO] ✅ Prepared command: ping
+[2025-07-05T05:49:04.250Z] [INFO] ✅ Prepared command: referral
+[2025-07-05T05:49:04.251Z] [INFO] ✅ Prepared command: user
+[2025-07-05T05:49:04.251Z] [INFO] Registering 11 global commands...
+[2025-07-05T05:49:04.597Z] [INFO] Successfully registered 11 global commands
+[2025-07-05T05:49:04.597Z] [INFO] ✅ Registered: achievements
+[2025-07-05T05:49:04.598Z] [INFO] ✅ Registered: admin
+[2025-07-05T05:49:04.598Z] [INFO] ✅ Registered: donate
+[2025-07-05T05:49:04.598Z] [INFO] ✅ Registered: draws
+[2025-07-05T05:49:04.598Z] [INFO] ✅ Registered: help
+[2025-07-05T05:49:04.598Z] [INFO] ✅ Registered: leaderboard
+[2025-07-05T05:49:04.598Z] [INFO] ✅ Registered: lucky
+[2025-07-05T05:49:04.599Z] [INFO] ✅ Registered: milestones
+[2025-07-05T05:49:04.599Z] [INFO] ✅ Registered: ping
+[2025-07-05T05:49:04.599Z] [INFO] ✅ Registered: referral
+[2025-07-05T05:49:04.599Z] [INFO] ✅ Registered: user
+[2025-07-05T05:50:14.897Z] [INFO] Admin command executed: remove_recipient by daimondsteel2509_aegs
+[2025-07-05T05:50:15.116Z] [INFO] Recipient removed: <@1335058459720417280> by daimondsteel2509_aegs
+[2025-07-05T05:50:23.506Z] [INFO] Admin command executed: add_recipient by daimondsteel2509_aegs
+[2025-07-05T05:50:23.723Z] [INFO] Recipient added: <@1335058459720417280> by daimondsteel2509_aegs
+[2025-07-05T05:51:31.368Z] [INFO] Admin command executed: configure_donor_roles by daimondsteel2509_aegs
+[2025-07-05T05:51:31.696Z] [INFO] Donor roles configuration: auto_setup by daimondsteel2509_aegs
+[2025-07-05T05:51:43.325Z] [INFO] Admin command executed: fix_achievements by daimondsteel2509_aegs
+[2025-07-05T05:51:43.593Z] [INFO] Achievement fix completed: 0 achievements assigned to 17 users by daimondsteel2509_aegs
+[2025-07-05T05:52:21.655Z] [INFO] 🔍 Processing tip.cc message: "<:AEGS:1373256640392073328> <@!659745190382141453> sent <@1335058459720417280> **100.00 AEGS**."
+[2025-07-05T05:52:21.656Z] [INFO] 🔍 No tip match found in message: "<:AEGS:1373256640392073328> <@!659745190382141453> sent <@1335058459720417280> **100.00 AEGS**."
+[2025-07-05T05:52:39.486Z] [INFO] 🔍 Processing tip.cc message: "<a:USDT:904070421371047956> <@!659745190382141453> sent <@1335058459720417280> **0.1000 USDT** (≈ $0.10)."
+[2025-07-05T05:52:39.488Z] [INFO] 🔍 No tip match found in message: "<a:USDT:904070421371047956> <@!659745190382141453> sent <@1335058459720417280> **0.1000 USDT** (≈ $0.10)."
+[2025-07-05T05:52:53.397Z] [INFO] 🔍 Processing tip.cc message: "<:LTC:904095822604550144> <@!659745190382141453> sent <@1335058459720417280> **0.0011 LTC** (≈ $0.10)."
+[2025-07-05T05:52:53.398Z] [INFO] 🔍 Detected tip: 659745190382141453 sent 0.0011 LTC to 1335058459720417280
+[2025-07-05T05:52:53.399Z] [INFO] 🔍 Extracted price from tip.cc message: $0.1
+[2025-07-05T05:52:53.399Z] [INFO] 🔍 USD value calculated: $0.10
+[2025-07-05T05:52:53.399Z] [INFO] 🔍 Matched sender 659745190382141453 to user ID 659745190382141453
+[2025-07-05T05:52:53.400Z] [INFO] 💰 Processing donation: $0.10 USD
+[2025-07-05T05:52:53.402Z] [INFO] 🎯 Adding entries to eligible draws
+[2025-07-05T05:52:53.402Z] [INFO] 🎯 Added 10 entries to draw: Testdraw1
+[2025-07-05T05:52:53.403Z] [INFO] ✅ Donation processed successfully
+[2025-07-05T05:52:53.703Z] [INFO] Processed donation: 659745190382141453 -> $0.10 (10 entries)
+[2025-07-05T05:53:13.238Z] [INFO] 🔍 Processing tip.cc message: "<:LTC:904095822604550144> <@!659745190382141453> sent <@1335058459720417280> **0.0013 LTC** (≈ $0.11)."
+[2025-07-05T05:53:13.239Z] [INFO] 🔍 Detected tip: 659745190382141453 sent 0.0013 LTC to 1335058459720417280
+[2025-07-05T05:53:13.240Z] [INFO] 🔍 Extracted price from tip.cc message: $0.11
+[2025-07-05T05:53:13.240Z] [INFO] 🔍 USD value calculated: $0.11
+[2025-07-05T05:53:13.240Z] [INFO] 🔍 Matched sender 659745190382141453 to user ID 659745190382141453
+[2025-07-05T05:53:13.240Z] [INFO] 💰 Processing donation: $0.11 USD
+[2025-07-05T05:53:13.242Z] [INFO] 🎯 Adding entries to eligible draws
+[2025-07-05T05:53:13.242Z] [INFO] 🎯 Added 11 entries to draw: Testdraw1
+[2025-07-05T05:53:13.243Z] [INFO] ✅ Donation processed successfully
+[2025-07-05T05:53:13.573Z] [INFO] Processed donation: 659745190382141453 -> $0.11 (11 entries)
+[2025-07-05T06:02:58.916Z] [INFO] Loaded event: interactionCreate
+[2025-07-05T06:02:58.955Z] [INFO] Loaded event: messageCreate
+[2025-07-05T06:02:58.957Z] [INFO] Loaded event: ready
+[2025-07-05T06:02:58.964Z] [INFO] Loaded command: achievements
+[2025-07-05T06:02:58.977Z] [INFO] Loaded command: admin
+[2025-07-05T06:02:58.980Z] [INFO] Loaded command: donate
+[2025-07-05T06:02:58.983Z] [INFO] Loaded command: draws
+[2025-07-05T06:02:58.986Z] [INFO] Loaded command: help
+[2025-07-05T06:02:58.989Z] [INFO] Loaded command: leaderboard
+[2025-07-05T06:02:58.992Z] [INFO] Loaded command: lucky
+[2025-07-05T06:02:58.995Z] [INFO] Loaded command: milestones
+[2025-07-05T06:02:58.998Z] [INFO] Loaded command: ping
+[2025-07-05T06:02:59.002Z] [INFO] Loaded command: referral
+[2025-07-05T06:02:59.007Z] [INFO] Loaded command: user
+[2025-07-05T06:02:59.622Z] [INFO] Bot startup complete
+[2025-07-05T06:02:59.694Z] [INFO] Ready! Logged in as Donor Rewards#3082
+[2025-07-05T06:02:59.696Z] [INFO] ✅ Prepared command: achievements
+[2025-07-05T06:02:59.697Z] [INFO] ✅ Prepared command: admin
+[2025-07-05T06:02:59.697Z] [INFO] ✅ Prepared command: donate
+[2025-07-05T06:02:59.698Z] [INFO] ✅ Prepared command: draws
+[2025-07-05T06:02:59.698Z] [INFO] ✅ Prepared command: help
+[2025-07-05T06:02:59.698Z] [INFO] ✅ Prepared command: leaderboard
+[2025-07-05T06:02:59.698Z] [INFO] ✅ Prepared command: lucky
+[2025-07-05T06:02:59.699Z] [INFO] ✅ Prepared command: milestones
+[2025-07-05T06:02:59.699Z] [INFO] ✅ Prepared command: ping
+[2025-07-05T06:02:59.699Z] [INFO] ✅ Prepared command: referral
+[2025-07-05T06:02:59.699Z] [INFO] ✅ Prepared command: user
+[2025-07-05T06:02:59.700Z] [INFO] Registering 11 global commands...
+[2025-07-05T06:03:00.071Z] [INFO] Successfully registered 11 global commands
+[2025-07-05T06:03:00.071Z] [INFO] ✅ Registered: achievements
+[2025-07-05T06:03:00.071Z] [INFO] ✅ Registered: admin
+[2025-07-05T06:03:00.072Z] [INFO] ✅ Registered: donate
+[2025-07-05T06:03:00.072Z] [INFO] ✅ Registered: draws
+[2025-07-05T06:03:00.072Z] [INFO] ✅ Registered: help
+[2025-07-05T06:03:00.072Z] [INFO] ✅ Registered: leaderboard
+[2025-07-05T06:03:00.072Z] [INFO] ✅ Registered: lucky
+[2025-07-05T06:03:00.072Z] [INFO] ✅ Registered: milestones
+[2025-07-05T06:03:00.072Z] [INFO] ✅ Registered: ping
+[2025-07-05T06:03:00.073Z] [INFO] ✅ Registered: referral
+[2025-07-05T06:03:00.073Z] [INFO] ✅ Registered: user
+[2025-07-05T06:05:03.975Z] [INFO] Admin command executed: fix_achievements by daimondsteel2509_aegs
+[2025-07-05T06:05:04.355Z] [INFO] Achievement fix completed: 0 achievements assigned to 17 users by daimondsteel2509_aegs
+[2025-07-05T06:05:32.533Z] [INFO] Admin command executed: configure_donor_roles by daimondsteel2509_aegs
+[2025-07-05T06:05:32.854Z] [INFO] Donor roles configuration: auto_setup by daimondsteel2509_aegs
+[2025-07-05T06:06:44.342Z] [INFO] 🔍 Processing tip.cc message: "<:AEGS:1373256640392073328> <@!659745190382141453> sent <@1335058459720417280> **100.00 AEGS**."
+[2025-07-05T06:06:44.343Z] [INFO] 🔍 Detected tip: 659745190382141453 sent 100.00 AEGS to 1335058459720417280
+[2025-07-05T06:06:44.493Z] [WARN] ❌ Could not fetch price for AEGS from any API
+[2025-07-05T06:06:44.493Z] [ERROR] 🔍 Could not get USD value for 100.00 AEGS
+[2025-07-05T06:07:06.280Z] [INFO] 🔍 Processing tip.cc message: "<a:USDT:904070421371047956> <@!659745190382141453> sent <@1335058459720417280> **0.1000 USDT** (≈ $0.10)."
+[2025-07-05T06:07:06.281Z] [INFO] 🔍 Detected tip: 659745190382141453 sent 0.1000 USDT to 1335058459720417280
+[2025-07-05T06:07:06.281Z] [INFO] 🔍 Extracted price from tip.cc message: $0.1
+[2025-07-05T06:07:06.281Z] [INFO] 🔍 USD value calculated: $0.10
+[2025-07-05T06:07:06.282Z] [INFO] 🔍 Matched sender 659745190382141453 to user ID 659745190382141453
+[2025-07-05T06:07:06.282Z] [INFO] 💰 Processing donation: $0.10 USD
+[2025-07-05T06:07:06.284Z] [INFO] 🎯 Adding entries to eligible draws
+[2025-07-05T06:07:06.285Z] [INFO] 🎯 Added 10 entries to draw: Testdraw1
+[2025-07-05T06:07:06.285Z] [INFO] ✅ Donation processed successfully
+[2025-07-05T06:07:06.636Z] [INFO] Processed donation: 659745190382141453 -> $0.10 (10 entries)
+[2025-07-05T06:24:05.144Z] [INFO] Loaded event: interactionCreate
+[2025-07-05T06:24:05.178Z] [INFO] Loaded event: messageCreate
+[2025-07-05T06:24:05.181Z] [INFO] Loaded event: ready
+[2025-07-05T06:24:05.187Z] [INFO] Loaded command: achievements
+[2025-07-05T06:24:05.199Z] [INFO] Loaded command: admin
+[2025-07-05T06:24:05.202Z] [INFO] Loaded command: donate
+[2025-07-05T06:24:05.205Z] [INFO] Loaded command: draws
+[2025-07-05T06:24:05.207Z] [INFO] Loaded command: help
+[2025-07-05T06:24:05.210Z] [INFO] Loaded command: leaderboard
+[2025-07-05T06:24:05.213Z] [INFO] Loaded command: lucky
+[2025-07-05T06:24:05.216Z] [INFO] Loaded command: milestones
+[2025-07-05T06:24:05.218Z] [INFO] Loaded command: ping
+[2025-07-05T06:24:05.221Z] [INFO] Loaded command: referral
+[2025-07-05T06:24:05.225Z] [INFO] Loaded command: user
+[2025-07-05T06:24:05.819Z] [INFO] Bot startup complete
+[2025-07-05T06:24:05.924Z] [INFO] Ready! Logged in as Donor Rewards#3082
+[2025-07-05T06:24:05.925Z] [INFO] ✅ Prepared command: achievements
+[2025-07-05T06:24:05.927Z] [INFO] ✅ Prepared command: admin
+[2025-07-05T06:24:05.927Z] [INFO] ✅ Prepared command: donate
+[2025-07-05T06:24:05.927Z] [INFO] ✅ Prepared command: draws
+[2025-07-05T06:24:05.928Z] [INFO] ✅ Prepared command: help
+[2025-07-05T06:24:05.928Z] [INFO] ✅ Prepared command: leaderboard
+[2025-07-05T06:24:05.928Z] [INFO] ✅ Prepared command: lucky
+[2025-07-05T06:24:05.928Z] [INFO] ✅ Prepared command: milestones
+[2025-07-05T06:24:05.928Z] [INFO] ✅ Prepared command: ping
+[2025-07-05T06:24:05.928Z] [INFO] ✅ Prepared command: referral
+[2025-07-05T06:24:05.929Z] [INFO] ✅ Prepared command: user
+[2025-07-05T06:24:05.929Z] [INFO] Registering 11 global commands...
+[2025-07-05T06:24:06.248Z] [INFO] Successfully registered 11 global commands
+[2025-07-05T06:24:06.248Z] [INFO] ✅ Registered: achievements
+[2025-07-05T06:24:06.248Z] [INFO] ✅ Registered: admin
+[2025-07-05T06:24:06.248Z] [INFO] ✅ Registered: donate
+[2025-07-05T06:24:06.249Z] [INFO] ✅ Registered: draws
+[2025-07-05T06:24:06.249Z] [INFO] ✅ Registered: help
+[2025-07-05T06:24:06.249Z] [INFO] ✅ Registered: leaderboard
+[2025-07-05T06:24:06.249Z] [INFO] ✅ Registered: lucky
+[2025-07-05T06:24:06.249Z] [INFO] ✅ Registered: milestones
+[2025-07-05T06:24:06.249Z] [INFO] ✅ Registered: ping
+[2025-07-05T06:24:06.249Z] [INFO] ✅ Registered: referral
+[2025-07-05T06:24:06.250Z] [INFO] ✅ Registered: user
+[2025-07-05T06:28:52.131Z] [INFO] Admin command executed: fix_achievements by daimondsteel2509_aegs
+[2025-07-05T06:28:52.366Z] [INFO] Achievement fix completed: 0 achievements assigned to 17 users by daimondsteel2509_aegs
+[2025-07-05T06:30:08.256Z] [INFO] 🔍 Processing tip.cc message: "<:AEGS:1373256640392073328> <@!659745190382141453> sent <@1335058459720417280> **100.00 AEGS**."
+[2025-07-05T06:30:08.257Z] [INFO] 🔍 Detected tip: 659745190382141453 sent 100.00 AEGS to 1335058459720417280
+[2025-07-05T06:30:08.390Z] [INFO] 🔍 Aegisum price for AEGS: $0.00068792 (Total: $0.0688)
+[2025-07-05T06:30:08.390Z] [INFO] 🔍 USD value calculated: $0.07
+[2025-07-05T06:30:08.391Z] [INFO] 🔍 Matched sender 659745190382141453 to user ID 659745190382141453
+[2025-07-05T06:30:08.391Z] [INFO] 💰 Processing donation: $0.07 USD
+[2025-07-05T06:30:08.393Z] [INFO] 🎯 Adding entries to eligible draws
+[2025-07-05T06:30:08.394Z] [INFO] 🎯 Added 6 entries to draw: Testdraw1
+[2025-07-05T06:30:08.395Z] [INFO] ✅ Donation processed successfully
+[2025-07-05T06:30:08.956Z] [INFO] Processed donation: 659745190382141453 -> $0.07 (6 entries)
