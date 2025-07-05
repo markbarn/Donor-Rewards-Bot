@@ -156,6 +156,11 @@ export const data = new SlashCommandBuilder()
         option.setName("enabled").setDescription("Enable or disable the feature").setRequired(false),
       ),
   )
+  .addSubcommand((subcommand) =>
+    subcommand
+      .setName("fix_achievements")
+      .setDescription("Fix achievement assignments for all users")
+  )
 
 export async function execute(interaction) {
   try {
@@ -207,6 +212,9 @@ export async function execute(interaction) {
         break
       case "features":
         await handleFeatures(interaction, db)
+        break
+      case "fix_achievements":
+        await handleFixAchievements(interaction, db)
         break
       default:
         await handleDashboard(interaction, db)
@@ -900,6 +908,137 @@ function getFeatureName(key) {
     automatedDraws: "Automated Draws",
   }
   return names[key] || key
+}
+
+async function handleFixAchievements(interaction, db) {
+  try {
+    // Defer reply as this might take some time
+    await interaction.deferReply()
+    
+    // Get all users with donation history
+    const users = db.users || {}
+    const userIds = Object.keys(users)
+    
+    // Track achievements assigned
+    let achievementsAssigned = 0
+    
+    // Define achievements
+    const achievements = [
+      {
+        id: "first_steps",
+        name: "First Steps",
+        description: "Made your first donation",
+        check: (user) => user.donations && user.donations.length > 0,
+      },
+      {
+        id: "generous_donor",
+        name: "Generous Donor",
+        description: "Donated at least $100",
+        check: (user) => user.totalDonated >= 100,
+      },
+      {
+        id: "big_spender",
+        name: "Big Spender",
+        description: "Donated at least $500",
+        check: (user) => user.totalDonated >= 500,
+      },
+      {
+        id: "whale",
+        name: "Whale",
+        description: "Donated at least $1,000",
+        check: (user) => user.totalDonated >= 1000,
+      },
+      {
+        id: "lucky_winner",
+        name: "Lucky Winner",
+        description: "Won a donation draw",
+        check: (user) => user.wins && user.wins > 0,
+      },
+      {
+        id: "streak_master",
+        name: "Streak Master",
+        description: "Maintained a 7-day donation streak",
+        check: (user) => user.streak && user.streak.longest >= 7,
+      }
+    ]
+    
+    // Process each user
+    for (const userId of userIds) {
+      const user = users[userId]
+      
+      // Skip users with no donations
+      if (!user.donations || user.donations.length === 0) {
+        logger.info(`Skipping user ${userId} - No donations`)
+        continue
+      }
+      
+      // Initialize achievements array if it doesn't exist
+      if (!user.achievements) {
+        user.achievements = []
+      }
+      
+      // Initialize streak data if it doesn't exist
+      if (!user.streak) {
+        user.streak = {
+          current: 0,
+          longest: 0,
+          lastDonation: 0
+        }
+      }
+      
+      // Check each achievement
+      for (const achievement of achievements) {
+        // Skip if already earned
+        if (user.achievements.includes(achievement.id)) {
+          logger.info(`User ${userId} already has achievement: ${achievement.name}`)
+          continue
+        }
+        
+        // Check if achievement should be awarded
+        if (achievement.check(user)) {
+          user.achievements.push(achievement.id)
+          achievementsAssigned++
+          logger.info(`🏆 Fixed achievement: ${achievement.name} for user ${userId}`)
+        } else {
+          logger.info(`User ${userId} does not qualify for achievement: ${achievement.name}`)
+          // Log detailed info for debugging
+          if (achievement.id === "first_steps") {
+            logger.info(`  - Donations: ${user.donations ? user.donations.length : 0}`)
+          } else if (achievement.id === "generous_donor" || achievement.id === "big_spender" || achievement.id === "whale") {
+            logger.info(`  - Total donated: $${user.totalDonated ? user.totalDonated.toFixed(2) : 0}`)
+          } else if (achievement.id === "lucky_winner") {
+            logger.info(`  - Wins: ${user.wins || 0}`)
+          } else if (achievement.id === "streak_master") {
+            logger.info(`  - Longest streak: ${user.streak?.longest || 0}`)
+          }
+        }
+      }
+    }
+    
+    // Save database
+    saveDatabase(interaction.guildId, db)
+    
+    // Send response
+    const embed = new EmbedBuilder()
+      .setTitle("Achievement Fix")
+      .setDescription("Processed users with donation history")
+      .setColor(db.config?.theme?.success || "#4CAF50")
+      .addFields(
+        { name: "Users Processed", value: userIds.length.toString(), inline: true },
+        { name: "Achievements Fixed", value: achievementsAssigned.toString(), inline: true }
+      )
+      .setFooter({ text: "Powered By Aegisum Eco System" })
+      .setTimestamp()
+    
+    await interaction.editReply({ embeds: [embed] })
+    logger.info(`Achievement fix completed: ${achievementsAssigned} achievements assigned to ${userIds.length} users by ${interaction.user.tag}`)
+  } catch (error) {
+    logger.error("Error fixing achievements:", error)
+    await interaction.editReply({
+      content: "❌ An error occurred while fixing achievements.",
+      embeds: []
+    })
+  }
 }
 
 async function checkAdminPermissions(interaction, db) {
