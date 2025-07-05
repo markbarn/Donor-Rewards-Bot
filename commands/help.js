@@ -72,7 +72,21 @@ function createMainHelpEmbed(db, isAdmin) {
       "`/draws list` - View all available draws",
       "`/user entries` - Check your draw entries",
       "`/user profile` - View your donation profile",
+      "`/price` - Check cryptocurrency prices",
       "`/ping` - Check bot status",
+    ].join("\n"),
+    inline: false,
+  })
+
+  // Game Commands
+  embed.addFields({
+    name: "🎮 Game Commands",
+    value: [
+      "`/lucky` - Play the lucky number game",
+      "`/achievements` - View available achievements",
+      "`/milestones` - View donation milestones",
+      "`/referral` - Manage referrals",
+      "`/leaderboard` - View donation leaderboards",
     ].join("\n"),
     inline: false,
   })
@@ -86,6 +100,7 @@ function createMainHelpEmbed(db, isAdmin) {
       "3. Donate using tip.cc: `$tip @recipient amount SYMBOL`",
       "4. Check your entries with `/user entries`",
       "5. View your profile with `/user profile`",
+      "6. Play games with `/lucky` to win more entries",
     ].join("\n"),
     inline: false,
   })
@@ -112,8 +127,13 @@ function createMainHelpButtons(isAdmin) {
       .setStyle(ButtonStyle.Primary)
       .setEmoji("🎁"),
     new ButtonBuilder()
+      .setCustomId("help_game_commands")
+      .setLabel("Game Commands")
+      .setStyle(ButtonStyle.Success)
+      .setEmoji("🎮"),
+    new ButtonBuilder()
       .setCustomId("help_achievement_system")
-      .setLabel("Achievement System")
+      .setLabel("Achievements")
       .setStyle(ButtonStyle.Primary)
       .setEmoji("🏆")
   )
@@ -163,6 +183,15 @@ async function handleHelpButtonInteraction(interaction, db, isAdmin) {
       break
     case "help_user_commands_prev":
       await showUserCommands(interaction, db, 1)
+      break
+    case "help_user_commands_next_2":
+      await showUserCommands(interaction, db, 3)
+      break
+    case "help_user_commands_prev_2":
+      await showUserCommands(interaction, db, 2)
+      break
+    case "help_game_commands":
+      await showUserCommands(interaction, db, 3)
       break
   }
 }
@@ -255,12 +284,57 @@ async function showUserCommands(interaction, db, page = 1) {
             inline: false
           }
         )
-        .setFooter({ text: "Powered By Aegisum Eco System • Page 2/2" })
+        .setFooter({ text: "Powered By Aegisum Eco System • Page 2/3" })
+
+      // Add navigation buttons
+      navigationRow.addComponents(
+        new ButtonBuilder()
+          .setCustomId("help_user_commands_prev")
+          .setLabel("Previous")
+          .setStyle(ButtonStyle.Primary)
+          .setEmoji("⬅️"),
+        new ButtonBuilder()
+          .setCustomId("help_user_commands_next_2")
+          .setLabel("Next")
+          .setStyle(ButtonStyle.Primary)
+          .setEmoji("➡️")
+      )
+    } else if (page === 3) {
+      embed.setTitle("🎮 Game Commands")
+        .setDescription("Fun games and activities to earn more entries and rewards.")
+        .addFields(
+          {
+            name: "/lucky",
+            value: "Play the lucky number game. Choose your lucky numbers and win bonus entries if they match the draw numbers.",
+            inline: false
+          },
+          {
+            name: "/achievements",
+            value: "View all available achievements and your progress towards unlocking them.",
+            inline: false
+          },
+          {
+            name: "/milestones",
+            value: "View donation milestones and rewards for reaching certain donation amounts.",
+            inline: false
+          },
+          {
+            name: "/referral",
+            value: "Manage your referrals. Earn bonus entries when people you refer make donations.",
+            inline: false
+          },
+          {
+            name: "/leaderboard",
+            value: "View global donation leaderboards across all categories.",
+            inline: false
+          }
+        )
+        .setFooter({ text: "Powered By Aegisum Eco System • Page 3/3" })
 
       // Add previous page button
       navigationRow.addComponents(
         new ButtonBuilder()
-          .setCustomId("help_user_commands_prev")
+          .setCustomId("help_user_commands_prev_2")
           .setLabel("Previous")
           .setStyle(ButtonStyle.Primary)
           .setEmoji("⬅️")
